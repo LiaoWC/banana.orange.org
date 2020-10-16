@@ -13,6 +13,7 @@ Cras ullamcorper vitae erat ac varius. Vestibulum a sollicitudin ipsum, vitae po
 Morbi pellentesque urna ac ligula efficitur, sit amet tincidunt sapien ullamcorper. Mauris porta condimentum mauris, at suscipit enim rhoncus nec. Phasellus id tincidunt dui.
 ## 使用介紹
 - 本專案使用podman容器（把它想得跟docker很像）
+- nodejs做為後端語言
 ## 使用流程
 1. Build出Image。方法：
     ```
