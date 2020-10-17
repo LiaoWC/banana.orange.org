@@ -28,6 +28,19 @@ Morbi pellentesque urna ac ligula efficitur, sit amet tincidunt sapien ullamcorp
     ```
    ./start_server.sh
    ```
+4. 在podman裡面的工作目錄
+    ```
+    npm start
+   ```
+
 備註：
 - 怎麼離開：試試Ctrl+D,或把terminal關掉XD（你懂的）。
 - 關於podman產生的image跟container怎麼刪除，就問Google大神囉。
+## 遇到問題？
+- 如果網頁顯示跟你想像的不同，你可以試下列任一方法：
+    1. 重新整理
+    2. 清除快取
+    3. 停掉server重新npm start
+- npm start失敗可以嘗試下列任一方法：
+    1. npm install
+    2. node ./bin/www

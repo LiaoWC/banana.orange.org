@@ -1,0 +1,7 @@
+.primary-color, .blue {
+    background-color: #4480A6 !important;
+}
+
+body {
+    padding-top: 58px; /* Use this to solve the fixed navbar covering content problem. */
+}

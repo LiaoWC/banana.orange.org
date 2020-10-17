@@ -1,0 +1,48 @@
+// Navbar
+nav.navbar.navbar-expand-lg.navbar-dark.primary-color.fixed-top
+    // Navbar brand
+    a.navbar-brand(href='/')
+        img(src='/images/favicon.png' height='30' alt='BO logo')
+    // Collapse button
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#basicExampleNav' aria-controls='basicExampleNav' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+    // Collapsible content
+    #basicExampleNav.collapse.navbar-collapse
+        // Links
+        ul.navbar-nav.mr-auto
+            li.nav-item
+                a.nav-link(href='/')
+                    | Home
+                    span.sr-only (current)
+            li.nav-item
+                a.nav-link(href='#') Features
+            li.nav-item
+                a.nav-link(href='#') Pricing
+            // Dropdown
+            li.nav-item.dropdown
+                a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Dropdown
+                .dropdown-menu.dropdown-primary(aria-labelledby='navbarDropdownMenuLink')
+                    a.dropdown-item(href='#') Action
+                    a.dropdown-item(href='#') Another action
+                    a.dropdown-item(href='#') Something else here
+        // Links
+        ul.navbar-nav.ml-auto.nav-flex-icons
+            form.form-inline
+                .md-form.my-0
+                    input.form-control.mr-sm-2(type='text' placeholder='Search' aria-label='Search')
+            li.nav-item
+                a.nav-link.waves-effect.waves-light
+                    i.fab.fa-twitter
+            li.nav-item
+                a.nav-link.waves-effect.waves-light
+                    i.fab.fa-google-plus-g
+            li.nav-item.dropdown
+                a#navbarDropdownMenuLink-333.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                    i.fas.fa-user
+                .dropdown-menu.dropdown-menu-right.dropdown-default(aria-labelledby='navbarDropdownMenuLink-333')
+                    a.dropdown-item(href='#') Action
+                    a.dropdown-item(href='#') Another action
+                    a.dropdown-item(href='#') Something else here
+    // Collapsible content
+// /.Navbar
+div.
