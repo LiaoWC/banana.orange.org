@@ -1,0 +1,12 @@
+extends page
+
+block js
+    script(type='text/javascript' src='/js/test.js')
+
+
+block content
+    h1= title
+    p Welcome to #{title}
+    img(src='/images/favicon.png' alt='IMG')
+    button.btn.btn-primary(type='button' onclick='get_users()') Get User List
+

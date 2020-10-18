@@ -11,8 +11,10 @@
     "express": "~4.16.1",
     "firebase-tools": "^6.0.0",
     "http-errors": "~1.6.3",
+    "md5": "^2.3.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "sqlite3": "^5.0.0"
   }
 }
