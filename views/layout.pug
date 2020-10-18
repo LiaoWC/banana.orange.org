@@ -2,6 +2,9 @@ doctype html
 html
     head
         title= title
+
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+
         link(rel='shortcut icon' href='/images/favicon.png')
         // === Stylesheets ===
         // Font Awesome
@@ -40,5 +43,8 @@ html
         script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js')
         // MDB core JavaScript
         script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js')
+        // React
+        script(crossorigin='' src='https://unpkg.com/react@16/umd/react.development.js')
+        script(crossorigin='' src='https://unpkg.com/react-dom@16/umd/react-dom.development.js')
 
         block js

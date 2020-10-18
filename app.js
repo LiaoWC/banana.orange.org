@@ -3,13 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var bodyParser = require('body-parser')
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testRouter = require('./routes/test');
 var userRouter = require('./routes/user')
-var db=require('./database/database')
+var db = require('./database/database')
 
 
 var app = express();
@@ -23,12 +25,21 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
 app.use('/', indexRouter);
 app.use('/test', testRouter);
 app.use('/users', usersRouter);
-app.use('/user',userRouter);
 
+app.get('/ttt',(req,res)=>{
+    res.render('tictactoe')
+})
+
+
+
+app.use('/user', userRouter);
 
 
 // catch 404 and forward to error handler
