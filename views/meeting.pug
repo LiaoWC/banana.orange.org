@@ -1,6 +1,7 @@
 extends layout
 block stylesheets
   link(rel='stylesheet', href='/stylesheets/meetingPage.css', type='text/css' )
+  link(rel='stylesheet', href='/stylesheets/whiteboard.css', type='text/css' )
     
 block js
     script(type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js')
@@ -23,5 +24,15 @@ block center
       </div>
     </li>
   </ul>
+
+  <canvas class="whiteboard" ></canvas>
+
+  <div class="colors">
+    <div class="color black"></div>
+    <div class="color red"></div>
+    <div class="color green"></div>
+    <div class="color blue"></div>
+    <div class="color yellow"></div>
+  </div>
 
 

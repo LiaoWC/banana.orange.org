@@ -18,6 +18,9 @@ var numUsers = 0;
 io.on('connection', (socket) => {
   var addedUser = false;
 
+  socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+
+
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
     // we tell the client to execute 'new message'
