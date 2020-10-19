@@ -1,0 +1,35 @@
+extends ../page
+block content
+    // Default form login
+    form.text-center.border.border-light.p-5(action='/user/login' method='post')
+        p.h4.mb-4 Login
+        // Email
+        input#loginFormEmail.form-control.mb-4(type='email' name='email' placeholder='E-mail')
+        // Password
+        input#loginFormPassword.form-control.mb-4(type='password' name='password' placeholder='Password')
+        .d-flex.justify-content-around
+            //div
+            //    // Remember me
+            //    .custom-control.custom-checkbox
+            //        input#defaultLoginFormRemember.custom-control-input(type='checkbox')
+            //        label.custom-control-label(for='defaultLoginFormRemember') Remember me(Not yet implemented）
+            div
+                // Forgot password
+                a(href='') Forgot password?(Not implemented）
+        // Sign in button
+        button.btn.btn-info.btn-block.my-4(type='submit') Login
+        // Register
+        p
+            | Not a member?
+            a(href='/user/register') &nbsp;Register
+        // Social login
+        p or sign in with:(Not implemented）
+        a.mx-2(href='#' role='button')
+            i.fab.fa-facebook-f.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-twitter.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-linkedin-in.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-github.light-blue-text
+    // Default form login

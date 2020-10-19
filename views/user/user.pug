@@ -1,0 +1,8 @@
+extends ../page
+block content
+    h1 User Page
+    ul
+        li Name: #{user_name}
+        li Email: #{user_email}
+    form(method='post' action='/user/logout')
+        input(type='submit' value='logout')

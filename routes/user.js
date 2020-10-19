@@ -1,48 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session');
+var md5 = require('md5')
+var bodyParser = require('body-parser')
+var config = require('../config')
+// router.use(bodyParser.urlencoded({extended: true}))
+// router.use(bodyParser.json())
 
-
-const CUR_MAIN_PATH = '/user'
-function fullPath(localPath){
-    return CUR_MAIN_PATH + localPath
-}
+// reference: https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/
 
 // Databse
 var db = require('../database/database')
 
+const CUR_MAIN_PATH = '/user'
 
-// === session ===
-
-const SESSION_NAME = 'sid'
-const SESSION_MAX_TIME = 1000 * 60 * 60 // 1hour
-const SESSION_SECRET = 'ITSa#$@SESSION>_<SECRET.'
-
-router.use(session({
-    name: SESSION_NAME,
-    resave: false,
-    saveUninitialized: false,
-    secret: SESSION_SECRET,
-    cookie: {
-        maxAge: SESSION_MAX_TIME, // 1 hour
-        sameSite: true,
-        secure: false, // After being developed, it should be turned to true. (need https)
-    }
-}))
-
-
-// ===  ===
-
-// TODO: This should be modified.
-router.use((req, res, next) => {
-    const {userId} = req.session
-    if (userId) {
-        res.locals.user = users.find(
-            user => user.id === userId
-        )
-    }
-    next()
-})
+function fullPath(localPath) {
+    return CUR_MAIN_PATH + localPath
+}
 
 
 // TODO: database
@@ -61,129 +35,128 @@ const redirectionLogin = (req, res, next) => {
     }
 }
 
-const redirectionDashboard = (req, res, next) => {
+const redirectionUserPage = (req, res, next) => {
     if (req.session.userId) {
-        res.redirect(fullPath('/dashboard'))
+        res.redirect(fullPath('/'))
     } else {
         next()
     }
 }
 
-
-router.get('/home', (req, res) => {
-    // console.log(req.session)
+router.get('/', redirectionLogin, (req, res) => {
     const {userId} = req.session
-    res.send(`
-        <h1>Welcome!</h1>
-        ${userId ? `
-        <a href="${fullPath('/dashboard')}">Dashboard</a>
-        <form method="post" action="${fullPath('/logout')}">
-            <button>Logout</button>
-        </form>\
-        ` : `
-        <a href="${fullPath('/login')}">Login</a>
-        <a href="${fullPath('/register')}">Register</a>
-        `}
-    `)
-})
-
-
-router.get('/dashboard', redirectionLogin, (req, res) => {
-    const user = users.find(
-        user => user.id === req.session.userId
-    )
-
-    res.send(`
-        <h1>Dashboard</h1>
-        <a href="${fullPath('/home')}">Main</a>
-        <ul>
-            <li>Name: ${user.name}</li>   
-            <li>Email: ${user.email}</li>  
-        </ul>
-        <form method="post" action="${fullPath('/logout')}" >
-            <input type="submit" value="logout" />
-        </form>
-    `)
-})
-
-router.get('/profile', redirectionLogin, (req, res) => {
-    const {user} = res.locals
-})
-
-router.get('/login', redirectionDashboard, (req, res) => {
-    res.send(`
-        <h1>Login</h1>
-        <form method="post" action="${fullPath('/login')}">
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" />
-        </form>
-        <a href="${fullPath('/register')}">Register</a>
-    `)
-})
-router.get('/register', redirectionDashboard, (req, res) => {
-    res.send(`
-        <h1>Register</h1>
-        <form method="post" action="${fullPath('/register')}">
-            <input name="name" placeholder="Name" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" />
-        </form>
-        <a href="${fullPath('/register')}">Login</a>
-    `)
-})
-
-router.post('/login', redirectionDashboard, (req, res) => {
-    const {email, password} = req.body
-    if (email && password) {
-        const user = users.find(
-            user => user.email === email && user.password === password // TODO: hash
-        )
-        if (user) {
-            req.session.userId = user.id
-            return res.redirect(fullPath('/dashboard'))
-        }
-    }
-
-    res.redirect(fullPath('/login'))
-})
-router.post('/register', redirectionDashboard, (req, res) => {
-    const {name, email, password} = req.body
-
-    if (name && email && password) { // TODO: validation
-        const exists = users.some(
-            user => user.email === email
-        )
-
-        if (!exists) {
-            const user = {
-                id: users.length + 1,
-                name,
-                email,
-                password // TODO: hash
-            }
-            users.push(user)
-
-            req.session.userId = user.id
-
-            return res.redirect(fullPath('/dashboard'))
-        }
-    }
-
-    res.redirect(fullPath('/register'))
-    // TODO: qs /register?error=error.auth.userExists or e.g. email too short
-})
-
-router.post('/logout', redirectionLogin, (req, res) => {
-    req.session.destroy(err => {
+    let sql = 'SELECT id,username,email FROM users WHERE id = ?'
+    let params = [userId]
+    db.get(sql, params, (err, row) => {
         if (err) {
-            return res.redirect(fullPath('/dashboard'))
+        } else {
+            if (row) {
+                return res.render('user/user', {
+                    user_name: row["username"],
+                    user_email: row["email"]
+                })
+            }
         }
-        res.clearCookie(SESSION_NAME)
-        res.redirect(fullPath('/login'))
+        res.redirect('/')
     })
 })
+
+// router.get('/profile', redirectionLogin, (req, res) => {
+//     const {user} = res.locals
+// })
+
+router.route('/login')
+    // Get the page of login
+    .get(redirectionUserPage, (req, res,) => {
+        res.render('user/login')
+    })
+    // Submit login form
+    .post(redirectionUserPage, (req, res) => {
+        const {email, password} = req.body
+        if (email && password) {
+            // Find if the email and password the same as what kept in database.
+            let sql = 'SELECT * FROM users WHERE email=? and password=?'
+            let params = [email, md5(password)]
+            console.log("email:", email)
+            console.log("password:", md5(password))
+            db.get(sql, params, (err, row) => {
+                if (err) {
+                    res.redirect(fullPath('/login'))
+                } else {
+                    if (row) {
+                        req.session.userId = row["id"]
+                        return res.redirect(fullPath('/'))
+                    } else {
+                        res.redirect(fullPath('/login'))
+                    }
+                }
+            })
+
+            // const user = users.find(
+            //     user => user.email === email && user.password === password // TODO: hash
+            // )
+            // if (user) {
+            //     req.session.userId = user.id
+            //     return res.redirect(fullPath('/'))
+            // }
+        } else {
+            res.redirect(fullPath('/login'))
+        }
+    })
+
+
+router.all('/logout', redirectionLogin, (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect(fullPath('/'))
+        }
+        res.clearCookie(config.SESSION_NAME)
+        // APP.cookieClear(res)
+        res.redirect('/')
+    })
+})
+
+
+router.route('/register')
+    .get(redirectionUserPage, (req, res) => {
+        res.render('user/register')
+    })
+    .post(redirectionUserPage, (req, res) => {
+        const {username, email, password} = req.body
+
+        if (username && email && password) { // TODO: validation
+            console.log('wwwwww0')
+            // Check if username exists
+            let sql = 'SELECT * FROM users WHERE username = ?'
+            let params = [username]
+            db.get(sql, params, (err, row) => {
+                if (err) {
+                    console.log('wwwwww')
+                    return res.redirect('/')
+                } else {
+                    if (row) {
+                        console.log('wwwwww3')
+                        return res.redirect('/')
+                    } else {
+                        // No error and get an existed row
+                        sql = 'INSERT INTO users (username,email,password) VALUES (?,?,?)'
+                        params = [username, email, md5(password)]
+                        db.run(sql, params, (err) => {
+                            if (err) {
+                            } else {
+                            }
+                        })
+                        console.log('wwwwww2')
+                        return res.redirect('/')
+                    }
+                }
+            })
+        } else {
+            console.log('wwwwww4')
+            return res.redirect(fullPath('/register'))
+        }
+        // TODO: /register?error=error.auth.userExists or e.g. email too short
+    })
 
 
 // Get user list
@@ -202,10 +175,5 @@ router.get('/list', (req, res, next) => {
         }
     )
 })
-
-
-// GET /user/list
-// GET /user/{id}
-// POST /user/
 
 module.exports = router;

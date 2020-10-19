@@ -13,8 +13,7 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
         db.run(`
             CREATE TABLE users(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name text,
-                department text,
+                username text,
                 email text,
                 password text
             )`, (err) => {
@@ -23,9 +22,9 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
                     console.log("Successfully! Table has been created before.\n")
                 } else {
                     // Table is just created.
-                    var insert_user = 'INSERT INTO users (name,department,email,password) VALUES (?,?,?,?)'
+                    var insert_user = 'INSERT INTO users (username,email,password) VALUES (?,?,?)'
                     db.run(insert_user,
-                        ['admin', 'A', 'admin@example.com', md5("admin")]
+                        ['admin', 'admin@example.com', md5("admin")]
                     )
                     console.log("Successfully!\nDatabase is just created. Automatically insert an admin user.\n")
                 }

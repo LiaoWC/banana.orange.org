@@ -37,12 +37,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.primary-color.fixed-top
                 a.nav-link.waves-effect.waves-light
                     i.fab.fa-google-plus-g
             li.nav-item.dropdown
-                a#navbarDropdownMenuLink-333.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                    i.fas.fa-user
-                .dropdown-menu.dropdown-menu-right.dropdown-default(aria-labelledby='navbarDropdownMenuLink-333')
-                    a.dropdown-item(href='#') Action
-                    a.dropdown-item(href='#') Another action
-                    a.dropdown-item(href='#') Something else here
+                a#navbarDropdownMenuLink-account.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                    i.fas.fa-user= username
+                .dropdown-menu.dropdown-menu-right.dropdown-default(aria-labelledby='navbarDropdownMenuLink-account')
+                    if userId
+                        a.dropdown-item(href='/user/logout') Logout
+                    else
+                        a.dropdown-item(href='/user/login') Login
+                        a.dropdown-item(href='/user/register') Register
     // Collapsible content
 // /.Navbar
-div.

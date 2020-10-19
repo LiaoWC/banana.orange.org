@@ -5,7 +5,6 @@ block js
     script(type='text/javascript' src='/js/test.js')
 
 
-
 block content
     .row.justify-content-center
         .col
@@ -19,6 +18,19 @@ block content
                 img#testIMG(src='/images/favicon.png' alt='IMG')
             .container
                 button.btn.btn-primary(type='button' onclick='get_users()') Get User List
+
+
+            //if(session.userId)
+            //    form(method='post' action='/user/logout')
+            //        input(type='submit' value='logout')
+            //else
+                //p= session
+                //p= session.userId
+            //p= session.userId
+
+            = userId
+            = username
+
     style.
         #testIMG{
             max-width: 50%;
