@@ -11,12 +11,6 @@ server.listen(port, () => {
 
 });
 
-let s = path.join(__dirname, '')
-s = s.substr(0, s.length - 3) + 'public'
-// Routing
-app.use(express.static(s));
-
-
 // Chatroom
 
 var numUsers = 0;

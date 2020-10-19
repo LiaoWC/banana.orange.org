@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "nodemon ./bin/www3"
+    "test": "nodemon ./bin/www2"
   },
   "proxy": "http://localhost:8080",
   "dependencies": {
