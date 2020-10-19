@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "nodemon ./bin/www3"
   },
   "proxy": "http://localhost:8080",
   "dependencies": {
