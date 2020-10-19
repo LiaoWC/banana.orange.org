@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testRouter = require('./routes/test');
 var userRouter = require('./routes/user')
+var meetingRouter = require('./routes/meeting')
 var db = require('./database/database')
 
 
@@ -22,7 +23,7 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
@@ -33,13 +34,14 @@ app.use('/', indexRouter);
 app.use('/test', testRouter);
 app.use('/users', usersRouter);
 
-app.get('/ttt',(req,res)=>{
+app.get('/ttt', (req, res) => {
     res.render('tictactoe')
 })
 
 
 
 app.use('/user', userRouter);
+app.use('/meeting', meetingRouter);
 
 
 // catch 404 and forward to error handler
