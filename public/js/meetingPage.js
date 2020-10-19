@@ -315,6 +315,13 @@ $(function () {
 
 
     function drawLine(x0, y0, x1, y1, color, emit) {
+        let canvas_box = canvas.getBoundingClientRect();
+
+        x0 -= canvas_box.x;
+        x1 -= canvas_box.x;
+        y0 -= canvas_box.y;
+        y1 -= canvas_box.y;
+
         context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
@@ -337,6 +344,8 @@ $(function () {
     }
 
     function onMouseDown(e) {
+        let canvas_box = canvas.getBoundingClientRect();
+        console.log(e)
         drawing = true;
         current.x = e.clientX || e.touches[0].clientX;
         current.y = e.clientY || e.touches[0].clientY;
