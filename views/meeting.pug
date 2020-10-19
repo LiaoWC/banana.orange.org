@@ -1,21 +1,26 @@
 extends layout
 
+block stylesheets
+  link(rel='stylesheet', href='/stylesheets/meetingPage.css', type='text/css' )
+    
 block js
     script(type='text/javascript' src='/js/meetingPage.js')
+    script(type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js')
+    script(type='text/javascript' src='/js/socket.io/socket.io.js')
 
 block center
   .container.pt-4.pb-4.text-center
-    div.XD
-      h1= title
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
-      p MEETING
+    <ul id='RRR' class="pages">
+      <li class="chat page">
+        <div class="chatArea">
+          <ul class="messages"></ul>
+        </div>
+        <input class="inputMessage" placeholder="Type here..."/>
+      </li>
+      <li class="login page">
+        <div class="form">
+          <h3 class="title">What's your nickname?</h3>
+          <input class="usernameInput" type="text" maxlength="14" />
+        </div>
+      </li>
+    </ul>
