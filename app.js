@@ -21,7 +21,7 @@ app.set('view engine', 'pug');
 // === Middlewares ===
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}))
@@ -70,12 +70,14 @@ var userRouter = require('./routes/user')
 var indexRouter = require('./routes/index');
 var testRouter = require('./routes/test');
 var exampleRouter = require('./routes/example')
+var meetingRouter = require('./routes/meeting')
 
 // === Use routers ===
 app.use('/', indexRouter);
 app.use('/example', exampleRouter)
 app.use('/test', testRouter);
 app.use('/user', userRouter);
+app.use('/meeting', meetingRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
