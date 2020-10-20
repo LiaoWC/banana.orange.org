@@ -44,3 +44,19 @@ Morbi pellentesque urna ac ligula efficitur, sit amet tincidunt sapien ullamcorp
 - npm start失敗可以嘗試下列任一方法：
     1. npm install
     2. node ./bin/www
+    
+## Route Document
+- `/user/login`
+    - get：到登入頁面
+    - post：登入表單送出
+- `/user/logout`
+    - all：登出
+- `/user/register`
+    - get：到註冊頁面
+    - post：註冊表單送出
+## Data Structure
+- user(in database table: "users")
+    - id: integer, primary key, autoincrement
+    - name: text
+    - email: text
+    - password: text

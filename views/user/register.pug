@@ -1,0 +1,38 @@
+extends ../page
+block content
+    // Default form register
+    form.text-center.border.border-light.p-5(action='/user/register' method='post')
+        p.h4.mb-4 Register
+        // Username
+        input#registerFormFirstName.form-control.mb-4(type='text' name='username' placeholder='Username' required)
+        // E-mail
+        input#registerFormEmail.form-control.mb-4(type='email' name='email' placeholder='E-mail' required)
+        // Password
+        input#registerFormPassword.form-control(type='password' name='password' placeholder='Password' aria-describedby='defaultRegisterFormPasswordHelpBlock' required)
+        small#registerFormPasswordHelpBlock.form-text.text-muted.mb-4
+            | At least 8 characters and 1 digit（Not implemented)
+        // Newsletter
+        .custom-control.custom-checkbox
+            input#registerFormNewsletter.custom-control-input(type='checkbox')
+            label.custom-control-label(for='registerFormNewsletter') Subscribe to our newsletter(Not implemented)
+        // Sign up button
+        button.btn.btn-info.my-4.btn-block(type='submit') Register
+        // Social register
+        p or sign up with:(Not implemented)
+        a.mx-2(href='#' role='button')
+            i.fab.fa-facebook-f.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-twitter.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-linkedin-in.light-blue-text
+        a.mx-2(href='#' role='button')
+            i.fab.fa-github.light-blue-text
+        hr
+        // Terms of service
+        p
+            | By clicking
+            em Sign up
+            |  you agree to our&nbsp;
+            a(href='' target='_blank') terms of service
+            | &nbsp;(Not implemented)
+    // Default form register
