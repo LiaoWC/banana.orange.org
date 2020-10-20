@@ -8,10 +8,14 @@ block stylesheets
 block js
     script(type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js')
     script(type='text/javascript' src='/socket.io/socket.io.js')
-    script(type='text/javascript' src='/js/meetingPage.js')
+    script(type='text/javascript' src='/js/meetingPage_chatroom.js')
+    script(type='text/javascript' src='/js/meetingPage_whiteboard.js')
+    script(type='text/javascript' src='/js/meetingPage_test.js')
+    script.
+      damm('#{user_name}');
+
 
 block center
-
 
   div#slide-out.side-nav.fixed
     ul.pages
@@ -23,8 +27,13 @@ block center
         .form
           h3.title What&apos;s your nickname?
           input.usernameInput(type='text' maxlength='14')
-
-
+          
 
   div.main(style="background-color:brown")
-      1324
+    canvas.whiteboard
+    .colors
+      .color.black
+      .color.red
+      .color.green
+      .color.blue
+      .color.yellow
