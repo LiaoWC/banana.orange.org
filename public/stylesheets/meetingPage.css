@@ -9,19 +9,9 @@ html,body{
 
 
 #slide-out{
-  background-color: blanchedalmond;
   width: 20%;
   height: 100%;
 
   padding: 0;
   float: right;
-}
-
-.sidebar {
-  right:0;
-  width:20%;
-  flex: 1;
-  position:fixed;
-  z-index:1;
-  overflow: auto;
 }

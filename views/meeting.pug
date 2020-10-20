@@ -25,11 +25,10 @@ block center
         input.inputMessage(placeholder='Type here...')
       li.login.page
         .form
-          h3.title What&apos;s your nickname?
-          input.usernameInput(type='text' maxlength='14')
+          h3.title Welcome, #{user_name}
           
 
-  div.main(style="background-color:brown")
+  div.main
     canvas.whiteboard
     .colors
       .color.black

@@ -64,7 +64,8 @@ $(function () {
 
     function onMouseDown(e) {
         let canvas_box = canvas.getBoundingClientRect();
-        console.log(e)
+        //console.log(e)
+        //console.log(document.getElementsByTagName('canvas')[0].getBoundingClientRect())
         drawing = true;
         current.x = e.clientX || e.touches[0].clientX;
         current.y = e.clientY || e.touches[0].clientY;
@@ -108,7 +109,11 @@ $(function () {
 
     // make the canvas fill its parent
     function onResize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas_style = window.getComputedStyle(canvas)
+        canvas.width = canvas_style.width.split('.')[0].replace('px', '')
+        canvas.height = canvas_style.height.split('.')[0].replace('px', '')
+        //console.log(canvas.width, canvas.height);
+        //canvas.width = window.innerWidth;
+        //canvas.height = window.innerHeight;
     }
 });
