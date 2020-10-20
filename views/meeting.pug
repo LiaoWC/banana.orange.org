@@ -1,6 +1,8 @@
-extends layout
+extends layout_no_footer
+
 block stylesheets
   link(rel='stylesheet', href='/stylesheets/meetingPage.css', type='text/css' )
+  link(rel='stylesheet', href='/stylesheets/chatroom.css', type='text/css' )
   link(rel='stylesheet', href='/stylesheets/whiteboard.css', type='text/css' )
     
 block js
@@ -10,29 +12,19 @@ block js
 
 block center
 
-  <ul class="pages">
-    <li class="chat page">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      <input class="inputMessage" placeholder="Type here..."/>
-    </li>
-    <li class="login page">
-      <div class="form">
-        <h3 class="title">What's your nickname?</h3>
-        <input class="usernameInput" type="text" maxlength="14" />
-      </div>
-    </li>
-  </ul>
 
-  <canvas class="whiteboard" ></canvas>
-
-  <div class="colors">
-    <div class="color black"></div>
-    <div class="color red"></div>
-    <div class="color green"></div>
-    <div class="color blue"></div>
-    <div class="color yellow"></div>
-  </div>
+  div#slide-out.side-nav.fixed
+    ul.pages
+      li.chat.page
+        .chatArea
+          ul.messages
+        input.inputMessage(placeholder='Type here...')
+      li.login.page
+        .form
+          h3.title What&apos;s your nickname?
+          input.usernameInput(type='text' maxlength='14')
 
 
+
+  div.main(style="background-color:brown")
+      1324
