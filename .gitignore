@@ -3,3 +3,4 @@ examples/
 .idea/
 .vscode/
 database/db.sqlite
+practice*

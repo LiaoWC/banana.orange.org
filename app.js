@@ -41,10 +41,10 @@ app.use(session({
 }))
 // Check if have logged in.
 app.use((req, res, next) => {
-    console.log("A res")
+    // console.log("A res")
     const {userId} = req.session
-    console.log("req",req.method,req.path)
-    console.log("app:",req.session)
+    // console.log("req",req.method,req.path)
+    // console.log("app:",req.session)
     if (userId) { // has logged in
         let sql = 'SELECT id,name,email FROM users WHERE id = ?'
         let params = [userId]
@@ -71,6 +71,7 @@ var indexRouter = require('./routes/index');
 var testRouter = require('./routes/test');
 var exampleRouter = require('./routes/example')
 var meetingRouter = require('./routes/meeting')
+var apiRouter = require('./routes/api')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -78,6 +79,29 @@ app.use('/example', exampleRouter)
 app.use('/test', testRouter);
 app.use('/user', userRouter);
 app.use('/meeting', meetingRouter);
+app.use('/api',apiRouter);
+
+
+
+
+
+
+
+
+app.get('/jitsi',(req,res,next)=>{
+    res.render('jitsi')
+})
+
+
+
+
+
+
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -101,3 +125,11 @@ module.exports = app;
 
 // source: source: https://stackoverflow.com/questions/49897613/how-to-use-session-in-expressjs-view-file-pug
 // source: https://stackoverflow.com/questions/35340036/accessing-session-variable-in-jade
+
+
+
+
+
+
+
+

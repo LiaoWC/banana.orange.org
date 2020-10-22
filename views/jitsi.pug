@@ -1,0 +1,14 @@
+extends layout
+
+block stylesheets
+
+block js
+    script(src='https://meet.jit.si/external_api.js')
+    script(src='/js/jitsi.js')
+
+block center
+    // h1.text-center Meeting
+    #meet.text-center
+    .text-center
+        button#meeting_reload.btn.btn-primary Reload Meeting
+
