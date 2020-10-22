@@ -1,8 +1,11 @@
 extends layout
 
 block center
-  .container.pt-4.pb-4.text-center
+  .container.pt-3.pb-3.text-center
     h1= title
     p Welcome to #{title}
     img(src='/images/favicon.png' alt='IMG')
-    p userId is: #{userId}
+  .container.text-center.pb-3
+    .btn-group(role='group' aria-label='Link to operations about account')
+      a.btn.btn-primary(href='/user/login' ) Login
+      a.btn.btn-primary(href='/user/register') Register

@@ -1,7 +1,8 @@
 var sqlite3 = require('sqlite3').verbose() // database
 var md5 = require('md5') // security
 
-const DB_SOURCE = 'database/db.sqlite'
+// const DB_SOURCE = 'database/db.sqlite'
+const DB_SOURCE = ':memory:'
 
 let db = new sqlite3.Database(DB_SOURCE, (err) => {
     if (err) {
