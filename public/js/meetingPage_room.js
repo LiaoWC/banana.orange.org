@@ -1,9 +1,6 @@
-console.log("room")
 
 function updateRooms(rooms) {
     var keys = Object.keys(rooms)
-    console.log(rooms)
-
     var list_element = document.getElementsByClassName('list-group')[0]
     list_element.innerHTML = ""
 
@@ -19,8 +16,6 @@ function updateRooms(rooms) {
         sample_element.appendChild(sample_span);
         list_element.appendChild(sample_element)
     }
-
-
 }
 
 $(function () {
@@ -33,17 +28,7 @@ $(function () {
     });
 
     socket.on('add room ok', (data) => {
-        var list_element = document.getElementsByClassName('list-group')[0]
-        var sample_element = document.createElement('a')
-        sample_element.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "list-group-item-action")
-        sample_element.innerText = data.room_name
-        sample_element.href = "/meeting" + "?" + `room_name=${data.room_name}`
-        var sample_span = document.createElement('span')
-        sample_span.classList.add("badge", "badge-primary", "badge-pill");
-        sample_span.innerText = data.person_num
-        sample_element.appendChild(sample_span);
-
-        list_element.appendChild(sample_element)
+        updateRooms(data)
     });
 
     function add_room() {

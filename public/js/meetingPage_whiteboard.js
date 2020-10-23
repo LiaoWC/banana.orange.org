@@ -36,10 +36,16 @@ $(function () {
     function drawLine(x0, y0, x1, y1, color, emit) {
         let canvas_box = canvas.getBoundingClientRect();
 
+        console.log(x0, y0, x1, y1)
+
         x0 -= canvas_box.x;
         x1 -= canvas_box.x;
         y0 -= canvas_box.y;
         y1 -= canvas_box.y;
+
+        console.log(canvas_box.x, canvas_box.y)
+        console.log(x0, y0, x1, y1)
+        console.log(canvas.width, canvas.height)
 
         context.beginPath();
         context.moveTo(x0, y0);
@@ -52,6 +58,7 @@ $(function () {
         if (!emit) { return; }
         var w = canvas.width;
         var h = canvas.height;
+
 
         socket.emit('drawing', {
             x0: x0 / w,
@@ -102,13 +109,17 @@ $(function () {
     }
 
     function onDrawingEvent(data) {
+        let canvas_box = canvas.getBoundingClientRect();
+
         var w = canvas.width;
         var h = canvas.height;
-        drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
+        drawLine(data.x0 * w + canvas_box.x, data.y0 * h + canvas_box.y, data.x1 * w + canvas_box.x, data.y1 * h + canvas_box.y, data.color);
+
     }
 
     // make the canvas fill its parent
     function onResize() {
+        console.log('onResize')
         canvas_style = window.getComputedStyle(canvas)
         canvas.width = canvas_style.width.split('.')[0].replace('px', '')
         canvas.height = canvas_style.height.split('.')[0].replace('px', '')

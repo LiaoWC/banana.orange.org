@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
           room_name: data,
           person_num: 0
         }
-        socket.emit('add room ok', rooms[data]);
+        socket.emit('add room ok', rooms);
       }
     });
 

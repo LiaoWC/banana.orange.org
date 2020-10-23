@@ -19,8 +19,6 @@ function openNav() {
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("room-list-btn").style.marginLeft = "190px";
     setTimeout(onResize, 600);
-
-    console.log('call onResize')
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
