@@ -13,7 +13,7 @@ block js
     script(type='text/javascript' src='/js/meetingPage_room.js')
     script(type='text/javascript' src='/js/meetingPage_test.js')
     script.
-      setUsername('#{user_name}');
+      $(function () { setUsername('#{user_name}');});
 
 
 block center

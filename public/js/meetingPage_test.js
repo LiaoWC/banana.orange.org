@@ -1,15 +1,17 @@
 console.log("test")
-args = new Map()
+var args = {}
 var url = location.href;
 
 if (url.indexOf('?') != -1) {
-    var ary = url.split('?')[1].split('&');
+    var arr = url.split('?')[1].split('&');
 
-    for (i = 0; i < ary.length; i++)
-        args.set(ary[i].split('=')[0], ary[i].split('=')[1])
+    for (i = 0; i < arr.length; i++)
+        args[arr[i].split('=')[0]] = arr[i].split('=')[1]
 }
 
-console.log(args.get('room_name'))
+console.log('Roomname: ' + args['room_name'])
+
+var socket = io()
 
 let sidenav_status = true;
 

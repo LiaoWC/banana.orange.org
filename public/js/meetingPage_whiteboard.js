@@ -1,5 +1,4 @@
 $(function () {
-    var socket = io()
 
     // white Board
 
@@ -36,16 +35,11 @@ $(function () {
     function drawLine(x0, y0, x1, y1, color, emit) {
         let canvas_box = canvas.getBoundingClientRect();
 
-        console.log(x0, y0, x1, y1)
 
         x0 -= canvas_box.x;
         x1 -= canvas_box.x;
         y0 -= canvas_box.y;
         y1 -= canvas_box.y;
-
-        console.log(canvas_box.x, canvas_box.y)
-        console.log(x0, y0, x1, y1)
-        console.log(canvas.width, canvas.height)
 
         context.beginPath();
         context.moveTo(x0, y0);
@@ -65,7 +59,8 @@ $(function () {
             y0: y0 / h,
             x1: x1 / w,
             y1: y1 / h,
-            color: color
+            color: color,
+            room_name: args['room_name']
         });
     }
 
