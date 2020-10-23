@@ -19,7 +19,8 @@ function updateRooms(rooms) {
 }
 
 $(function () {
-    var socket = io();
+    if (args['room_name'] != undefined)
+        socket.emit('enter room', { room_name: args['room_name'] })
 
     socket.emit('get room', 1)
 

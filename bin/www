@@ -13,16 +13,22 @@ server.listen(port, () => {
 // Meeting room managing
 var rooms = {}
 
-
+var room_of_socket = {}
 
 // Chatroom
 
 var numUsers = 0;
 
 io.on('connection', (socket) => {
-
   // room
   {
+    socket.on('enter room', (data) => {
+      console.log(socket.id + " join " + data.room_name)
+      socket.join(data.room_name)
+      room_of_socket[socket.id] = data.room_name;
+      //console.log(socket.rooms + "  aaa")
+
+    });
 
     socket.on('add room', (data) => {
       if (rooms[data] === undefined) {
@@ -43,48 +49,75 @@ io.on('connection', (socket) => {
   {
     var addedUser = false;
 
-    socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+    socket.on('drawing', (data) => {
+      socket.to(data.room_name).emit('drawing', data)
+      //socket.broadcast.emit('drawing', data)
+    });
 
 
     // when the client emits 'new message', this listens and executes
     socket.on('new message', (data) => {
+
       // we tell the client to execute 'new message'
+      socket.to(room_of_socket[socket.id]).emit('new message', {
+        username: socket.username,
+        message: data
+      })
+      /*
       socket.broadcast.emit('new message', {
         username: socket.username,
         message: data
       });
+      */
     });
 
     // when the client emits 'add user', this listens and executes
-    socket.on('add user', (username) => {
+    socket.on('add user', (data) => {
       if (addedUser) return;
 
       // we store the username in the socket session for this client
-      socket.username = username;
+      socket.username = data;
       ++numUsers;
       addedUser = true;
+
       socket.emit('login', {
         numUsers: numUsers
       });
       // echo globally (all clients) that a person has connected
+      socket.to(room_of_socket[socket.id]).emit('user joined', {
+        username: socket.username,
+        numUsers: numUsers
+      })
+      /*
       socket.broadcast.emit('user joined', {
         username: socket.username,
         numUsers: numUsers
       });
+      */
     });
 
     // when the client emits 'typing', we broadcast it to others
     socket.on('typing', () => {
+      socket.to(room_of_socket[socket.id]).emit('typing', {
+        username: socket.username,
+      })
+      /*
       socket.broadcast.emit('typing', {
         username: socket.username
       });
+      */
     });
 
     // when the client emits 'stop typing', we broadcast it to others
     socket.on('stop typing', () => {
+      socket.to(room_of_socket[socket.id]).emit('stop typing', {
+        username: socket.username,
+      })
+      /*
       socket.broadcast.emit('stop typing', {
         username: socket.username
       });
+      */
     });
 
     // when the user disconnects.. perform this
