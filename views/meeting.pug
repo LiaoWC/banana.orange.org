@@ -17,6 +17,11 @@ block js
 
 block center
 
+  #mySidenav.sidenav
+  a#room-list-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
+    i.fas.fa-user-friends
+
+
   div#slide-out.side-nav.fixed
     ul.pages
       li.chat.page
@@ -28,7 +33,7 @@ block center
           h3.title Welcome, #{user_name}
           
 
-  div.main
+  div#main
     canvas.whiteboard
     .colors
       .color.black
