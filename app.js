@@ -21,7 +21,7 @@ app.set('view engine', 'pug');
 // === Middlewares ===
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}))
@@ -72,7 +72,8 @@ var testRouter = require('./routes/test');
 var exampleRouter = require('./routes/example')
 var meetingRouter = require('./routes/meeting')
 var apiRouter = require('./routes/api')
-var todoClockRouter  = require('./routes/todo_clock')
+var todoClockRouter = require('./routes/todo_clock')
+var dashboardRouter = require('./routes/dashboard')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -80,28 +81,14 @@ app.use('/example', exampleRouter)
 app.use('/test', testRouter);
 app.use('/user', userRouter);
 app.use('/meeting', meetingRouter);
-app.use('/api',apiRouter);
-app.use('/todo_clock',todoClockRouter)
+app.use('/api', apiRouter);
+app.use('/todo_clock', todoClockRouter)
+app.use('/dashboard', dashboardRouter)
 
 
-
-
-
-
-
-app.get('/jitsi',(req,res,next)=>{
+app.get('/jitsi', (req, res, next) => {
     res.render('jitsi')
 })
-
-
-
-
-
-
-
-
-
-
 
 
 // catch 404 and forward to error handler
