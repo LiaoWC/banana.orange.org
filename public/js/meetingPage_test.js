@@ -9,6 +9,9 @@ if (url.indexOf('?') != -1) {
         args[arr[i].split('=')[0]] = arr[i].split('=')[1]
 }
 
+if (args['room_name'] == undefined)
+    window.location.href = "/meeting/control";
+
 console.log('Roomname: ' + args['room_name'])
 
 var socket = io()

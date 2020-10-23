@@ -23,11 +23,14 @@ io.on('connection', (socket) => {
   // room
   {
     socket.on('enter room', (data) => {
+      if (rooms[data.room_name] == undefined) {
+        socket.emit('enter room failed', rooms);
+        return
+      }
       console.log(socket.id + " join " + data.room_name)
       socket.join(data.room_name)
       room_of_socket[socket.id] = data.room_name;
-      //console.log(socket.rooms + "  aaa")
-
+      rooms[data.room_name].person_num++;
     });
 
     socket.on('add room', (data) => {
@@ -73,7 +76,7 @@ io.on('connection', (socket) => {
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', (data) => {
-      if (addedUser) return;
+      if (addedUser || rooms[room_of_socket[socket.id]] == undefined) return;
 
       // we store the username in the socket session for this client
       socket.username = data;
@@ -81,12 +84,12 @@ io.on('connection', (socket) => {
       addedUser = true;
 
       socket.emit('login', {
-        numUsers: numUsers
+        numUsers: rooms[room_of_socket[socket.id]].person_num
       });
       // echo globally (all clients) that a person has connected
       socket.to(room_of_socket[socket.id]).emit('user joined', {
         username: socket.username,
-        numUsers: numUsers
+        numUsers: rooms[room_of_socket[socket.id]].person_num
       })
       /*
       socket.broadcast.emit('user joined', {
@@ -124,11 +127,12 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
       if (addedUser) {
         --numUsers;
+        rooms[room_of_socket[socket.id]].person_num--
 
         // echo globally that this client has left
         socket.broadcast.emit('user left', {
           username: socket.username,
-          numUsers: numUsers
+          numUsers: rooms[room_of_socket[socket.id]].person_num
         });
       }
     });

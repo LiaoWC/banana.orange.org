@@ -1,3 +1,5 @@
+var socket = io()
+
 
 function updateRooms(rooms) {
     var keys = Object.keys(rooms)
@@ -18,14 +20,14 @@ function updateRooms(rooms) {
     }
 }
 
+function add_room() {
+    var room_name = prompt("Please enter room name:", "");
+    if (room_name == "" || room_name == null)
+        return
+    socket.emit('add room', room_name);
+}
+
 $(function () {
-    if (args['room_name'] != undefined)
-        socket.emit('enter room', { room_name: args['room_name'] })
-
-    socket.on('enter room failed', () => {
-        window.location.href = "/meeting/control";
-    });
-
     socket.emit('get room', 1)
 
     socket.on('get room ok', (data) => {
@@ -35,13 +37,5 @@ $(function () {
     socket.on('add room ok', (data) => {
         updateRooms(data)
     });
-
-    function add_room() {
-        var room_name = prompt("Please enter room name:", "");
-        if (room_name == "" || room_name == null)
-            return
-        socket.emit('add room', room_name);
-    }
-    window.add_room = add_room
 });
 
