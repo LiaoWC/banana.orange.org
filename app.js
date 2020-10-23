@@ -72,6 +72,7 @@ var testRouter = require('./routes/test');
 var exampleRouter = require('./routes/example')
 var meetingRouter = require('./routes/meeting')
 var apiRouter = require('./routes/api')
+var todoClockRouter  = require('./routes/todo_clock')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -80,7 +81,7 @@ app.use('/test', testRouter);
 app.use('/user', userRouter);
 app.use('/meeting', meetingRouter);
 app.use('/api',apiRouter);
-
+app.use('/todo_clock',todoClockRouter)
 
 
 
