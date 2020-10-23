@@ -8,8 +8,12 @@ var port = process.env.PORT || 8080;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
-
 });
+
+// Meeting room managing
+var rooms = new Array(0)
+
+
 
 // Chatroom
 
@@ -75,3 +79,4 @@ io.on('connection', (socket) => {
     }
   });
 });
+

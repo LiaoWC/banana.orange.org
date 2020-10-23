@@ -7,7 +7,8 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("room-list-btn").style.marginLeft = "190px";
-    onResize();
+    setTimeout(onResize, 600);
+
     console.log('call onResize')
 }
 
@@ -16,7 +17,7 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     document.getElementById("room-list-btn").style.marginLeft = "10px";
-    onResize();
+    setTimeout(onResize, 600);
 }
 
 function OpenorClose() {
