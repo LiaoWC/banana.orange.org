@@ -31,7 +31,7 @@ html,body{
 }
 
 #room-list-btn{
-  background-color: rgb(144, 175, 209);
+  background-color: rgb(160, 197, 236);
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   position: absolute;
   border-radius: 22px;
@@ -42,4 +42,18 @@ html,body{
 
 #sidenav_title{
   height: 10%;
+}
+
+#add_rom_btn{
+  background-color: rgb(160, 197, 236);
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  position: absolute;
+  border-radius: 22px;
+  z-index: 100;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.list-group-item{
+    
 }

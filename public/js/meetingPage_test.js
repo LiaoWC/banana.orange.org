@@ -1,4 +1,15 @@
 console.log("test")
+args = new Map()
+var url = location.href;
+
+if (url.indexOf('?') != -1) {
+    var ary = url.split('?')[1].split('&');
+
+    for (i = 0; i < ary.length; i++)
+        args.set(ary[i].split('=')[0], ary[i].split('=')[1])
+}
+
+console.log(args.get('room_name'))
 
 let sidenav_status = true;
 
