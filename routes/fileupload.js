@@ -22,10 +22,6 @@ router.post('/', function (req, res, next) {
         mv(tmpPath, newPath, function (err) {
             if (err) throw err;
             res.render('file_test', { title: 'file_test' })
-            return
-            res.writeHead(200, { 'content-type': 'text/html' });
-            res.write('File uploaded');
-            res.end();
         });
 
         // 將已上傳的檔案新增到 list
@@ -33,6 +29,23 @@ router.post('/', function (req, res, next) {
         //fs.appendFileSync('./data/fileList.txt', objText);
         console.log(`file: [${fileName}] has been saved in '${newPath}'`);
     });
+});
+
+router.post('/screenshot', function (req, res, next) {
+    console.log('screenshot')
+
+    var imgData = req.body.IMAGEDATA;
+    var room_name = req.body.room_name
+
+    var date = new Date();
+    var filename = (date.getMonth() + 1) + "" + date.getDate() + "" + date.getHours() + "" + date.getMinutes() + "-" + date.getSeconds() + "" + date.getMilliseconds()
+
+
+    var base64Data = imgData.replace(/^data:image\/png+;base64,/, "").replace(/ /g, '+');
+    fs.writeFile("./savedFiles/" + filename, base64Data, 'base64', function (err) {
+        console.log(err);
+    });
+
 });
 
 

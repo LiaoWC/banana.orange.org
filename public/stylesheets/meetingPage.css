@@ -44,19 +44,32 @@ html,body{
   height: 10%;
 }
 
-#add_rom_btn{
-  background-color: rgb(160, 197, 236);
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+#top_btn_div{
   position: absolute;
-  border-radius: 22px;
   z-index: 100;
-  margin-top: 10px;
-  margin-left: 10px;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.fixed-btn{
+  position: absolute;
+  z-index: 100;
 }
 
 .circle-btn{
-
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   margin: 15px;
   border-radius: 50px;
   background-color: rgb(144, 177, 221);
+}
+
+
+.modal{
+
+}
+
+#meet.text-center{
+  width: 100%;
+  height: 100%;
 }

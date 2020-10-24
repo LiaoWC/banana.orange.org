@@ -12,25 +12,35 @@ block js
     script(type='text/javascript' src='/js/meetingPage_whiteboard.js')
     script(type='text/javascript' src='/js/meetingPage_room.js')
     script(type='text/javascript' src='/js/meetingPage_test.js')
+    //script(src='https://meet.jit.si/external_api.js')
+    //script(src='/js/jitsi.js')
     script.
       $(function () { setUsername('#{user_name}');});
+    
+
 
 
 block center
 
   div#mySidenav.sidenav
     #sidenav_title
-      a#add_rom_btn.btn-floating.btn-lg(onClick="add_room()")
+      a.circle-btn.btn-floating.btn-lg(onClick="add_room()")
         i.fas.fa-plus
     ul.list-group
       a.list-group-item.d-flex.justify-content-between.align-items-center.list-group-item-action(href="/index")
         | Default room
         span.badge.badge-primary.badge-pill 14
 
+  div#top_btn_div
 
-
-  a#room-list-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
-    i.fas.fa-user-friends
+    a.circle-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
+      i.fas.fa-user-friends
+    a.circle-btn.btn-floating.btn-lg(data-toggle='modal' data-target='#whiteboardModal' onclick="setTimeout(onResize,200)")
+      i.fas.fa-calendar
+    a.circle-btn.btn-floating.btn-lg#meeting_reload
+      i.fas.fa-undo
+    a.circle-btn.btn-floating.btn-lg#screenshot
+      i.fas.fa-camera
 
 
   div#slide-out.side-nav.fixed
@@ -45,12 +55,31 @@ block center
           
 
   div#main
-    canvas.whiteboard
-    .colors
-      .color.black
-      .color.red
-      .color.green
-      .color.blue
-      .color.yellow
-      a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
-        i.fas.fa-file
+    // h1.text-center Meeting
+    #meet.text-center
+
+
+  // Modal
+  #whiteboardModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='whiteboardModal' aria-hidden='true' )
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalLabel.modal-title Whiteboard
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          canvas.whiteboard
+          .colors
+            .color.black
+            .color.red
+            .color.green
+            .color.blue
+            .color.yellow
+            a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
+              i.fas.fa-file
+        .modal-footer
+          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+          button.btn.btn-primary(type='button') Save changes
+
+
+        
