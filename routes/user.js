@@ -181,7 +181,7 @@ router.get('/list', (req, res, next) => {
         }
     )
 })
-
+/*
 router.post('/check_status',(req, res, next) => {
     console.log(req.session.id)
     if(!req.session.userId){
@@ -189,6 +189,6 @@ router.post('/check_status',(req, res, next) => {
         res.redirect(fullPath('/login'))
     }
     
-})
+})*/
 
 module.exports = router;
