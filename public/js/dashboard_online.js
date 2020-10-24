@@ -14,14 +14,18 @@ $(document).ready(function () {
                 user_list.push(username)
             });
             user_list.forEach(element => {
-                $("#modalCart > div > div > div.modal-body > table > tbody").append(`
+                $("#modalCart > div > div > div.modal-body > table > tbody").append(
+                    `
                     <tr>
-                        <th scope='row'></th>
-                        <td>Online</td> 
+                        <th scope='row'>Online</th>
                         <td>${element}</td> 
                         <td> 
-                            <a><i class='fas fa-sms'></a>
-                           `
+
+                        <i class='fas fa-sms'</i>
+                            
+                        </td>
+                    </tr>
+                    `
                 )
 
             }
