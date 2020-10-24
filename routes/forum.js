@@ -1,11 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../database/database')
+var config = require('../config')
+
+function date_format_transform(str) {
+    let position1 = 4
+    let position2 = 7
+    let a = str
+    let b = '/'
+    let output1 = [a.slice(0, position1), b, a.slice(position1)].join('')
+    return [output1.slice(0, position2), b, output1.slice(position2)].join('')
+}
+
 
 //
 router.get('/', (req, res) => {
 
-    let sql = 'SELECT boards.boardId,boardname,posts.postId,title,date FROM boards,posts WHERE boards.boardId=posts.boardId ORDER BY boards.boardId'
+    let sql = `SELECT boards.boardId,boardname,posts.postId,title,date FROM boards,posts WHERE boards.boardId=posts.boardId ORDER BY boards.boardId`
     let params = []
 
     db.all(sql, params, (err, rows) => {
@@ -28,22 +39,15 @@ router.get('/', (req, res) => {
                         boards_list.push([this_boardname, posts_list])
                         posts_list = []
                     }
-                    console.log("###")
                     this_series_boardId = cur_boardId
                     this_boardname = row['boardname']
-                    //
-                    // let temp_str = (row['date'].charAt(0) +
-                    //     row['date'].charAt(1) + row['date'].charAt(2) + row['date'].charAt(3) +
-                    //     row['date'].charAt(4) + row['date'].charAt(5) + row['date'].charAt(6) + row['date'].charAt(7))
-                    let position1 = 4
-                    let position2 = 7
-                    let a = row['date']
-                    let b = '/'
-                    let output1 = [a.slice(0, position1), b, a.slice(position1)].join('')
-                    let output2 = [output1.slice(0, position2), b, output1.slice(position2)].join('')
 
 
-                    let temp_obj = {postId: row['postId'], title: row['title'], postDate: output2}
+                    let temp_obj = {
+                        postId: row['postId'],
+                        title: row['title'],
+                        postDate: date_format_transform(row['date'])
+                    }
                     posts_list.push(temp_obj)
 
                     console.log(posts_list)
@@ -57,30 +61,34 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    let post_id = req.params.id
 
-    let sql = 'SELECT title,content,username FROM posts,users WHERE posts.postId = ?'
-    let params = [post_id]
-
-    db.get(sql, params, (err, row) => {
-            if (err) {
-                console.log('ERROR:', err.message)
-
-            } else {
-                if (row) {
-                    return res.render('forum/post', {
-                        postExists: 1,
-                        postTitle: row['title'],
-                        postContent: row['content'],
-                        postUsername: row['username']
-                    })
+// Get 5 newest articles
+router.get('/newest', (req, res, next) => {
+    let sql = `SELECT postId,title,date FROM posts ORDER BY date DESC LIMIT ${config.NEWEST_FORUM_POST_NUM}`
+    let params = []
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            console.log("ERROR:", err.message)
+        } else {
+            if (rows) {
+                let temp_list = []
+                console.log("kkk")
+                for (let row of rows) {
+                    let obj = {
+                        postId: row['postId'],
+                        title: row['title'],
+                        date: date_format_transform(row['date'])
+                    }
+                    temp_list.push(obj)
                 }
+                return res.json(temp_list)
             }
-            return res.render('forum/post', {postExists: 0})
         }
-    )
+        console.log("kkk")
+        return res.json({})
+    })
 })
+
 
 // let sql = 'SELECT boardId,boardname FROM boards'
 // let params = []
@@ -120,5 +128,31 @@ router.get('/:id', (req, res) => {
 //         }
 //     }
 // })
+
+
+router.get('/read/:id', (req, res) => {
+    let post_id = req.params.id
+
+    let sql = 'SELECT title,content,username FROM posts,users WHERE posts.postId = ?'
+    let params = [post_id]
+
+    db.get(sql, params, (err, row) => {
+            if (err) {
+                console.log('ERROR:', err.message)
+
+            } else {
+                if (row) {
+                    return res.render('forum/post', {
+                        postExists: 1,
+                        postTitle: row['title'],
+                        postContent: row['content'],
+                        postUsername: row['username']
+                    })
+                }
+            }
+            return res.render('forum/post', {postExists: 0})
+        }
+    )
+})
 
 module.exports = router;
