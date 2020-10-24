@@ -14,17 +14,11 @@ const INIT_QUERY = `
 
 const SECOND_QUERIES = [`
     CREATE TABLE todos(
-        todoId INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
+        todoId INTEGER PRIMARY KEY AUTOINCREMENT,
         userId INTEGER NOT NULL,
         state INTEGER NOT NULL,
         content TEXT NOT NULL,
         deadline TEXT NOT NULL   
-    )`, `
-    CREATE TABLE screenshot(
-        imgId INTEGER PRIMARY KEY AUTOINCREMENT,
-        group TEXT NOT NULL,
-        date TEXT NOT NULL,
-        dataURL TEXT NOT NULL   
     )`, `
     CREATE TABLE boards(
         boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
