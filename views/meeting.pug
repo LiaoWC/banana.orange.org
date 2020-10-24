@@ -6,6 +6,7 @@ block stylesheets
   link(rel='stylesheet', href='/stylesheets/whiteboard.css', type='text/css' )
     
 block js
+    
     script(type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js')
     script(type='text/javascript' src='/socket.io/socket.io.js')
     script(type='text/javascript' src='/js/meetingPage_chatroom.js')
@@ -41,6 +42,8 @@ block center
       i.fas.fa-undo
     a.circle-btn.btn-floating.btn-lg#screenshot
       i.fas.fa-camera
+    a#leave-btn.circle-btn.btn-floating.btn-lg
+      i.fas.fa-window-close
 
 
   div#slide-out.side-nav.fixed
@@ -75,11 +78,14 @@ block center
             .color.green
             .color.blue
             .color.yellow
+            a#color_front.color.circle-btn.btn-floating.btn-lg
+              i.fas.fa-cog
+            input#colour.bar(type='color' value='#fefefe')
+
+                      
             a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
               i.fas.fa-file
-        .modal-footer
-          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
-          button.btn.btn-primary(type='button') Save changes
+            a.circle-btn.btn-floating.btn-lg(onClick="save_canvas()")
+              i.fas.fa-image
 
-
-        
+            input#line-width.slider(type='range' min='1' max='25' value='9')

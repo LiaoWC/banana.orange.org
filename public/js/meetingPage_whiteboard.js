@@ -5,6 +5,7 @@ $(function () {
 
     var canvas = document.getElementsByClassName('whiteboard')[0];
     var colors = document.getElementsByClassName('color');
+    var line_width_input = document.getElementById('line-width')
     var context = canvas.getContext('2d');
 
     var current = {
@@ -27,6 +28,7 @@ $(function () {
         colors[i].addEventListener('click', onColorUpdate, false);
     }
 
+
     socket.on('drawing', onDrawingEvent);
 
     window.addEventListener('resize', onResize, false);
@@ -45,12 +47,21 @@ $(function () {
         console.log(canvas.width, canvas.height);
 
         context.beginPath();
+        context.fillStyle = color;
+        context.arc(x0, y0, line_width_input.value, 0, 2 * Math.PI);
+        context.fill();
+        context.lineWidth = line_width_input.value * 2;
+        context.beginPath();
+        context.strokeStyle = color;
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
-        context.strokeStyle = color;
-        context.lineWidth = 2;
         context.stroke();
-        context.closePath();
+        //context.moveTo(x0, y0);
+        //context.lineTo(x1, y1);
+        //context.strokeStyle = color;
+        //context.lineWidth = 2;
+        //context.stroke();
+        //context.closePath();
 
         var w = canvas.width;
         var h = canvas.height;
@@ -97,7 +108,9 @@ $(function () {
     }
 
     function onColorUpdate(e) {
-        current.color = e.target.className.split(' ')[1];
+        current.color = window.getComputedStyle(e.target, null).getPropertyValue('background-color');  //.style.backgroundColor//.className.split(' ')[1];
+        //current.color = $(e.target).css('background-color', $(this).val());
+        console.log(current.color)
     }
 
     // limit the number of events per second
@@ -155,4 +168,28 @@ $(function () {
     }
     window.clearCanvas = clearCanvas
 
+
+    function save_canvas() {
+        var dataurl = canvas.toDataURL()
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/fileupload/screenshot", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("room_name=" + args['room_name'] + "&" + "IMAGEDATA=" + dataurl.toString());
+
+
+    }
+    window.save_canvas = save_canvas
+
+    $("#colour").change(function (event) {
+        console.log($(this).val());
+        current.color = $(this).val()
+        $("#color_front").css('background-color', $(this).val());
+    });
+
+    $("#color_front").click(function (event) {
+        $("#colour").click();
+    });
+
+
 });
+
