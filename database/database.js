@@ -49,6 +49,15 @@ const SECOND_QUERIES = [`
     CREATE TABLE assigned_task_collaborator(
         collaboratorId INTEGER PRIMARY KEY AUTOINCREMENT,
         taskId INTEGER NOT NULL,
+<<<<<<< HEAD
+        collaborator TEXT NOT NULL
+    )`,`
+    CREATE TABLE work_time(
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        starttime TEXT NOT NULL,
+        stoptime TEXT NOT NULL
+=======
         username TEXT NOT NULL
     )`,`
     CREATE TABLE task_assign(
@@ -58,6 +67,7 @@ const SECOND_QUERIES = [`
         content TEXT NOT NULL,
         deadline TEXT NOT NULL,
         collaborators TEXT NOT NULL
+>>>>>>> 0af0f27a52f03849db31313afacd0b1a2376ebe6
     )`
 ];
 
