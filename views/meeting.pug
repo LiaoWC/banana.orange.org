@@ -20,17 +20,19 @@ block center
 
   div#mySidenav.sidenav
     #sidenav_title
-      a#add_rom_btn.btn-floating.btn-lg(onClick="add_room()")
+      a.circle-btn.btn-floating.btn-lg(onClick="add_room()")
         i.fas.fa-plus
     ul.list-group
       a.list-group-item.d-flex.justify-content-between.align-items-center.list-group-item-action(href="/index")
         | Default room
         span.badge.badge-primary.badge-pill 14
 
+  div#top_btn_div
 
-
-  a#room-list-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
-    i.fas.fa-user-friends
+    a.circle-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
+      i.fas.fa-user-friends
+    a.circle-btn.btn-floating.btn-lg(onClick="show_whiteboard_popup()")
+          i.fas.fa-calendar
 
 
   div#slide-out.side-nav.fixed
@@ -54,3 +56,10 @@ block center
       .color.yellow
       a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
         i.fas.fa-file
+
+  #myModal.modal
+    .modal-content
+      span.close &times;
+      p Some text in the Modal..
+
+        
