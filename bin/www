@@ -5,6 +5,7 @@ var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8080;
+var axios = require('axios')
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -56,6 +57,14 @@ io.on('connection', (socket) => {
           rooms: rooms,
           old_rooms: old_rooms
         });
+        // post to line server
+        axios.post('https://e464f1497bc9.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name=Public' })
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
     });
 
