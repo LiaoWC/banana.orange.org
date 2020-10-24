@@ -5,8 +5,9 @@ var db = require('../database/database')
 
 
 const redirectionLogin = (req, res, next) => {
+  console.log(req.session)
   if (!req.session.userId) {
-    res.redirect('/user')
+    res.redirect('/user/login')
   } else {
     next()
   }

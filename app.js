@@ -46,6 +46,8 @@ app.use(session({
 app.use((req, res, next) => {
     // console.log("A res")
     const { userId } = req.session
+    req.session._garbage = Date();
+    req.session.touch();
     // console.log("req",req.method,req.path)
     // console.log("app:",req.session)
     if (userId) { // has logged in

@@ -30,6 +30,7 @@ const users = [
 
 
 const redirectionLogin = (req, res, next) => {
+    console.log(req.session.userId)
     if (!req.session.userId) {
         res.redirect(fullPath('/login'))
     } else {
@@ -183,20 +184,15 @@ router.get('/list', (req, res, next) => {
 })
 
 router.get('/check_status',(req, res, next) => {
-    console.log(req.session.id)
+    console.log(req.session.returnTo)
     if(!req.session.userId){
-        console.log('kkk')
-        try{
-            delete current_user[req.session]
-        }
-        catch (e){
-            console.log('no user')
-        }
-        res.redirect(req.body.redirect)
+        delete current_user[req.session.name]
+        console.log('here')
+        res.redirect(req.session.returnTo || '/');
     }
     else{
         console.log('keep')
-        res.redirect(req.body.redirect)
+        res.redirect(req.session.returnTo || '/');
     }
     
 })

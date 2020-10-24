@@ -35,7 +35,7 @@ router.post('/todos/create'/*, redirectionLogin*/, function (req, res, next) {
     let content = req.body['content']
     let deadline_date = req.body['deadline_date']
     let time_to_finish = req.body['time_to_finish']
-
+    
     if (isNaN(state)) {
         // return res.json({"message":"The state is not a valid integer."})
     }
