@@ -1,5 +1,4 @@
 var socket = io()
-var axios = require('axios')
 
 function updateRooms(rooms, old_rooms) {
     var keys = Object.keys(rooms)
