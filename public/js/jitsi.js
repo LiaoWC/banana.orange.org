@@ -1,6 +1,4 @@
 //const { default: Canvas2Image } = require("./Canvas2Image");
-var db = require('../database/database')
-
 
 var groupname = ".";
 var api
