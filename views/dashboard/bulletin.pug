@@ -1,1 +1,43 @@
-| bulletin
+// Carousel Wrapper
+#carousel-example-2.carousel.slide.carousel-fade(data-ride='carousel')
+    // Indicators
+    ol.carousel-indicators
+        li.active(data-target='#carousel-example-2' data-slide-to='0')
+        li(data-target='#carousel-example-2' data-slide-to='1')
+        li(data-target='#carousel-example-2' data-slide-to='2')
+    // /.Indicators
+    // Slides
+    .carousel-inner(role='listbox')
+        .carousel-item.active
+            .view
+                img.d-block.w-100(src='/images/writing-828911_1920.jpg' alt='First slide')
+                .mask.rgba-black-light
+            .carousel-caption
+                h3.h3-responsive Work From Home
+                p
+        .carousel-item
+            // Mask color
+            .view
+                img.d-block.w-100(src='/images/tech-5090539_1920.jpg' alt='Second slide')
+                .mask.rgba-black-light
+            .carousel-caption
+                h3.h3-responsive Use High-speed Internet Technology
+                p
+        .carousel-item
+            // Mask color
+            .view
+                img.d-block.w-100(src='/images/pen-4337521_1920.jpg' alt='Third slide')
+                .mask.rgba-black-slight
+            .carousel-caption
+                h3.h3-responsive Mix work and life in your own way.
+                p
+    // /.Slides
+    // Controls
+    a.carousel-control-prev(href='#carousel-example-2' role='button' data-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.sr-only Previous
+    a.carousel-control-next(href='#carousel-example-2' role='button' data-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.sr-only Next
+    // /.Controls
+// /.Carousel Wrapper
