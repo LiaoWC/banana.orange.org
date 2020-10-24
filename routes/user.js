@@ -49,6 +49,7 @@ router.get('/', redirectionLogin, (req, res) => {
     let params = [userId]
     db.get(sql, params, (err, row) => {
         if (err) {
+            console.log("ERROR:",err.message)
         } else {
             if (row) {
                 return res.render('user/user', {
