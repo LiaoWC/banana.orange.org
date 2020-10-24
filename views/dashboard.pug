@@ -9,7 +9,7 @@ html
         style(type='text/css').
             body {
                 background-color: #024873;
-                color:white;
+                color: white;
             }
 
             .col {
@@ -35,7 +35,7 @@ html
                         h1 Welcome to Micron!
                         | Vestibulum fermentum mollis facilisis. Aenean turpis nulla, euismod et imperdiet sed, venenatis a dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec eu fermentum sem. Proin volutpat eu lacus ac porta. Sed blandit maximus nibh, id viverra ligula tempus eget. Sed blandit maximus nibh, id viverra ligula tempus eget.
                 .col.start_work
-                        i.fas.fa-play
+                    i.fas.fa-play
             .row
                 .col
                     .container.text-center.align-middle
@@ -78,11 +78,37 @@ html
                         //img.mx-2(src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image")
             .row
                 .col
-                    .container.text-center 5
+                    .container.text-center
+                        include dashboard/bulletin
+
                 .col
-                    .container.text-center 6
+                    .container.text-center
+                        include dashboard/todo
+
+            .row
                 .col
-                    .container.text-center 7
+                    .container.text-center
+                        include dashboard/forum
+                .col
+                    .row
+                        .container
+                            include dashboard/todo
+                    hr
+                    .row
+                        .container
+                            include dashboard/task
+            .row
+                .col
+                    .container.text-center
+                        include dashboard/chat
+                .col
+                    .container.text-center
+                        include dashboard/meeting
+                .col
+                    .container.text-center
+                        include dashboard/online_people
+
+
             .row
                 .col
                     // Grid row
@@ -251,3 +277,6 @@ html
 
         // === Javascript ===
         include layout/js
+
+
+// reference: https://boohover.pixnet.net/blog/post/35341387
