@@ -34,6 +34,10 @@ block center
     a.circle-btn.btn-floating.btn-lg(onClick="show_whiteboard_popup()")
           i.fas.fa-calendar
 
+    button.btn.btn-primary(type='button' data-toggle='modal' data-target='#basicExampleModal')
+      | Launch demo modal
+
+
 
   div#slide-out.side-nav.fixed
     ul.pages
@@ -47,19 +51,29 @@ block center
           
 
   div#main
-    canvas.whiteboard
-    .colors
-      .color.black
-      .color.red
-      .color.green
-      .color.blue
-      .color.yellow
-      a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
-        i.fas.fa-file
+    
 
-  #myModal.modal
-    .modal-content
-      span.close &times;
-      p Some text in the Modal..
+  // Modal
+  #basicExampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' )
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalLabel.modal-title Whiteboard
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          canvas.whiteboard
+          .colors
+            .color.black
+            .color.red
+            .color.green
+            .color.blue
+            .color.yellow
+            a.circle-btn.btn-floating.btn-lg(onClick="clearCanvas()")
+              i.fas.fa-file
+        .modal-footer
+          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+          button.btn.btn-primary(type='button') Save changes
+
 
         
