@@ -14,6 +14,7 @@ var schedule = require('node-schedule');
 var db = require('../database/database');
 
 var current_user = new Object
+var time_record = new Array
 
 const CUR_MAIN_PATH = '/user'
 
@@ -93,6 +94,10 @@ router.route('/login')
                         let date_ = Date.now()
                         
                         current_user[req.session.userId] = [email, date_, row["username"]]
+                        if(!(row["username"] in time_record)){
+                            let start = new Date(date_*1000)
+                            time_record[row["username"]] = [start, null]
+                        }
 
                         return res.redirect(fullPath('/'))
                     } else {
@@ -202,6 +207,21 @@ router.get('/check_status',(req, res, next) => {
 })
 
 
+function savework(username, record){
+    var sql = "INSERT INTO work_time(username,starttime,stoptime) VALUES(?,?,?)"
+    var parmameters = [username,record[0],record[1]]
+    db.run(sql, params, (err) => {
+        if (err) {
+            console.log(err.message)
+            res.json(FAIL_MSG)
+        } else {
+            res.json(SUC_MSG)
+        }
+    }
+)
+}
+
+
 // Kill Lazy Guy 
 var rule = new schedule.RecurrenceRule(); 
 rule.minute = [0,15,30,45]
@@ -215,6 +235,10 @@ var j = schedule.scheduleJob(rule, function(){
         let online = ((time_-current_user[key][1])<15*60*100) //15分鐘check
         console.log(online)
         if(!online){
+            let user_ = current_user[key][2]
+            let stop = new Date(current_user[key][1]*1000)
+            time_record[user_][1] = stop
+            savework(user_,time_record[user_])
             delete current_user[key]
         }
     }

@@ -49,6 +49,12 @@ const SECOND_QUERIES = [`
         collaboratorId INTEGER PRIMARY KEY AUTOINCREMENT,
         taskId INTEGER NOT NULL,
         collaborator TEXT NOT NULL
+    )`,`
+    CREATE TABLE work_time(
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        starttime TEXT NOT NULL,
+        stoptime TEXT NOT NULL
     )`
 ];
 
