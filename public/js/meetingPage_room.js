@@ -25,7 +25,9 @@ $(function () {
     socket.on('enter room failed', () => {
         window.location.href = "/meeting/control";
     });
-
+    socket.on('enter room closed', () => {
+        window.location.href = "/meeting/closed?room_name=" + args['room_name'];
+    });
     socket.emit('get room', 1)
 
     socket.on('get room ok', (data) => {
@@ -36,6 +38,10 @@ $(function () {
         updateRooms(data)
     });
 
+    socket.on('end room ok', (data) => {
+        window.location.href = "/meeting/control";
+    });
+
     function add_room() {
         var room_name = prompt("Please enter room name:", "");
         if (room_name == "" || room_name == null)
@@ -44,4 +50,12 @@ $(function () {
     }
     window.add_room = add_room
 });
+
+
+$('#leave-btn').click(function (event) {
+    socket.emit('end room', { room_name: args['room_name'] })
+    window.location.href = "/meeting/control";
+
+});
+
 

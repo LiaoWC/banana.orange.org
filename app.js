@@ -83,6 +83,7 @@ var dashboardRouter = require('./routes/dashboard')
 var forumRouter = require('./routes/forum')
 var kanbanRouter = require('./routes/kanban')
 var jitsiRouter = require('./routes/jitsi')
+var taskAssignmentRouter = require('./routes/task_assignment')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -98,7 +99,7 @@ app.use('/kanban', kanbanRouter)
 
 app.use('/forum', forumRouter)
 app.use('/jitsi', jitsiRouter)
-
+app.use('/task_assignment', taskAssignmentRouter)
 
 
 // catch 404 and forward to error handler

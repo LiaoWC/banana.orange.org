@@ -97,25 +97,16 @@ $(document).ready(function () {
 
 
 
-    var data_list = [{
-        todo_id: 1,
-        state: 0,
-        content: "Human Interest Form",
-        deadline_date: 1222, 
-        time_to_finish: 2512,
-    },
+    var data_list = [
     {
         todoId: 1,
         state: 0,
         content: "cassa m",
         deadline_date: 5645, 
         time_to_finish: 6874,
-    },
-    ];
+    }
+    ]
 
-
-    // $(window).bind('beforeunload', function () {
-    // console.log('It is going to be refreshed')
     $.get('/api/todos/get_all',
         {}, 'json')
         .done((data) => {
@@ -143,7 +134,7 @@ $(document).ready(function () {
             });
             data_list.forEach(element => {
                 $("table tbody").append(
-                    `<tr><td><span><i class="fa fa-trash"></i> </span>${element['content']}</td><td>${element['time_to_finish']}</td><td>${element['deadline_date']}</td></tr>`)
+                    `<tr id=${'n'+toString(element['todoId'])})><td><span><i class="fa fa-trash"></i> </span>${element['content']}</td><td>${element['time_to_finish']}</td><td>${element['deadline_date']}</td></tr>`)
             });
         }
        
@@ -154,9 +145,13 @@ $(document).ready(function () {
     // });
     $("table tbody tr td").on("click", "span", function (e) {
         $(this).parent().parent().fadeOut(500);
-        
         $(this).parent().parent().remove();
         console.log("ddd")
+        console.log($(this).parent().parent().attr("id"))
+        // $.post('/api/todos/delete',
+        // {
+        //     'todo_id':$(this).parent().parent()
+        // })
         e.stopPropagation();
     });
     $("table tbody").on("click", "tr", function () {
@@ -178,19 +173,22 @@ $(document).ready(function () {
         console.log(types);
         $("table tbody").append(
             // '<tr><td><span><i class="fa fa-trash"></i> </span>' + types[0] + '</td><td>' + types[1] + '</td><td>' + types[2] + '</td></tr>';
-            `<tr><td><span><i class="fa fa-trash"></i> </span>${types[0]}</td><td>${types[1]}</td><td>${types[2]}</td></tr>`)
-
+            `<tr><td><span><i class="fa fa-trash"></i> </span>${types[0]}</td><td>${types[1]}</td><td>${types[2]}</td></tr>`
+            );
+        // console.log("milk")
         $.post('/api/todos/create',
-            { 'state': 0, 'content': 'hola', 'deadline_date': '1022', 'time_to_finish': '1822' }, 'json')
+            { 'state':0 ,'content': types[0], 'deadline_date': types[1], 'time_to_finish': types[2] }, 'json')
             .done((data) => {
-                console.log(data)
+        
+                console.log("create...!" + data)
             })
             .fail(function () {
                 console.log("error");
 
             });
 
-
+        
 
     })
+
 })
