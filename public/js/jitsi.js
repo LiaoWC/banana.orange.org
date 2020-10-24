@@ -1,6 +1,6 @@
 //const { default: Canvas2Image } = require("./Canvas2Image");
 
-var groupname = ".";
+var groupname = "for_all";
 var api
 //
 function newAPI() {
@@ -24,14 +24,14 @@ function newAPI() {
 
 //
 $('#meeting_reload').click(function () {
-    api.dispose() 
+    api.dispose()
     newAPI()
 })
 
-$('#screenshot').click(function (){
-   // console.log(api);
+$('#screenshot').click(function () {
+    // console.log(api);
     api.captureLargeVideoScreenshot().then(dataURL => {
-        try{
+        try {
             console.log(dataURL.dataURL)
             /*
             // dataURL 存入資料庫
@@ -56,7 +56,7 @@ $('#screenshot').click(function (){
             document.body.appendChild(im);
             */
         }
-        catch{
+        catch {
             console.log('no screen getable');
         }
         //var image_ = Canvas2Image.saveAsPNG(dataURL,true);
@@ -64,7 +64,7 @@ $('#screenshot').click(function (){
     });
 })
 
-$('#get_pic').click(function(){
+$('#get_pic').click(function () {
     let a = localStorage.getItem("imgdata");
     console.log(a);
     var image = new Image();

@@ -77,6 +77,7 @@ var todoClockRouter = require('./routes/todo_clock')
 var dashboardRouter = require('./routes/dashboard')
 var forumRouter = require('./routes/forum')
 var kanbanRouter = require('./routes/kanban')
+var jitsiRouter = require('./routes/jitsi')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -91,10 +92,8 @@ app.use('/dashboard', dashboardRouter)
 app.use('/kanban', kanbanRouter)
 
 app.use('/forum', forumRouter)
+app.use('/jitsi', jitsiRouter)
 
-app.get('/jitsi', (req, res, next) => {
-    res.render('jitsi')
-})
 
 
 // catch 404 and forward to error handler
