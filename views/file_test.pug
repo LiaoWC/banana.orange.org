@@ -1,0 +1,15 @@
+extends layout_no_footer
+
+block stylesheets
+
+    
+block js
+  script(type='text/javascript' src='https://code.jquery.com/jquery-1.10.2.min.js')
+  script(type='text/javascript' src='/js/file_test.js')
+
+
+block center
+
+  form(action='/fileupload/file' method='post' enctype='multipart/form-data')
+    input#file(type='file' name='filetoupload' required='')
+    input#submit.button(type='submit' value='Submit')
