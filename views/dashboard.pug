@@ -1,0 +1,282 @@
+doctype html
+html
+    head
+        title Dashboard
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel='shortcut icon' href='/images/favicon.png')
+        // === Stylesheets ===
+        include layout/stylesheets
+        style(type='text/css').
+            body {
+                background-color: #024873;
+                color: white;
+            }
+
+            .col {
+                border-style: solid;
+                border-width: thin;
+                border-color: #75A3BF;
+                padding: 50px 25px;
+            }
+
+            .start_work {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /*color: darkgray;*/
+                font-size: 50px;
+            }
+
+    body
+        .container-fluid
+            .row
+                .col
+                    .container.text-center
+                        h1 Welcome to Micron!
+                        | Vestibulum fermentum mollis facilisis. Aenean turpis nulla, euismod et imperdiet sed, venenatis a dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec eu fermentum sem. Proin volutpat eu lacus ac porta. Sed blandit maximus nibh, id viverra ligula tempus eget. Sed blandit maximus nibh, id viverra ligula tempus eget.
+                .col.start_work
+                    i.fas.fa-play
+            .row
+                .col
+                    .container.text-center.align-middle
+                        // Grid row
+                        .row
+                            // Grid column
+                            .col-md-12.mb-4
+                                button.btn.btn-primary.px-3(type='button')
+                                    i.fab.fa-android(aria-hidden='true')
+                                button.btn.btn-default.px-3(type='button')
+                                    i.fas.fa-balance-scale(aria-hidden='true')
+                                button.btn.btn-secondary.px-3(type='button')
+                                    i.fas.fa-birthday-cake(aria-hidden='true')
+                                button.btn.btn-success.px-3(type='button')
+                                    i.far.fa-thumbs-up(aria-hidden='true')
+                                button.btn.btn-info.px-3(type='button')
+                                    i.fas.fa-tint(aria-hidden='true')
+                                button.btn.btn-warning.px-3(type='button')
+                                    i.fas.fa-bolt(aria-hidden='true')
+                                button.btn.btn-danger.px-3(type='button')
+                                    i.fas.fa-users(aria-hidden='true')
+                            // Grid column
+                            // Grid column
+                            .col-md-12.mb-4
+                                button.btn.btn-elegant(type='button')
+                                    i.far.fa-user.pr-2(aria-hidden='true')
+                                    | User
+                                button.btn.btn-unique(type='button')
+                                    i.fas.fa-wifi.pr-2(aria-hidden='true')
+                                    | Wifi
+                                button.btn.btn-pink(type='button')
+                                    i.fas.fa-plane.pr-2(aria-hidden='true')
+                                    | Plane
+                                button.btn.btn-purple(type='button')
+                                    i.fas.fa-heart.pr-2(aria-hidden='true')
+                                    | Heart
+                            // Grid column
+                        // Grid row
+
+                        //img.mx-2(src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image")
+            .row
+                .col
+                    .container.text-center
+                        include dashboard/bulletin
+
+                .col
+                    .container.text-center
+                        include dashboard/todo
+
+            .row
+                .col
+                    .container.text-center
+                        include dashboard/forum
+                .col
+                    .row
+                        .container
+                            include dashboard/todo
+                    hr
+                    .row
+                        .container
+                            include dashboard/task
+            .row
+                .col
+                    .container.text-center
+                        include dashboard/chat
+                .col
+                    .container.text-center
+                        include dashboard/meeting
+                .col
+                    .container.text-center
+                        include dashboard/online_people
+
+
+            .row
+                .col
+                    // Grid row
+                    .row
+                        // Grid column
+                        .col-md-12.mb-4
+                            button.btn.btn-fb(type='button')
+                                i.fab.fa-facebook-f.left
+                                |  Facebook
+                            button.btn.btn-gplus(type='button')
+                                i.fab.fa-google-plus-g.left
+                                |  Google +
+                            button.btn.btn-ins(type='button')
+                                i.fab.fa-instagram.left
+                                |  Instagram
+                            button.btn.btn-so(type='button')
+                                i.fab.fa-stack-overflow.left
+                                |  Stack Overflow
+                        // Grid column
+                        // Grid column
+                        .col-md-12.mb-4
+                            button.btn.btn-li(type='button')
+                                i.fab.fa-linkedin-in
+                            button.btn.btn-pin(type='button')
+                                i.fab.fa-pinterest
+                            button.btn.btn-dribbble(type='button')
+                                i.fab.fa-dribbble.left
+                            button.btn.btn-vk(type='button')
+                                i.fab.fa-vk
+                            button.btn.btn-git(type='button')
+                                i.fab.fa-github
+                        // Grid column
+                        // Grid column
+                        .col-md-12.mb-4
+                            a.btn-floating.btn-lg.btn-tw(type='button')
+                                i.fab.fa-twitter
+                            a.btn-floating.btn-lg.btn-yt(type='button')
+                                i.fab.fa-youtube
+                            a.btn-floating.btn-dribbble(type='button')
+                                i.fab.fa-dribbble
+                            a.btn-floating.btn-so(type='button')
+                                i.fab.fa-stack-overflow
+                            a.btn-floating.btn-sm.btn-slack(type='button')
+                                i.fab.fa-slack-hash
+                            a.btn-floating.btn-sm.btn-comm(type='button')
+                                i.far.fa-comments
+                        // Grid column
+                        // Grid column
+                        .col-md-12.mb-4
+                            // Facebook
+                            button.btn.btn-fb.btn-lg(type='button')
+                                i.fab.fa-facebook-f
+                            span.counter 22
+                            // Twitter
+                            button.btn.btn-tw.btn-lg(type='button')
+                                i.fab.fa-twitter
+                            span.counter 22
+                            // Google +
+                            button.btn.btn-gplus.btn-lg(type='button')
+                                i.fab.fa-google-plus-g
+                            span.counter 22
+                            // Linkedin
+                            button.btn.btn-li.btn-lg(type='button')
+                                i.fab.fa-linkedin-in
+                            span.counter 22
+                            // Slack
+                            button.btn.btn-slack.btn-lg(type='button')
+                                i.fab.fa-slack-hash
+                            span.counter 22
+                            // Emails
+                            button.btn.btn-email.btn-lg(type='button')
+                                i.fas.fa-envelope
+                            span.counter 22
+                        // Grid column
+                        // Grid column
+                        .col-md-12
+                            // Facebook
+                            a.icons-sm.fb-ic
+                                i.fab.fa-facebook-f.fa-2x
+                            // Twitter
+                            a.icons-sm.tw-ic
+                                i.fab.fa-twitter.fa-2x
+                            // Google +
+                            a.icons-sm.gplus-ic
+                                i.fab.fa-google-plus-g.fa-2x
+                            // Linkedin
+                            a.icons-sm.li-ic
+                                i.fab.fa-linkedin-in.fa-2x
+                            // Instagram
+                            a.icons-sm.ins-ic
+                                i.fab.fa-instagram.fa-2x
+                            // Pinterest
+                            a.icons-sm.pin-ic
+                                i.fab.fa-pinterest.fa-2x
+                            // Slack
+                            a.icons-sm.slack-ic
+                                i.fab.fa-slack-hash.fa-2x
+                            // Github
+                            a.icons-sm.git-ic
+                                i.fab.fa-github.fa-2x
+                            // Youtube
+                            a.icons-sm.yt-ic
+                                i.fab.fa-youtube.fa-2x
+                            // Dribbble
+                            a.icons-sm.dribbble-ic
+                                i.fab.fa-dribbble.fa-2x
+                            // Stack Overflow
+                            a.icons-sm.so-ic
+                                i.fab.fa-stack-overflow.fa-2x
+                        // Grid column
+                    // Grid row
+
+            .row
+                .col
+                    .container.text-center
+                        // Grid row
+                        .row
+                            // Grid column
+                            .col-md-12.mb-4
+                                button.btn.btn-primary.px-3(type='button')
+                                    i.fab.fa-android(aria-hidden='true')
+                                button.btn.btn-default.px-3(type='button')
+                                    i.fas.fa-balance-scale(aria-hidden='true')
+                                button.btn.btn-secondary.px-3(type='button')
+                                    i.fas.fa-birthday-cake(aria-hidden='true')
+                                button.btn.btn-success.px-3(type='button')
+                                    i.far.fa-thumbs-up(aria-hidden='true')
+                                button.btn.btn-info.px-3(type='button')
+                                    i.fas.fa-tint(aria-hidden='true')
+                                button.btn.btn-warning.px-3(type='button')
+                                    i.fas.fa-bolt(aria-hidden='true')
+                                button.btn.btn-danger.px-3(type='button')
+                                    i.fas.fa-users(aria-hidden='true')
+                            // Grid column
+                            // Grid column
+                            .col-md-12.mb-4
+                                button.btn.btn-elegant(type='button')
+                                    i.far.fa-user.pr-2(aria-hidden='true')
+                                    | User
+                                button.btn.btn-unique(type='button')
+                                    i.fas.fa-wifi.pr-2(aria-hidden='true')
+                                    | Wifi
+                                button.btn.btn-pink(type='button')
+                                    i.fas.fa-plane.pr-2(aria-hidden='true')
+                                    | Plane
+                                button.btn.btn-purple(type='button')
+                                    i.fas.fa-heart.pr-2(aria-hidden='true')
+                                    | Heart
+                            // Grid column
+                            // Grid column
+                            .col-md-12
+                                button.btn.btn-outline-secondary.waves-effect.px-3(type='button')
+                                    i.fas.fa-trophy(aria-hidden='true')
+                                button.btn.btn-outline-info.waves-effect.px-3(type='button')
+                                    i.fas.fa-thumbtack(aria-hidden='true')
+                                button.btn.btn-outline-warning.waves-effect.px-3(type='button')
+                                    i.fas.fa-rocket(aria-hidden='true')
+                                button.btn.btn-outline-primary.waves-effect(type='button')
+                                    i.fas.fa-sun.pr-2(aria-hidden='true')
+                                    | Sunny
+                                button.btn.btn-outline-default.waves-effect(type='button')
+                                    i.fas.fa-star.pr-2(aria-hidden='true')
+                                    | Star
+                            // Grid column
+                        // Grid row
+
+        // === Javascript ===
+        include layout/js
+
+
+// reference: https://boohover.pixnet.net/blog/post/35341387

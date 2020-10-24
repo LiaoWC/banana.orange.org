@@ -4,3 +4,4 @@ examples/
 .vscode/
 database/db.sqlite
 practice*
+podman_run_copy.sh

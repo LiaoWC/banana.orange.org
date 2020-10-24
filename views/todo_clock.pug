@@ -1,0 +1,69 @@
+extends layout
+
+block stylesheets
+
+block js
+  title Todo_clock
+  
+  link(href='https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap ' rel='stylesheet ')
+
+  script(src='/js/todo_clock.js')
+
+  link(rel='stylesheet' href='/stylesheets/todo_clock.css')
+
+
+block center
+
+  .container
+    h1 Pomodoro Clock
+    .text-center
+      .container
+        h1#title session time
+        i#minus5Clock.fas.fa-minus
+        h2#num1 25
+        i#add5Clock.fas.fa-plus
+      .container
+        h1#title break time
+        i#minus5Break.fas.fa-minus
+        h2#num2 5
+        i#add5Break.fas.fa-plus
+      i#start.fas.fa-play.align-middle.fa-2x
+      i#stop.fas.fa-redo-alt.align-middle.fa-2x
+    #container
+      h1
+        | Todo list
+        i.fas.fa-code
+      .cool-list
+        #form-test.input-group.cool-form
+          input.form-control.cool(type='text' placeholder='To do...')
+          input.form-control.cool(type='text' placeholder='How long')
+          input.form-control.cool(type='text' placeholder='Deadline')
+          button.btn.btn-primary.mb-2.bt(type='submit') Submit
+        table.table
+          thead#cool-thead.thead-light
+            tr
+              th(scope='col') Task
+              th(scope='col') Time
+              th(scope='col') Deadline
+          tbody
+            tr
+              td
+                span
+                  i.fa.fa-trash
+                | Mark
+              td Otto
+              td @mdo
+            tr
+              td
+                span
+                  i.fa.fa-trash
+                | Jacob
+              td Thornton
+              td @fat
+            tr
+              td
+                span
+                  i.fa.fa-trash
+                | Larry
+              td the Bird
+              td @twitter
