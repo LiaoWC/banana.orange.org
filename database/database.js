@@ -13,6 +13,13 @@ const INIT_QUERY = `
     );`
 
 const SECOND_QUERIES = [`
+    CREATE TABLE todos(
+        todoId INTEGER PRIMARY KEY NOT NULL,
+        userId INTEGER NOT NULL,
+        state INTEGER NOT NULL,
+        content TEXT NOT NULL,
+        deadline TEXT NOT NULL   
+    )`,`
     CREATE TABLE boards(
         boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         boardname TEXT NOT NULL UNIQUE,
@@ -53,10 +60,10 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
                         ['admin', 'admin@example.com', md5("admin")]
                     )
                     console.log("Successfully!\nDatabase is just created. Automatically insert an admin user.\n")
-                    for (let i = 0; i < SECOND_QUERIES.length; i++) {
-                        db.run(SECOND_QUERIES[i], (err) => {
-                            if (err) {
-                                console.log("ERROR:",err.message)
+                    for (let i = 0 ;i<SECOND_QUERIES.length;i++){
+                        db.run(SECOND_QUERIES[i],(err)=>{
+                            if(err){
+                                console.log("ERROR: Some error occur in second queries.")
                             }
                         })
                     }

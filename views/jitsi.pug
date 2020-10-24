@@ -4,6 +4,7 @@ block stylesheets
 
 block js
     script(src='https://meet.jit.si/external_api.js')
+    script(src='/js/Canvas2Image.js')
     script(src='/js/jitsi.js')
 
 block center
@@ -11,4 +12,6 @@ block center
     #meet.text-center
     .text-center
         button#meeting_reload.btn.btn-primary Reload Meeting
+        button#screenshot.btn.btn-primary screenshot
+        //button#get_pic.btn.btn-primary get
 

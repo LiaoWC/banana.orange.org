@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.render('kanban')
+    res.render('kanban',{title:"Kanban"})
 })
 
 module.exports = router;

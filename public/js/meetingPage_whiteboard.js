@@ -1,6 +1,7 @@
 $(function () {
 
     // white Board
+    var draw_queue = [];
 
     var canvas = document.getElementsByClassName('whiteboard')[0];
     var colors = document.getElementsByClassName('color');
@@ -32,7 +33,8 @@ $(function () {
     onResize();
 
 
-    function drawLine(x0, y0, x1, y1, color, emit) {
+    function drawLine(x0, y0, x1, y1, color, emit, inQueue = false) {
+
         let canvas_box = canvas.getBoundingClientRect();
 
 
@@ -49,10 +51,20 @@ $(function () {
         context.stroke();
         context.closePath();
 
-        if (!emit) { return; }
         var w = canvas.width;
         var h = canvas.height;
 
+        if (!inQueue)
+            draw_queue.push({
+                x0: x0 / w,
+                y0: y0 / h,
+                x1: x1 / w,
+                y1: y1 / h,
+                color: color
+            })
+
+
+        if (!emit) { return; }
 
         socket.emit('drawing', {
             x0: x0 / w,
@@ -114,13 +126,33 @@ $(function () {
 
     // make the canvas fill its parent
     function onResize() {
-        console.log('onResize')
         canvas_style = window.getComputedStyle(canvas)
         canvas.width = canvas_style.width.split('.')[0].replace('px', '')
         canvas.height = canvas_style.height.split('.')[0].replace('px', '')
         //console.log(canvas.width, canvas.height);
         //canvas.width = window.innerWidth;
         //canvas.height = window.innerHeight;
+        let canvas_box = canvas.getBoundingClientRect();
+
+        var w = canvas.width;
+        var h = canvas.height;
+        for (var i = 0; i < draw_queue.length; i++) {
+            drawLine(
+                draw_queue[i].x0 * w + canvas_box.x,
+                draw_queue[i].y0 * h + canvas_box.y,
+                draw_queue[i].x1 * w + canvas_box.x,
+                draw_queue[i].y1 * h + canvas_box.y,
+                draw_queue[i].color,
+                false,
+                true
+            );
+        }
     }
     window.onResize = onResize
+
+
+    function clearCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    window.clearCanvas = clearCanvas
 });
