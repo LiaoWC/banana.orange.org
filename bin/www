@@ -15,6 +15,8 @@ var rooms = {}
 
 var room_of_socket = {}
 
+var old_rooms = {}
+
 // Chatroom
 
 var numUsers = 0;
@@ -28,10 +30,16 @@ io.on('connection', (socket) => {
   // room
   {
     socket.on('enter room', (data) => {
+      var old_keys = Object.keys(old_rooms)
       if (rooms[data.room_name] == undefined) {
         socket.emit('enter room failed', rooms);
         return
       }
+      if (old_keys.find(e => e == data.room_name) != undefined) {
+        socket.emit('enter room closed', rooms);
+        return
+      }
+
       console.log(socket.id + " join " + data.room_name)
       socket.join(data.room_name)
       room_of_socket[socket.id] = data.room_name;
@@ -44,12 +52,27 @@ io.on('connection', (socket) => {
           room_name: data,
           person_num: 0
         }
-        socket.emit('add room ok', rooms);
+        socket.emit('add room ok', {
+          rooms: rooms,
+          old_rooms: old_rooms
+        });
       }
     });
 
     socket.on('get room', (data) => {
-      socket.emit('get room ok', rooms);
+      socket.emit('get room ok', {
+        rooms: rooms,
+        old_rooms: old_rooms
+      });
+    });
+
+    socket.on('end room', (data) => {
+      var room_name = room_of_socket[socket.id]
+      old_rooms[room_of_socket[socket.id]] = rooms[room_of_socket[socket.id]]
+
+      socket.to(room_name).emit('end room ok', {
+        username: socket.username
+      })
     });
   }
 
