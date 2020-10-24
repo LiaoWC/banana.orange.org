@@ -42,6 +42,7 @@ $(function () {
         y0 -= canvas_box.y;
         y1 -= canvas_box.y;
 
+        console.log(canvas.width, canvas.height);
 
         context.beginPath();
         context.moveTo(x0, y0);

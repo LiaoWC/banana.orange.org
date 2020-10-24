@@ -19,6 +19,11 @@ var room_of_socket = {}
 
 var numUsers = 0;
 
+rooms['Public'] = {
+  room_name: 'Public',
+  person_num: 0
+}
+
 io.on('connection', (socket) => {
   // room
   {
