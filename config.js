@@ -9,5 +9,10 @@ module.exports = Object.freeze({
     SESSION_COOKIE_SECURE: false,  // After being developed, it should be turned to true. (need https)
     SESSION_COOKIE_SAMESITE: false,
     SESSION_COOKIE_HTTPONLY: false, // be careful
-    SESSION_COOKIE_PATH: '/'
+    SESSION_COOKIE_PATH: '/',
+
+    // Forum
+    NEWEST_FORUM_POST_NUM: 5
+
+
 });

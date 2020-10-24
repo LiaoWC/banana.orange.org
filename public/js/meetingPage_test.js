@@ -43,4 +43,3 @@ function OpenorClose() {
 
     sidenav_status = !sidenav_status;
 }
-

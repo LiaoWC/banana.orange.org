@@ -1,0 +1,97 @@
+extends page
+
+block stylesheets
+    style(type='text/css').
+        .page_container {
+            /*background-color: #75A3BF;*/
+        }
+
+block content
+
+
+    // format: boards = [  { boardname: [ {postId:,title:}]  <-- post ,,,,,]  }  , ... <-- board  ]
+
+    - var boards = boards_list;
+    - var boardIdx = 0;
+
+    h1.text-center Forum
+
+    ul.nav.justify-content-end.grey.lighten-4.py-1(style='background-color: transparent !important;')
+        li.nav-item
+            a.nav-link.active.fas.fa-plus(href='#!' data-toggle='modal' data-target='#modalAddBoardForm')
+        li.nav-item
+            a.nav-link.fas.fa-edit(href='#!')
+        li.nav-item
+            a.nav-link(href='#!').fas.fa-share-alt
+        //li.nav-item
+        //    a.nav-link.disabled(href='#!') Disabled
+
+    #modalAddBoardForm.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header.text-center
+                    h4.modal-title.w-100.font-weight-bold Sign in
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') ×
+                .modal-body.mx-3
+                    .md-form.mb-5
+                        i.fas.fa-envelope.prefix.grey-text
+                        input#defaultForm-addBoard.form-control.validate(type='email')
+                        label(data-error='wrong' data-success='right' for='defaultForm-addBoard') Your email
+                .modal-footer.d-flex.justify-content-center
+                    button.btn.btn-default Login
+
+
+
+    #forum_accordion.accordion
+        each board in boards
+            // - var postIdx = 0;
+            - var boardname = board[0]
+            .card
+                div.card-header(id=`board-${boardIdx}`)
+                    h2.mb-0
+                        button.btn.btn-link.btn-block.text-left.collapsed(type='button' data-toggle='collapse' data-target=`#collapse-${boardIdx}` aria-expanded='false' aria-controls=`collapse-${boardIdx}`)
+                            //| #{boards[boardIdx][0]}
+                            | #{boardname}
+                div.collapse(id=`collapse-${boardIdx}` aria-labelledby=`heading-${boardIdx}` data-parent='#forum_accordion')
+                    .card-body.text-center
+                        - var posts = board[1]
+                        each post in posts
+                            - let postId = post['postId']
+                            - let postTitle = post['title']
+                            a(href=`/forum/read/${postId}`)= `${postTitle}`
+                            | &nbsp; #{post['postDate']}
+                            hr
+            - boardIdx++
+
+    //
+    //#accordionExample.accordion
+    //    .card
+    //        #headingOne.card-header
+    //            h2.mb-0
+    //                button.btn.btn-link.btn-block.text-left.collapsed(type='button' data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+    //                    | Collapsible Group Item #1
+    //        #collapseOne.collapse.show(aria-labelledby='headingOne' data-parent='#accordionExample')
+    //            .card-body
+    //                | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    //
+    //
+    //    .card
+    //        #headingTwo.card-header
+    //            h2.mb-0
+    //                button.btn.btn-link.btn-block.text-left.collapsed(type='button' data-toggle='collapse' data-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
+    //                    | Collapsible Group Item #2
+    //        #collapseTwo.collapse(aria-labelledby='headingTwo' data-parent='#accordionExample')
+    //            .card-body
+    //                | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    //    .card
+    //        #headingThree.card-header
+    //            h2.mb-0
+    //                button.btn.btn-link.btn-block.text-left.collapsed(type='button' data-toggle='collapse' data-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
+    //                    | Collapsible Group Item #3
+    //        #collapseThree.collapse(aria-labelledby='headingThree' data-parent='#accordionExample')
+    //            .card-body
+    //                | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+
+

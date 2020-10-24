@@ -61,15 +61,31 @@ html,body{
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   margin: 15px;
   border-radius: 50px;
-  background-color: rgb(144, 177, 221);
-}
-
-
-.modal{
-
+  background-color:#ADC8D9;
 }
 
 #meet.text-center{
   width: 100%;
   height: 100%;
+}
+#leave-btn{
+  background-color: rgb(255, 155, 155);
+}
+
+.modal-content{
+  background-color:#f2f2f2;
+}
+
+input[type=color] {
+  display: none;
+}
+
+#color_front {
+  background-color:rgb(212, 240, 147);
+}
+
+#line-width{
+  height: 48px;
+  width:100px;
+  margin: 10px
 }

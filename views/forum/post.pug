@@ -1,0 +1,160 @@
+extends ../page
+
+block stylesheets
+    style(text='text/css').
+        .page_comment_example img{
+            border-radius: 100%;
+            border-style: solid;
+            border-width: thin;
+        }
+
+
+block content
+    .container.my-5.py-5.z-depth-1
+        // Section: Content
+        section.px-md-5.mx-md-5.text-center.text-lg-left.dark-grey-text
+            // Grid row
+            .row
+                .col-md-3.mb-4.mb-md-0
+                    .container-md.text-center
+                        i#poster_avatar.fas.fa-user-circle(style='font-size:120px')
+                    .container-md.text-center.pt-2 #{postUsername}
+                .col-md-9.mb-4.mb-md-0
+                    if postExists <= 0
+                        h3.font-weight-bold Material Design Blocks
+                    else
+                        h3.font-weight-bold= postTitle
+                        if postContent
+                            hr
+                            p.text-muted
+                                | #{postContent}
+                        //hr
+                        //.font-weight-light Poster: #{postUsername}
+    .container.text-center
+        a.btn.btn-brown.btn-md.ml-0(href='#' role='button')
+            | Your Answer
+            i.far.fa-lightbulb.ml-2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .container.page_comment_example
+        //.container.bootstrap.snippets.bootdey
+
+        //.blog-comment
+        h3 Comments
+        hr
+
+
+        .container.my-5.py-5.z-depth-1
+            // Section: Content
+            section.px-md-5.mx-md-5.text-center.text-lg-left.dark-grey-text
+                // Grid row
+                .row
+                    .col-md-3.mb-4.mb-md-0
+                        .container-md.text-center
+                            img.avatar(src='https://bootdey.com/img/Content/user_1.jpg' alt='')
+                        .container-md.text-center.pt-2 Leo
+                    .col-md-9.mb-4.mb-md-0
+                        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amete.
+                        hr
+                        p Dec 18    , 2020 JohnDoe says
+        .container.my-5.py-5.z-depth-1
+            // Section: Content
+            section.px-md-5.mx-md-5.text-center.text-lg-left.dark-grey-text
+                // Grid row
+                .row
+                    .col-md-3.mb-4.mb-md-0
+                        .container-md.text-center
+                            img.avatar(src='https://bootdey.com/img/Content/user_2.jpg' alt='')
+                        .container-md.text-center.pt-2 Amy
+                    .col-md-9.mb-4.mb-md-0
+                        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amete.
+                        hr
+                        p Dec 19, 2020 Amy says
+        .container.my-5.py-5.z-depth-1
+            // Section: Content
+            section.px-md-5.mx-md-5.text-center.text-lg-left.dark-grey-text
+                // Grid row
+                .row
+                    .col-md-3.mb-4.mb-md-0
+                        .container-md.text-center
+                            img.avatar(src='https://bootdey.com/img/Content/user_3.jpg' alt='')
+                        .container-md.text-center.pt-2 John
+                    .col-md-9.mb-4.mb-md-0
+                        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a sapien odio, sit amete.
+                        hr
+                        p Dec 20, 2020 John says
+
+
+        //
+        //
+        //
+        //ul.comments
+        //li.clearfix
+        //    img.avatar(src='https://bootdey.com/img/Content/user_1.jpg' alt='')
+        //    .post-comments
+        //    p.meta
+        //        | Dec 18, 2014
+        //        a(href='#') JohnDoe
+        //        |  says :
+        //        i.pull-right
+        //        a(href='#')
+        //            small Reply
+        //    p
+        //        | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        //        | Etiam a sapien odio, sit amet
+        //
+        //li.clearfix
+        //    img.avatar(src='https://bootdey.com/img/Content/user_2.jpg' alt='')
+        //    .post-comments
+        //    p.meta
+        //        | Dec 19, 2014
+        //        a(href='#') JohnDoe
+        //        |  says :
+        //        i.pull-right
+        //        button.btn.primary(data-toggle='collapse' href='#collapseExample' role='button' aria-expanded='false' aria-controls='collapseExample')
+        //            small Reply
+        //    p
+        //        | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        //        | Etiam a sapien odio, sit amet
+        //
+        //    #collapseExample.collapse
+        //        ul.comments
+        //            li.clearfix
+        //                img.avatar(src='https://bootdey.com/img/Content/user_3.jpg' alt='')
+        //                .post-comments
+        //                p.meta
+        //                    | Dec 19, 2014
+        //                    a(href='#') JohnDoe
+        //                    |  says :
+        //                    i.pull-right
+        //                    button.btn.primary(data-toggle='collapse' href='#collapseExample' role='button' aria-expanded='false' aria-controls='collapseExample')
+        //                        small Reply
+        //                p
+        //                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        //                    | Etiam a sapien odio, sit amet
+        //
+        //            li.clearfix
+        //                img.avatar(src='https://bootdey.com/img/Content/user_3.jpg' alt='')
+        //                .post-comments
+        //                p.meta
+        //                    | Dec 19, 2014
+        //                    a(href='#') JohnDoe
+        //                    |  says :
+        //                    i.pull-right
+        //                    button.btn.primary(data-toggle='collapse' href='#collapseExample' role='button' aria-expanded='false' aria-controls='collapseExample')
+        //                        small Reply
+        //                p
+        //                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        //                    | Etiam a sapien odio, sit amet

@@ -1,25 +1,3 @@
-h1 {
-    font-size: 250%;
-    font-weight: 700;
-    color: #00223E;
-    /* fallback for old browsers */
-    color: -webkit-linear-gradient(to right, #00223E, #83b8da);
-    /* Chrome 10-25, Safari 5.1-6 */
-    color: linear-gradient(to right, #00223E, #ADC8D9);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-body {
-    background-color: #024873;
-    color: #ADC8D9;
-    font-family: 'Josefin Sans', sans-serif;
-    background: #00223E;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #00223E, #ADC8D9);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #00223E, #ADC8D9);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
 h2 {
     display: inline;

@@ -1,46 +1,41 @@
-extends ../layout_no_footer
 
-block stylesheets
+title Todo_clock
 
-block js
-  title Todo_clock
-  
-  link(href='https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap ' rel='stylesheet ')
+link(href='https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap ' rel='stylesheet ')
 
-  script(src='/js/todo_clock.js')
+script(src='/js/dashboard_todo_clock.js')
 
-  link(rel='stylesheet' href='/stylesheets/todo_clock.css')
+link(rel='stylesheet' href='/stylesheets/dashboard_todo_clock.css')
 
 
-block center
-    #container
-      h1 Todo list
-      .cool-list
-        table.table
-          thead#cool-thead.thead-light
-            tr
-              th(scope='col') Task
-              th(scope='col') Deadline(Month/Day)
-              th(scope='col') Deadline(hour/min)
-          tbody
-            tr
-              td
-                span
-                  i.fa.fa-trash
-                | Mark
-              td Otto
-              td @mdo
-            tr
-              td
-                span
-                  i.fa.fa-trash
-                | Jacob
-              td Thornton
-              td @fat
-            tr
-              td
-                span
-                  i.fa.fa-trash
-                | Larry
-              td the Bird
-              td @twitter
+#container
+  h1 Todo list
+  .cool-list
+    table.table
+      thead#cool-thead.thead-light
+        tr
+          th(scope='col') Task
+          th(scope='col') Deadline(Month/Day)
+          th(scope='col') Deadline(hour/min)
+      tbody
+        tr
+          td
+            span
+              i.fa.fa-trash
+            | Mark
+          td Otto
+          td @mdo
+        tr
+          td
+            span
+              i.fa.fa-trash
+            | Jacob
+          td Thornton
+          td @fat
+        tr
+          td
+            span
+              i.fa.fa-trash
+            | Larry
+          td the Bird
+          td @twitter
