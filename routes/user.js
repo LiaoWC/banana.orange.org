@@ -12,6 +12,8 @@ var config = require('../config')
 // Databse
 var db = require('../database/database')
 
+var current_user = new Object
+
 const CUR_MAIN_PATH = '/user'
 
 function fullPath(localPath) {
@@ -86,6 +88,9 @@ router.route('/login')
                 } else {
                     if (row) {
                         req.session.userId = row["id"]
+                        
+                        current_user[req.session.id] = email
+
                         return res.redirect(fullPath('/'))
                     } else {
                         res.redirect(fullPath('/login'))
@@ -175,6 +180,19 @@ router.get('/list', (req, res, next) => {
             })
         }
     )
+})
+
+router.post('/check_status',(req, res, next) => {
+    console.log(req.session.id)
+    if(!req.session.userId){
+        delete current_user[req.session.id]
+        res.redirect(req.body.redirect)
+    }
+    else{
+        console.log('keep')
+        res.redirect(req.body.redirect)
+    }
+    
 })
 
 module.exports = router;
