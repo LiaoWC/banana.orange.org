@@ -101,12 +101,11 @@
     /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Header */ "./client/src/components/Header.jsx");
     /* harmony import */ var react_dnd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dnd */ "./node_modules/react-dnd/dist/esm/index.js");
     /* harmony import */ var react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dnd-html5-backend */ "./node_modules/react-dnd-html5-backend/dist/esm/index.js");
-    
-    
-    
-    
-    
-    
+    ReactDOM.render(
+      React.createElement(MyjQueryReactComponent, 
+        { context: $('body') }), 
+        document.getElementById('root')
+        );
     var App = function App() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_dnd__WEBPACK_IMPORTED_MODULE_3__["DndProvider"], {
         backend: react_dnd_html5_backend__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -412,6 +411,34 @@
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "data", function() { return data; });
     /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "statuses", function() { return statuses; });
+    
+    class MyjQueryReactComponent extends React.Component {
+      constructor(props) {
+        super(props);    
+        this.state = {
+          context: props.context
+        };
+        this.onClick = this.onClick.bind(this);
+      }
+      
+      onClickBtn() {
+        // Getting ref to JQuery object from our parent app.
+        var myDomEl = this.state.context.find('#myDomEl');
+        
+        // Update color of our element.
+        myDomEl.css('background-color', 'green');
+      }
+      render() {
+        return (
+          <div class='alert alert-success' role='alert'>
+              <h3>Hello there!</h3>
+              <button type='button' class='btn btn-default' onClick={ this.onClickBtn }>Click to Update!</button>
+          </div>
+        );
+      }
+    }
+    
+    
     var data = [{
       id: 1,
       icon: "⭕️",

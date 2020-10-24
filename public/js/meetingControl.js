@@ -1,5 +1,5 @@
 var socket = io()
-
+var axios = require('axios')
 
 function updateRooms(rooms, old_rooms) {
     var keys = Object.keys(rooms)
@@ -42,6 +42,8 @@ function updateRooms(rooms, old_rooms) {
 
 function add_room() {
     var room_name = prompt("Please enter room name:", "");
+
+
     if (room_name == "" || room_name == null)
         return
     socket.emit('add room', room_name);

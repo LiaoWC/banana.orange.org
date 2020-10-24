@@ -29,7 +29,7 @@ $(document).ready(function () {
                 console.log(data_list)
             });
             data_list.forEach(element => {
-                $("table tbody").append(
+                $("#container > div > table > tbody").append(
                     `<tr><td><span><i class="fa fa-trash"></i> </span>${element['content']}</td><td>${element['time_to_finish']}</td><td>${element['deadline_date']}</td></tr>`)
             });
         }
@@ -40,7 +40,10 @@ $(document).ready(function () {
         })
 
 
-
+        $(".fa-code").click(function(e) {
+            window.location.href = "../todo_clock";
+        
+        });
 
 
 

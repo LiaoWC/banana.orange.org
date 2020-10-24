@@ -21,6 +21,7 @@ function updateRooms(rooms) {
 $(function () {
     if (args['room_name'] != undefined)
         socket.emit('enter room', { room_name: args['room_name'] })
+        
 
     socket.on('enter room failed', () => {
         window.location.href = "/meeting/control";

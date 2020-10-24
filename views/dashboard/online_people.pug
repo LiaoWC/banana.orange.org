@@ -1,1 +1,69 @@
 | online people
+doctype html
+| PASTE YOUR HTML CODE HERE
+head
+  title Pug
+  script(type='text/javascript' src='/js/dashboard_online.js')
+    //- if (foo) bar(1 + 5)
+
+#container.col
+
+  // Button trigger modal
+  button.btn.btn-primary(type='button' data-toggle='modal' data-target='#modalCart') Launch modal
+  // Modal: modalCart
+  #modalCart.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        // Header
+        .modal-header
+          h4#myModalLabel.modal-title Your cart
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        // Body
+        .modal-body
+          table.table.table-hover
+            thead
+              tr
+                th #
+                th Status
+                th Name
+                th Contact
+            tbody
+              tr
+                th(scope='row') 1
+                td Online
+                td Peter
+                td
+                  a
+                    i.fas.fa-sms
+              tr
+                th(scope='row') 1
+                td Online
+                td Peter
+                td
+                  a
+                    i.fas.fa-sms
+              tr
+                th(scope='row') 1
+                td Online
+                td Peter
+                td
+                  a
+                    i.fas.fa-sms
+              tr
+                th(scope='row') 1
+                td Online
+                td Peter
+                td
+                  a
+                    i.fas.fa-sms
+              //- tr.total
+              //-   th(scope='row') 5
+              //-   td Total
+              //-   td 400$
+              //-   td
+        // Footer
+        .modal-footer
+          button.btn.btn-outline-primary(type='button' data-dismiss='modal') Close
+          button.btn.btn-primary Checkout
+  // Modal: modalCart
