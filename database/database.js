@@ -19,7 +19,14 @@ const SECOND_QUERIES = [`
         state INTEGER NOT NULL,
         content TEXT NOT NULL,
         deadline TEXT NOT NULL   
-    )`,`
+)`,
+`
+    CREATE TABLE screenshot(
+        imgId INTEGER PRIMARY KEY NOT NULL,
+        group TEXT NOT NULL,
+        date TEXT NOT NULL,
+        dataURL TEXT NOT NULL   
+)`,`
     CREATE TABLE boards(
         boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         boardname TEXT NOT NULL UNIQUE,
@@ -73,6 +80,8 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
     }
 
 })
+
+
 
 
 module.exports = db

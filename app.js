@@ -21,10 +21,10 @@ app.set('view engine', 'pug');
 // === Middlewares ===
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 // session
 app.use(session({
     name: config.SESSION_NAME,
@@ -42,7 +42,7 @@ app.use(session({
 // Check if have logged in.
 app.use((req, res, next) => {
     // console.log("A res")
-    const {userId} = req.session
+    const { userId } = req.session
     // console.log("req",req.method,req.path)
     // console.log("app:",req.session)
     if (userId) { // has logged in
@@ -71,6 +71,7 @@ var indexRouter = require('./routes/index');
 var testRouter = require('./routes/test');
 var exampleRouter = require('./routes/example')
 var meetingRouter = require('./routes/meeting')
+var fileuploadRouter = require('./routes/fileupload')
 var apiRouter = require('./routes/api')
 var todoClockRouter = require('./routes/todo_clock')
 var dashboardRouter = require('./routes/dashboard')
@@ -83,12 +84,13 @@ app.use('/example', exampleRouter)
 app.use('/test', testRouter);
 app.use('/user', userRouter);
 app.use('/meeting', meetingRouter);
+app.use('/fileupload', fileuploadRouter);
 app.use('/api', apiRouter);
 app.use('/todo_clock', todoClockRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/kanban', kanbanRouter)
 
-app.use('/forum',forumRouter)
+app.use('/forum', forumRouter)
 
 app.get('/jitsi', (req, res, next) => {
     res.render('jitsi')
@@ -99,6 +101,7 @@ app.get('/jitsi', (req, res, next) => {
 app.use(function (req, res, next) {
     next(createError(404));
 });
+
 
 
 // error handler

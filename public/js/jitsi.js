@@ -1,9 +1,7 @@
 //const { default: Canvas2Image } = require("./Canvas2Image");
 
-var username = "admin";
-var groupname = ["fuck","you"];
+var groupname = ".";
 var api
-var url
 //
 function newAPI() {
     // Client window size
@@ -14,7 +12,7 @@ function newAPI() {
     // API configure
     let domain = "meet.jit.si"
     let options = {
-        roomName: username,
+        roomName: groupname,
         width: vw,
         height: vh - navbar_height,
         parentNode: document.querySelector('#meet')
@@ -34,17 +32,29 @@ $('#screenshot').click(function (){
    // console.log(api);
     api.captureLargeVideoScreenshot().then(dataURL => {
         try{
-            console.log(dataURL.dataURL);
+            console.log(dataURL.dataURL)
             /*
-            console.log(localStorage.setItem("imgdata",dataURL));
-            //console.log(a);
-            url = dataURL;
+            // dataURL 存入資料庫
+            date_ = string(Date.now())
+            let sql = 'INSERT INTO screenshot(group,date,dataURL) VALUES(?,?,?)'
+            let params = [groupname, date_, dataURL.dataURL]
+            console.log(params)
+            db.run(sql, params, (err) => {
+                    if (err) {
+                        console.log(err.message)
+                        res.json(FAIL_MSG)
+                    } else {
+                        res.json(SUC_MSG)
+                    }
+                }
+            )
             */
+            /* 
+            // 尋找圖片
             var im = document.createElement("img");
-            
             im.src = dataURL.dataURL;
             document.body.appendChild(im);
-            
+            */
         }
         catch{
             console.log('no screen getable');

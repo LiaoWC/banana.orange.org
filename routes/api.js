@@ -33,7 +33,7 @@ router.post('/todos/create'/*, redirectionLogin*/, function (req, res, next) {
     let userId = 1
     let state = parseInt( req.body['state'])
     let content = req.body['content']
-    let deadline_date = req.body.deadline_date
+    let deadline_date = req.body['deadline_date']
     let time_to_finish = req.body['time_to_finish']
 
     if (isNaN(state)) {
@@ -58,8 +58,27 @@ router.get('/todos/get_all'/*, redirectionLogin */, (req, res, next) => {
     // const {userId} = req.session
     let userId = parseInt(req.query['userId'])
 
-    let sql = 'SELECT username,state,content,deadline FROM todos,users WHERE userId=?'
+    let sql = 'SELECT todoId,username,state,content,deadline FROM todos,users WHERE userId=?'
     let params = [userId]
+
+    db.all(sql, params, (err, rows) => {
+            if (err) {
+                console.log(err.message)
+                res.json(FAIL_MSG)
+            } else {
+                console.log(typeof rows)
+                res.json(rows)
+            }
+        }
+    )
+})
+
+router.get('/todos/delete'/*, redirectionLogin */, (req, res, next) => {
+    // const {userId} = req.session
+    let todoId = parseInt(req.query['todoId'])
+
+    let sql = 'delete FROM todos WHERE todoId=?'
+    let params = [todoId]
 
     db.all(sql, params, (err, rows) => {
             if (err) {
