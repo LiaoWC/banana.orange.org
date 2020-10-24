@@ -22,10 +22,6 @@ router.post('/', function (req, res, next) {
         mv(tmpPath, newPath, function (err) {
             if (err) throw err;
             res.render('file_test', { title: 'file_test' })
-            return
-            res.writeHead(200, { 'content-type': 'text/html' });
-            res.write('File uploaded');
-            res.end();
         });
 
         // 將已上傳的檔案新增到 list
