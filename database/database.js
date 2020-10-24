@@ -19,6 +19,7 @@ const SECOND_QUERIES = [`
         state INTEGER NOT NULL,
         content TEXT NOT NULL,
         deadline TEXT NOT NULL   
+<<<<<<< HEAD
 )`,
 `
     CREATE TABLE screenshot(
@@ -27,6 +28,28 @@ const SECOND_QUERIES = [`
         date TEXT NOT NULL,
         dataURL TEXT NOT NULL   
 `
+=======
+    )`,`
+    CREATE TABLE boards(
+        boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        boardname TEXT NOT NULL UNIQUE,
+        userId INTEGER NOT NULL
+    )`, `
+    CREATE TABLE posts(
+        postId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        boardId INTEGER NOT NULL,
+        title TEXT NOT NULL,
+        authorId TEXT NOT NULL,
+        date TEXT NOT NULL,
+        content TEXT
+    )`, `
+    CREATE TABLE comments(
+        commentId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        postId INTEGER NOT NULL,
+        userId TEXT NOT NULL,
+        comment TEXT NOT NULL
+    )`
+>>>>>>> 56546106399377448089793eb97822585244adea
 ]
 
 
