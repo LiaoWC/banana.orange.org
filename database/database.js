@@ -19,7 +19,8 @@ const SECOND_QUERIES = [`
         state INTEGER NOT NULL,
         content TEXT NOT NULL,
         deadline TEXT NOT NULL   
-)`]
+)`
+]
 
 
 let db = new sqlite3.Database(DB_SOURCE, (err) => {
