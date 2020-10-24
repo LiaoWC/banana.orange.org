@@ -182,10 +182,16 @@ router.get('/list', (req, res, next) => {
     )
 })
 
-router.post('/check_status',(req, res, next) => {
+router.get('/check_status',(req, res, next) => {
     console.log(req.session.id)
     if(!req.session.userId){
-        delete current_user[req.session.id]
+        console.log('kkk')
+        try{
+            delete current_user[req.session]
+        }
+        catch (e){
+            console.log('no user')
+        }
         res.redirect(req.body.redirect)
     }
     else{
