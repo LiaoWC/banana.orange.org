@@ -1,3 +1,5 @@
+///////////////////////////////
+
 INSERT INTO boards(boardname,userId) VALUES('Food Recommendation',1);
 INSERT INTO boards(boardname,userId) VALUES('Exercise',1);
 INSERT INTO boards(boardname,userId) VALUES('Technology Area',1);
@@ -13,6 +15,7 @@ INSERT INTO posts(boardId,title,authorId,date,content)
 INSERT INTO posts(boardId,title,authorId,date,content)
   VALUES (3,'Who could help me solve this problem?',1,'20201024','......');
 
+///////////////////////////////
 
 
 CREATE TABLE boards(

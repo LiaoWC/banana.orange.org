@@ -7,7 +7,7 @@ const DB_SOURCE = 'database/db.sqlite'
 const INIT_QUERY = `
     CREATE TABLE users(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username text,
+        username text UNIQUE,
         email text UNIQUE,
         password text
     );`
@@ -38,6 +38,17 @@ const SECOND_QUERIES = [`
         postId INTEGER NOT NULL,
         userId TEXT NOT NULL,
         comment TEXT NOT NULL
+    )`,`
+    CREATE TABLE assigned_tasks(
+        taskId INTEGER PRIMARY KEY AUTOINCREMENT,
+        state INTEGER NOT NULL,
+        content TEXT NOT NULL,
+        deadline TEXT NOT NULL
+    )`,`
+    CREATE TABLE assigned_task_collaborator(
+        collaboratorId INTEGER PRIMARY KEY AUTOINCREMENT,
+        taskId INTEGER NOT NULL,
+        collaborator TEXT NOT NULL
     )`
 ];
 
@@ -63,7 +74,7 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
                 for (let i = 0; i < SECOND_QUERIES.length; i++) {
                     db.run(SECOND_QUERIES[i], (err) => {
                         if (err) {
-                            console.log("ERROR: Some error occur in second queries.")
+                            console.log("ERROR:",err.message)
                         }
                     })
                 }
