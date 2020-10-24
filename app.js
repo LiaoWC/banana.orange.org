@@ -75,6 +75,7 @@ var apiRouter = require('./routes/api')
 var todoClockRouter = require('./routes/todo_clock')
 var dashboardRouter = require('./routes/dashboard')
 var forumRouter = require('./routes/forum')
+var kanbanRouter = require('./routes/kanban')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -85,6 +86,8 @@ app.use('/meeting', meetingRouter);
 app.use('/api', apiRouter);
 app.use('/todo_clock', todoClockRouter)
 app.use('/dashboard', dashboardRouter)
+app.use('/kanban', kanbanRouter)
+
 app.use('/forum',forumRouter)
 
 app.get('/jitsi', (req, res, next) => {
