@@ -4,13 +4,14 @@ var session = require('express-session');
 var md5 = require('md5')
 var bodyParser = require('body-parser')
 var config = require('../config')
+var schedule = require('node-schedule');
 // router.use(bodyParser.urlencoded({extended: true}))
 // router.use(bodyParser.json())
 
 // reference: https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/
 
 // Databse
-var db = require('../database/database')
+var db = require('../database/database');
 
 var current_user = new Object
 
@@ -89,8 +90,9 @@ router.route('/login')
                 } else {
                     if (row) {
                         req.session.userId = row["id"]
+                        let date_ = Date.now()
                         
-                        current_user[req.session.id] = email
+                        current_user[req.session.userId] = [email, date_, row["username"]]
 
                         return res.redirect(fullPath('/'))
                     } else {
@@ -113,7 +115,7 @@ router.route('/login')
 
 
 router.all('/logout', redirectionLogin, (req, res) => {
-    req.session.destroy(err => {
+    req.session.destrowy(err => {
         if (err) {
             return res.redirect(fullPath('/'))
         }
@@ -183,18 +185,41 @@ router.get('/list', (req, res, next) => {
     )
 })
 
+// Get current user list
+router.get('/current_list', (req, res, next) => {
+    res.json(current_user)
+})
+
+// Check is someone lazy
 router.get('/check_status',(req, res, next) => {
-    console.log(req.session.returnTo)
     if(!req.session.userId){
-        delete current_user[req.session.name]
-        console.log('here')
-        res.redirect(req.session.returnTo || '/');
+        res.redirect(fullPath('/login'));
     }
     else{
-        console.log('keep')
-        res.redirect(req.session.returnTo || '/');
+        current_user[req.session.userId][1] = Date.now()
+        res.redirect('/');
     }
-    
 })
+
+
+// Kill Lazy Guy 
+var rule = new schedule.RecurrenceRule(); 
+rule.minute = [0,15,30,45]
+
+var j = schedule.scheduleJob(rule, function(){ 
+    let time_ = Date.now()
+    console.log('Time to catch lazy GUY!');
+    console.log(current_user)
+    console.log(time_)
+    for(let key in current_user){
+        let online = ((time_-current_user[key][1])<15*60*100) //15分鐘check
+        console.log(online)
+        if(!online){
+            delete current_user[key]
+        }
+    }
+    console.log(current_user)
+});
+
 
 module.exports = router;
