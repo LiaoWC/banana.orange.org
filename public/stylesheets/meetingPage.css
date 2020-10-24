@@ -54,6 +54,9 @@ html,body{
   margin-left: 10px;
 }
 
-.list-group-item{
-    
+.circle-btn{
+
+  margin: 15px;
+  border-radius: 50px;
+  background-color: rgb(144, 177, 221);
 }
