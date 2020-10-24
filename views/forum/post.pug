@@ -1,0 +1,27 @@
+extends ../page
+
+block content
+    .container.my-5.py-5.z-depth-1
+        // Section: Content
+        section.px-md-5.mx-md-5.text-center.text-lg-left.dark-grey-text
+            // Grid row
+            .row
+                .col-md-3.mb-4.mb-md-0
+                    .container-md.text-center
+                        i#poster_avatar.fas.fa-user-circle(style='font-size:120px')
+                    .container-md.text-center.pt-2 #{postUsername}
+                .col-md-9.mb-4.mb-md-0
+                    if postExists <= 0
+                        h3.font-weight-bold Material Design Blocks
+                    else
+                        h3.font-weight-bold= postTitle
+                        if postContent
+                            hr
+                            p.text-muted
+                                | #{postContent}
+                        //hr
+                        //.font-weight-light Poster: #{postUsername}
+    .container.text-center
+        a.btn.btn-brown.btn-md.ml-0(href='#' role='button')
+            | Your Answer
+            i.far.fa-lightbulb.ml-2
