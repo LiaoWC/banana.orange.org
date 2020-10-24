@@ -42,6 +42,9 @@ app.use(session({
 // Check if have logged in.
 app.use((req, res, next) => {
     // console.log("A res")
+    if(!request.session.user){
+        console.log(req.session)
+    }
     const { userId } = req.session
     // console.log("req",req.method,req.path)
     // console.log("app:",req.session)
