@@ -1,6 +1,6 @@
 //const { default: Canvas2Image } = require("./Canvas2Image");
 
-var groupname = "for_all";
+var groupname;
 var api
 //
 function newAPI() {
@@ -9,12 +9,16 @@ function newAPI() {
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
+    var meet_container_size = document.getElementById("meet").getBoundingClientRect()
+
     // API configure
     let domain = "meet.jit.si"
     let options = {
         roomName: groupname,
-        width: vw,
-        height: vh - navbar_height,
+        //width: vw,
+        width: meet_container_size.width,
+        height: meet_container_size.height,
+        //height: vh - navbar_height,
         parentNode: document.querySelector('#meet')
     }
 
@@ -32,23 +36,14 @@ $('#screenshot').click(function () {
     // console.log(api);
     api.captureLargeVideoScreenshot().then(dataURL => {
         try {
-            console.log(dataURL.dataURL)
-            /*
-            // dataURL 存入資料庫
-            date_ = string(Date.now())
-            let sql = 'INSERT INTO screenshot(group,date,dataURL) VALUES(?,?,?)'
-            let params = [groupname, date_, dataURL.dataURL]
-            console.log(params)
-            db.run(sql, params, (err) => {
-                    if (err) {
-                        console.log(err.message)
-                        res.json(FAIL_MSG)
-                    } else {
-                        res.json(SUC_MSG)
-                    }
-                }
-            )
-            */
+            //console.log(dataURL.dataURL.length)
+            //console.log(dataURL.dataURL)
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/fileupload/screenshot", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("room_name=" + groupname + "&" + "IMAGEDATA=" + dataURL.dataURL.toString());
+
             /* 
             // 尋找圖片
             var im = document.createElement("img");
@@ -74,5 +69,6 @@ $('#get_pic').click(function () {
 
 //
 $(document).ready(function () {
+    groupname = args['room_name']
     newAPI()
 })

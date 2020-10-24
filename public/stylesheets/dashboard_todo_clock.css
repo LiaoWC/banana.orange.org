@@ -1,0 +1,146 @@
+h1 {
+    font-size: 250%;
+    font-weight: 700;
+    color: #00223E;
+    /* fallback for old browsers */
+    color: -webkit-linear-gradient(to right, #00223E, #83b8da);
+    /* Chrome 10-25, Safari 5.1-6 */
+    color: linear-gradient(to right, #00223E, #ADC8D9);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body {
+    background-color: #024873;
+    color: #ADC8D9;
+    font-family: 'Josefin Sans', sans-serif;
+    background: #00223E;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #00223E, #ADC8D9);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #00223E, #ADC8D9);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h2 {
+    display: inline;
+    align-items: center;
+    font-size: 220%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.container {
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+#start {
+    margin: 10% 10%;
+}
+
+#start:hover {
+    color: #4480A6;
+    margin: 10% 10%;
+}
+
+#stop {
+    margin: 10% 10%;
+}
+
+#stop:hover {
+    color: #4480A6;
+    margin: 10% 10%;
+}
+
+#title {
+    font-size: 200%;
+}
+
+.fa-code {
+    float: right;
+    color: #4480A6;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    color: #024873;
+    /* background: #fff; */
+    height: 60px;
+    line-height: 40px;
+}
+
+span {
+    /* background-color: #FFA17F; */
+    height: 40px;
+    margin-right: 20px;
+    text-align: center;
+    /* color: white; */
+    width: 0;
+    display: inline-block;
+    transition: 0.2s linear;
+    opacity: 0;
+}
+
+li:hover span {
+    width: 40px;
+    opacity: 1.0;
+}
+
+tr:hover span {
+    width: 40px;
+    opacity: 1.0;
+}
+
+.bt {
+    background-color: #4480A6;
+    text-align: center;
+}
+
+.bt:hover {
+    background-color: #024873;
+}
+
+.cool {
+    font-size: 65%;
+    color: #00223E;
+    background-color: rgb(0, 0, 0, 0);
+    width: 100%;
+    padding: 13px 13px 13px 20px;
+    box-sizing: border-box;
+    border: 0;
+}
+
+.cool:focus {
+    height: 100%;
+    border: 1px solid #75A3BF;
+    color: #ADC8D9;
+    outline: none;
+}
+
+.cool-form {
+    margin-bottom: 15px;
+}
+
+#container {
+    /* background-color: #f7f7f7; */
+    width: 100%;
+    margin: 100px auto;
+}
+
+.complete {
+    color: #4480A6;
+    text-decoration: line-through;
+}
+
+.cool-list {
+    font-size: 200%;
+}
+
+#cool-thead {
+    background-color: #4480A6;
+}

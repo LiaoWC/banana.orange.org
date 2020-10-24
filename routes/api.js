@@ -57,10 +57,10 @@ router.post('/todos/create'/*, redirectionLogin*/, function (req, res, next) {
 router.get('/todos/get_all'/*, redirectionLogin */, (req, res, next) => {
     // const {userId} = req.session
     let userId = parseInt(req.query['userId'])
-
+    userId = 1
     let sql = 'SELECT todoId,username,state,content,deadline FROM todos,users WHERE userId=?'
     let params = [userId]
-
+    
     db.all(sql, params, (err, rows) => {
             if (err) {
                 console.log(err.message)

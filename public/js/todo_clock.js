@@ -9,6 +9,8 @@ $(document).ready(function () {
     console.log(count);
     // $("#reset").hide();
 
+
+
     $("#add5Clock").click(function () {
         count += 5;
         $("#num1").html(count);
@@ -76,52 +78,108 @@ $(document).ready(function () {
 
 
     );
-    $("ul").on("click", "li", function () {
-        $(this).toggleClass("complete");
-    });
 
+
+
+    
     //Click X to delete
-    $("ul").on("click", "span", function (e) {
-        $(this).parent().fadeOut(500);
-        $(this).remove();
+
+    // $("input[type='text'").keypress(function (e) {
+    //     if (e.which === 13) {
+    //         var todotext = $(this).val();
+    //         $(this).val("");
+    //         $("ul").append("<li><span><i class='fa fa-trash'></i> </span> " + todotext + "</li>");
+    //         $("ul").append("<li><span><i class='fa fa-trash'></i> </span> " + todotext + "</li>");
+
+    //     }
+
+    // });
+
+
+
+    var data_list = [{
+        todo_id: 1,
+        state: 0,
+        content: "Human Interest Form",
+        deadline_date: 1222, 
+        time_to_finish: 2512,
+    },
+    {
+        todoId: 1,
+        state: 0,
+        content: "cassa m",
+        deadline_date: 5645, 
+        time_to_finish: 6874,
+    },
+    ];
+
+
+    // $(window).bind('beforeunload', function () {
+    // console.log('It is going to be refreshed')
+    $.get('/api/todos/get_all',
+        {}, 'json')
+        .done((data) => {
+            console.log('Get data from database...')
+            console.log(data)
+            data.forEach(element => {
+                let todoId = parseInt(element['todoId'])
+                // let userId = parseInt(element['userId'])
+                let state = parseInt(element['state'])
+                let content = element['content']
+                let deadline = element['deadline']
+                let deadline_date = deadline.substr(0, 4)
+                let time_to_finish = deadline.substr(4)
+                
+                let temp = {
+                    todoId: todoId,
+                    state: state,
+                    content: content,
+                    deadline_date: deadline_date,
+                    time_to_finish: time_to_finish,
+                }
+                console.log(temp)
+                data_list.push(temp)
+                console.log(data_list)
+            });
+            data_list.forEach(element => {
+                $("table tbody").append(
+                    `<tr><td><span><i class="fa fa-trash"></i> </span>${element['content']}</td><td>${element['time_to_finish']}</td><td>${element['deadline_date']}</td></tr>`)
+            });
+        }
+       
+        )
+        .fail(function () {
+            console.log("error");
+        })
+    // });
+    $("table tbody tr td").on("click", "span", function (e) {
+        $(this).parent().parent().fadeOut(500);
+        
+        $(this).parent().parent().remove();
         console.log("ddd")
         e.stopPropagation();
     });
     $("table tbody").on("click", "tr", function () {
         $(this).toggleClass("complete");
-    });
-    $("tr").on("click", "span", function (e) {
-        $(this).parent().parent().fadeOut(500);
-        $(this).remove();
-        console.log("ddd")
-        e.stopPropagation();
-    });
-    $("input[type='text'").keypress(function (e) {
-        if (e.which === 13) {
-            var todotext = $(this).val();
-            $(this).val("");
-            $("ul").append("<li><span><i class='fa fa-trash'></i> </span> " + todotext + "</li>");
-            $("ul").append("<li><span><i class='fa fa-trash'></i> </span> " + todotext + "</li>");
-
-        }
-
-    });
-
-    $(".fa-cat").click(function (e) {
-        $("input[type='text'").fadeToggle();
-
-    });
-
+    });    
     $(".cool-list").on("click", "button", function (e) {
-        types = [];
+
+        let types = [];
         $("#form-test > input").each(function () {
             types.push($(this).val());
             $(this).val("");
         });
+        // let temp = {
+        //     state: state,
+        //     content: content,
+        //     deadline: deadline_date,
+        //     time_to_finish: time_to_finish,
+        // }
         console.log(types);
         $("table tbody").append(
             // '<tr><td><span><i class="fa fa-trash"></i> </span>' + types[0] + '</td><td>' + types[1] + '</td><td>' + types[2] + '</td></tr>';
             `<tr><td><span><i class="fa fa-trash"></i> </span>${types[0]}</td><td>${types[1]}</td><td>${types[2]}</td></tr>`)
+
         $.post('/api/todos/create',
             { 'state': 0, 'content': 'hola', 'deadline_date': '1022', 'time_to_finish': '1822' }, 'json')
             .done((data) => {
@@ -131,12 +189,8 @@ $(document).ready(function () {
                 console.log("error");
 
             });
-        $.post('/api/todos/create',
-            { 'state': 0, 'content': $(types[0]), 'deadline_date': $(types[1]), 'time_to_finish': $(types[2])}, 'json')
-            .done((data) => {
-                console.log(data)
-            })
-            .fail(function () {
-                console.log("error");
-            })
-    });
+
+
+
+    })
+})
