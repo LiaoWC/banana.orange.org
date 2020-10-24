@@ -1,12 +1,14 @@
-
 // Default form contact
-form.text-center.border.border-light.p-5(action='#!')
+form#assign_form.text-center.border.border-light.p-5(action='#!')
     p.h4.mb-4 Assign Tasks
     // Name
     input#taskAssignmentAssignNames.form-control.mb-4(type='text' placeholder='Name')
     // Message
     .form-group
         textarea#taskAssingmentAssignTaskTextarea.form-control.rounded-0(rows='3' placeholder='Task')
+    // Deadline
+    input#taskAssignmentAssignDeadline.form-control.mb-4(type='text' placeholder='Deadline')
+
     button#taskAssignmentAssignBtn.btn.btn-info.btn-block(type='submit') Send
 //
-script(type='javascript' src='/js/task_assignment/assign.js')
+script(type='text/javascript' src='/js/task_assignment/assign.js')

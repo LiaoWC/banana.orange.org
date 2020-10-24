@@ -1,18 +1,30 @@
-table.table
-    h3 Not be completed
-    thead
-        tr
-            th(scope='col') Task You assigned
-            th(scope='col') Collaborator
+style(type='text/css').
+    .table, .col{
+        color:white;
+    }
+
+
+table#not_be_completed_display_table.table.pl-0.pr-0
+    //h3 Not be completed
+    //thead
+    //    tr
+    //        th(scope='col') Task You assigned
+    //        th(scope='col') Collaborator
+    //        th(scope='col') Deadline
     tbody
-        tr
-            td Mark
-            td @mdo
-        tr
+        //tr
+        //    td Mark
+        //    td @mdo
+        //    td @mdo
+        //tr
+        //
+        //    td Jacob
+        //    td @fat
+        //    td @fat
+        //tr
+        //
+        //    td Larry
+        //    td @twitter
+        //    td @twitter
 
-            td Jacob
-            td @fat
-        tr
-
-            td Larry
-            td @twitter
+script(type='text/javascript' src='/js/task_assignment/have_assigned_but_not_completed.js')
