@@ -12,7 +12,7 @@ function newAPI() {
     // API configure
     let domain = "meet.jit.si"
     let options = {
-        roomName: username,
+        roomName: groupname,
         width: vw,
         height: vh - navbar_height,
         parentNode: document.querySelector('#meet')
