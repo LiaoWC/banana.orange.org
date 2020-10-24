@@ -31,6 +31,23 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.post('/screenshot', function (req, res, next) {
+    console.log('screenshot')
+
+    var imgData = req.body.IMAGEDATA;
+    var room_name = req.body.room_name
+
+    var date = new Date();
+    var filename = (date.getMonth() + 1) + "" + date.getDate() + "" + date.getHours() + "" + date.getMinutes() + "-" + date.getSeconds() + "" + date.getMilliseconds()
+
+
+    var base64Data = imgData.replace(/^data:image\/png+;base64,/, "").replace(/ /g, '+');
+    fs.writeFile("./savedFiles/" + filename, base64Data, 'base64', function (err) {
+        console.log(err);
+    });
+
+});
+
 
 
 module.exports = router;

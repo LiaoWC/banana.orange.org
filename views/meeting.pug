@@ -12,8 +12,12 @@ block js
     script(type='text/javascript' src='/js/meetingPage_whiteboard.js')
     script(type='text/javascript' src='/js/meetingPage_room.js')
     script(type='text/javascript' src='/js/meetingPage_test.js')
+    //script(src='https://meet.jit.si/external_api.js')
+    //script(src='/js/jitsi.js')
     script.
       $(function () { setUsername('#{user_name}');});
+    
+
 
 
 block center
@@ -31,12 +35,12 @@ block center
 
     a.circle-btn.btn-floating.btn-lg(onClick=" OpenorClose()")
       i.fas.fa-user-friends
-    a.circle-btn.btn-floating.btn-lg(onClick="show_whiteboard_popup()")
-          i.fas.fa-calendar
-
-    button.btn.btn-primary(type='button' data-toggle='modal' data-target='#basicExampleModal')
-      | Launch demo modal
-
+    a.circle-btn.btn-floating.btn-lg(data-toggle='modal' data-target='#whiteboardModal' onclick="setTimeout(onResize,200)")
+      i.fas.fa-calendar
+    a.circle-btn.btn-floating.btn-lg#meeting_reload
+      i.fas.fa-undo
+    a.circle-btn.btn-floating.btn-lg#screenshot
+      i.fas.fa-camera
 
 
   div#slide-out.side-nav.fixed
@@ -51,10 +55,12 @@ block center
           
 
   div#main
-    
+    // h1.text-center Meeting
+    #meet.text-center
+
 
   // Modal
-  #basicExampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' )
+  #whiteboardModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='whiteboardModal' aria-hidden='true' )
     .modal-dialog.modal-lg(role='document')
       .modal-content
         .modal-header

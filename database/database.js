@@ -20,13 +20,13 @@ const SECOND_QUERIES = [`
         content TEXT NOT NULL,
         deadline TEXT NOT NULL   
 )`,
-`
+    `
     CREATE TABLE screenshot(
-        imgId INTEGER PRIMARY KEY NOT NULL,
+        imgId INTEGER PRIMARY KEY AUTOINCREMENT,
         group TEXT NOT NULL,
         date TEXT NOT NULL,
         dataURL TEXT NOT NULL   
-)`,`
+)`, `
     CREATE TABLE boards(
         boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         boardname TEXT NOT NULL UNIQUE,
@@ -57,25 +57,25 @@ let db = new sqlite3.Database(DB_SOURCE, (err) => {
     } else {
         console.log('Connecting to the database.')
         db.run(INIT_QUERY, (err) => {
-                if (err) {
-                    // Table is already created.
-                    console.log("Successfully! Table has been created before. If your find your db has something wrong, suggest you delete it and re-create.\n")
-                } else {
-                    // Table is just created.
-                    var insert_user = 'INSERT INTO users (username,email,password) VALUES (?,?,?)'
-                    db.run(insert_user,
-                        ['admin', 'admin@example.com', md5("admin")]
-                    )
-                    console.log("Successfully!\nDatabase is just created. Automatically insert an admin user.\n")
-                    for (let i = 0 ;i<SECOND_QUERIES.length;i++){
-                        db.run(SECOND_QUERIES[i],(err)=>{
-                            if(err){
-                                console.log("ERROR: Some error occur in second queries.")
-                            }
-                        })
-                    }
+            if (err) {
+                // Table is already created.
+                console.log("Successfully! Table has been created before. If your find your db has something wrong, suggest you delete it and re-create.\n")
+            } else {
+                // Table is just created.
+                var insert_user = 'INSERT INTO users (username,email,password) VALUES (?,?,?)'
+                db.run(insert_user,
+                    ['admin', 'admin@example.com', md5("admin")]
+                )
+                console.log("Successfully!\nDatabase is just created. Automatically insert an admin user.\n")
+                for (let i = 0; i < SECOND_QUERIES.length; i++) {
+                    db.run(SECOND_QUERIES[i], (err) => {
+                        if (err) {
+                            console.log("ERROR: Some error occur in second queries.")
+                        }
+                    })
                 }
             }
+        }
         )
     }
 
