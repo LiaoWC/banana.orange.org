@@ -186,7 +186,11 @@ router.post('/check_status',(req, res, next) => {
     console.log(req.session.id)
     if(!req.session.userId){
         delete current_user[req.session.id]
-        res.redirect(fullPath('/login'))
+        res.redirect(req.body.redirect)
+    }
+    else{
+        console.log('keep')
+        res.redirect(req.body.redirect)
     }
     
 })
