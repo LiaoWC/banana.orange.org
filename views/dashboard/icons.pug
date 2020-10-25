@@ -43,9 +43,11 @@
                     i.fas.fa-users.fa-7x(aria-hidden='true')
                     | Meeting
             button.btn.btn-purple(type='button')
-                a.badge_count(href="/todo_clock")
+                a(href="/todo_clock")
                     i.fas.fa-check.pr-2.fa-7x(aria-hidden='true')
                     | Todo
+                    a.badge.badge-primary.badge-pill.primary-color-dark.badge_count(href='/forum' target='_blank') Go
+
                     style(type='text/css').
                         .badge_count {
                             position: absolute !important;
