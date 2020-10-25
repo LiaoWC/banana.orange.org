@@ -16,6 +16,11 @@ router.get('/test_file', function (req, res, next) {
     */
 });
 
+router.get('/img', function (req, res, next) {
+    var file = fs.createWriteStream("file.jpg");
+    response.pipe(file);
+});
+
 router.post('/', function (req, res, next) {
 
     let form = new formidable.IncomingForm();
@@ -48,11 +53,13 @@ router.post('/screenshot', function (req, res, next) {
 
 
     var base64Data = imgData.replace(/^data:image\/png+;base64,/, "").replace(/ /g, '+');
-    fs.writeFile("./savedFiles/" + filename, base64Data, 'base64', function (err) {
+    fs.writeFile("./savedFiles/" + room_name + "/" + filename + ".png", base64Data, 'base64', function (err) {
         console.log(err);
     });
 
 });
+
+
 
 
 
