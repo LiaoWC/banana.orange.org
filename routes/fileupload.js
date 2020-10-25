@@ -16,6 +16,11 @@ router.get('/test_file', function (req, res, next) {
     */
 });
 
+router.get('/img', function (req, res, next) {
+    var file = fs.createWriteStream("file.jpg");
+    response.pipe(file);
+});
+
 router.post('/', function (req, res, next) {
 
     let form = new formidable.IncomingForm();
@@ -53,6 +58,8 @@ router.post('/screenshot', function (req, res, next) {
     });
 
 });
+
+
 
 
 
