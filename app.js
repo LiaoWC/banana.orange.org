@@ -101,6 +101,13 @@ app.use('/forum', forumRouter)
 app.use('/jitsi', jitsiRouter)
 app.use('/task_assignment', taskAssignmentRouter)
 
+app.get('/img/:path/:file', (req, res) => {
+    //console.log(req.params)
+    //console.log(__dirname + '/savedFiles/' + req.params.path + "/" + req.params.file)
+    res.sendfile(__dirname + '/savedFiles/' + req.params.path + "/" + req.params.file)
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
