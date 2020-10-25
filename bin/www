@@ -87,7 +87,7 @@ io.on('connection', (socket) => {
           fs.mkdirSync(dir);
         }
         // post to line server
-        axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name=' + data })
+        axios.post('https://65651a0eda8e.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name=' + data })
           .then((response) => {
             //console.log(response)
           })
