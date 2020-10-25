@@ -20,8 +20,8 @@ router.get('/test_file', function (req, res, next) {
 });
 
 router.get('/file_list', function (req, res, next) {
-    //console.log(req.body.room)
-    var roompath = './savedFiles/' + req.params.room + "/";
+    console.log(req.body.room)
+    var roompath = './savedFiles/' + req.body.room + "/";
     var filelist = fs.readdirSync(roompath)
 
     axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
