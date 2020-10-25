@@ -98,13 +98,13 @@ $(document).ready(function () {
 
 
     var data_list = [
-    {
-        todoId: 1,
-        state: 0,
-        content: "cassa m",
-        deadline_date: 5645, 
-        time_to_finish: 6874,
-    }
+    // {
+    //     todoId: 1,
+    //     state: 0,
+    //     content: "cassa m",
+    //     deadline_date: 5645,
+    //     time_to_finish: 6874,
+    // }
     ]
 
     $.get('/api/todos/get_all',
