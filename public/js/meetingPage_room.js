@@ -1,11 +1,16 @@
 
-function updateRooms(rooms) {
+function updateRooms(rooms, old_rooms) {
     var keys = Object.keys(rooms)
+    var old_keys = Object.keys(old_rooms)
+
     var list_element = document.getElementsByClassName('list-group')[0]
     list_element.innerHTML = ""
 
     for (let i = 0; i < keys.length; i++) {
         room = rooms[keys[i]]
+        console.log(keys[i], old_keys.find(e => e == keys[i]))
+        if (old_keys.find(e => e == keys[i]) != undefined)
+            continue;
         var sample_element = document.createElement('a')
         sample_element.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "list-group-item-action")
         sample_element.innerText = room.room_name
@@ -21,7 +26,7 @@ function updateRooms(rooms) {
 $(function () {
     if (args['room_name'] != undefined)
         socket.emit('enter room', { room_name: args['room_name'] })
-        
+
 
     socket.on('enter room failed', () => {
         window.location.href = "/meeting/control";
@@ -32,11 +37,11 @@ $(function () {
     socket.emit('get room', 1)
 
     socket.on('get room ok', (data) => {
-        updateRooms(data)
+        updateRooms(data.rooms, data.old_rooms)
     });
 
     socket.on('add room ok', (data) => {
-        updateRooms(data)
+        updateRooms(data.rooms, data.old_rooms)
     });
 
     socket.on('end room ok', (data) => {
