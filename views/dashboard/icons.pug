@@ -3,37 +3,49 @@
     .row
         // Grid column
         .col-md-12.mb-4
-            button.btn.btn-primary.px-3(type='button')
-                i.fab.fa-facebook-square.fa-4x(aria-hidden='true')
-            button.btn.btn-default.px-3(type='button')
-                i.fab.fa-google-drive.fa-4x(aria-hidden='true')
-            button.btn.btn-secondary.px-3(type='button')
-                i.fas.fa-birthday-cake.fa-4x(aria-hidden='true')
-            button.btn.btn-success.px-3(type='button')
-                i.fas.fa-gamepad.fa-4x(aria-hidden='true')
-            button.btn.btn-info.px-3(type='button')
-                i.fas.fa-tint.fa-4x(aria-hidden='true')
-            button.btn.btn-warning.px-3(type='button')
-                i.fas.fa-bolt.fa-4x(aria-hidden='true')
-            button.btn.btn-danger.px-3(type='button')
-                i.fas.fa-users.fa-4x(aria-hidden='true')
+            a(href = "https://zh-tw.facebook.com/"  target="_blank")
+                button.btn.btn-primary.px-3(type='button')
+                    i.fab.fa-facebook-square.fa-4x(aria-hidden='true')
+            a(href = "https://www.google.com/intl/zh-TW/drive/"  target="_blank")
+                button.btn.btn-default.px-3(type='button')
+                    i.fab.fa-google-drive.fa-4x(aria-hidden='true')
+            a(href="/dashboard/birthday")
+                button.btn.btn-secondary.px-3(type='button')
+                    i.fas.fa-birthday-cake.fa-4x(aria-hidden='true')
+            a(href="https://www.twitch.tv/" target="_blank")
+                button.btn.btn-success.px-3(type='button')
+                    i.fas.fa-gamepad.fa-4x(aria-hidden='true')
+            a(href="https://weather.com/zh-TW/weather/today/l/TWXX0021:1:TW")
+                button.btn.btn-info.px-3(type='button')
+                    i.fas.fa-tint.fa-4x(aria-hidden='true')
+                    a(href="/dashboard/birthday")
+            a(href="https://tw.micron.com/products/nand-flash")
+                button.btn.btn-warning.px-3(type='button')
+                    i.fas.fa-bolt.fa-4x(aria-hidden='true')
+                    <i class="fas fa-map-marker-alt"></i>
+            a(href="/dashboard/location")
+                button.btn.btn-danger.px-3(type='button')
+                    i.fas.fa-map-marker-alt.fa-4x(aria-hidden='true')
+            a(href="/dashboard/vote")
+                button.btn.btn-danger.px-3(type='button')
+                    i.far.fa-calendar-alt.fa-4x(aria-hidden='true')
         // Grid column
         // Grid column
         .col-md-12.mb-4
             button.btn.btn-elegant(type='button')
-                a
-                    i.far.fa-user.pr-2.fa-7x(aria-hidden='true')
-                    | Staff
+                a(href="/")
+                    i.fas.fa-home.pr-2.fa-7x(aria-hidden='true')
+                    | Home
             button.btn.btn-unique(type='button')
-                a   
-                    i.fas.fa-wifi.pr-2.fa-7x(aria-hidden='true')
-                    | Wifi
+                a(href="/forum")
+                    i.fab.fa-rocketchat.pr-2.fa-7x(aria-hidden='true')
+                    | Forum
             button.btn.btn-success(type='button')
-                a
-                    i.fas.fa-battery-full.fa-7x(aria-hidden='true')
-                    | Power
+                a(href="/meeting/control")
+                    i.fas.fa-users.fa-7x(aria-hidden='true')
+                    | Meeting
             button.btn.btn-purple(type='button')
-                a
+                a(href="/todo_clock")
                     i.fas.fa-check.pr-2.fa-7x(aria-hidden='true')
                     | Todo
         // Grid column
