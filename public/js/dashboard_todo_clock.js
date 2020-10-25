@@ -44,9 +44,4 @@ $(document).ready(function () {
             window.location.href = "../todo_clock";
         
         });
-
-
-
-
-
 })
