@@ -33,19 +33,35 @@ router.get('/file_list', function (req, res, next) {
     }
     console.log(args['room'])
     var roompath = './savedFiles/' + args['room'] + "/";
-    if (args['room'] == 'all')
+    if (args['room'] == 'all') {
+
         roompath = './savedFiles/'
-    var filelist = fs.readdirSync(roompath)
+        var filelist = fs.readdirSync(roompath)
 
-    console.log(filelist)
+        console.log(filelist)
 
-    axios.post('https://65651a0eda8e.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
-        .then((response) => {
-            //console.log(response)
-        })
-        .catch((error) => {
-            //console.log(error)
-        })
+        axios.post('https://65651a0eda8e.ngrok.io/response', { 'type': 'room', 'content': filelist })
+            .then((response) => {
+                //console.log(response)
+            })
+            .catch((error) => {
+                //console.log(error)
+            })
+    }
+    else {
+        var filelist = fs.readdirSync(roompath)
+
+        console.log(filelist)
+
+        axios.post('https://65651a0eda8e.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
+            .then((response) => {
+                //console.log(response)
+            })
+            .catch((error) => {
+                //console.log(error)
+            })
+    }
+
 });
 
 router.post('/', function (req, res, next) {

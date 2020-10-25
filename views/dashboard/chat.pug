@@ -1,1 +1,15 @@
-| chat
+link(rel='stylesheet', href='/stylesheets/dashboard_chat.css', type='text/css' )
+
+script(type='text/javascript' src='/socket.io/socket.io.js')
+script(type='text/javascript' src='/js/dashboard_chat.js')
+script.
+    $(function () { setUsername('ME');});
+div#tmp_nsg
+ul.pages
+    li.chat.page
+        .chatArea
+            ul.messages
+        input.inputMessage(placeholder='Type here...')
+    li.login.page
+        .form
+            h3.title Welcome
