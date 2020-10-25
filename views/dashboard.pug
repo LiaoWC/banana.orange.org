@@ -44,6 +44,7 @@ html
             }
         // === Include Javascript ===
         include layout/js
+        script(type='text/javascript' src='/js/dashboard_clock.js')
 
     body
         .container-fluid
@@ -56,11 +57,9 @@ html
                      .container.text-center
                         h1
                             | You have worked for 
-                            <strong style="font-size: 180%;">32</strong>
+                            <strong id="num1" style="font-size: 180%;">32</strong>
                             |  mins.
-
-                        
-                  
+     
             .row
                 .col.icon_col
                     include dashboard/icons
