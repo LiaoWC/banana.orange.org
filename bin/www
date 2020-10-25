@@ -6,6 +6,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8080;
 var axios = require('axios')
+var fs = require('fs')
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -27,7 +28,29 @@ rooms['Public'] = {
   person_num: 0
 }
 
+old_rooms['Project_meeting'] = {
+  room_name: 'Project_meeting',
+  person_num: 0
+}
+
 io.on('connection', (socket) => {
+  // closed room
+  {
+    socket.on('get files', (data) => {
+      var old_keys = Object.keys(old_rooms)
+      if (old_keys.find(e => e == data.room_name) == undefined) {
+        socket.emit('get files not closed', rooms);
+        return
+      }
+      console.log(fs.readdirSync('./savedFiles/'))
+
+      socket.emit('get files ok', {
+        files: fs.readdirSync('./savedFiles/')
+      })
+    });
+  }
+
+
   // room
   {
     socket.on('enter room', (data) => {
