@@ -101,13 +101,13 @@ router.get('/todo_num', (req, res) => {
         } else {
             if (row) {
                 console.log(123)
-                res.json(row)
+                return res.json(row)
             }
         }
 
 
         console.log(789)
-        res.json()
+        return res.json()
     })
 })
 

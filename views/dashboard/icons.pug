@@ -15,14 +15,15 @@
             a(href="https://www.twitch.tv/" target="_blank")
                 button.btn.btn-success.px-3(type='button')
                     i.fas.fa-gamepad.fa-4x(aria-hidden='true')
-            a(href="https://weather.com/zh-TW/weather/today/l/TWXX0021:1:TW")
-                button.btn.btn-info.px-3(type='button')
-                    i.fas.fa-tint.fa-4x(aria-hidden='true')
-                    a(href="/dashboard/birthday")
+                a(href="https://weather.com/zh-TW/weather/today/l/TWXX0021:1:TW")
+                    button.btn.btn-info.px-3(type='button')
+                        //a(href="/dashboard/birthday")
+                        i.fas.fa-tint.fa-4x(aria-hidden='true')
+
             a(href="https://tw.micron.com/products/nand-flash")
                 button.btn.btn-warning.px-3(type='button')
                     i.fas.fa-bolt.fa-4x(aria-hidden='true')
-                    <i class="fas fa-map-marker-alt"></i>
+                    //<i class="fas fa-map-marker-alt"></i>
             a(href="/dashboard/location")
                 button.btn.btn-danger.px-3(type='button')
                     i.fas.fa-map-marker-alt.fa-4x(aria-hidden='true')
@@ -45,6 +46,19 @@
                     i.fas.fa-users.fa-7x(aria-hidden='true')
                     | Meeting
             button.btn.btn-purple(type='button')
-                a(href="/todo_clock")
+                a.badge_count(href="/todo_clock")
                     i.fas.fa-check.pr-2.fa-7x(aria-hidden='true')
                     | Todo
+                    style(type='text/css').
+                        .badge_count {
+                            position: absolute !important;
+                            top: 0;
+                            right: 0;
+                            background-color: red !important;
+                            font-size: medium;
+                        }
+
+                        .icon_col i, .icon_col a {
+                            color: white !important;
+                        }
+                script(type='text/javascript' src='/js/dashboard_icons.js')
