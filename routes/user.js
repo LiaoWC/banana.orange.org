@@ -25,9 +25,9 @@ function fullPath(localPath) {
 
 // TODO: database
 const users = [
-    {id: 1, name: 'Alex', email: 'alex@gmail.com', password: 'secret'},
-    {id: 2, name: 'Jeff', email: 'jeff@gmail.com', password: 'secret'},
-    {id: 3, name: 'Tom', email: 'tom@gmail.com', password: 'secret'}
+    { id: 1, name: 'Alex', email: 'alex@gmail.com', password: 'secret' },
+    { id: 2, name: 'Jeff', email: 'jeff@gmail.com', password: 'secret' },
+    { id: 3, name: 'Tom', email: 'tom@gmail.com', password: 'secret' }
 ]
 
 
@@ -49,12 +49,12 @@ const redirectionUserPage = (req, res, next) => {
 }
 
 router.get('/', redirectionLogin, (req, res) => {
-    const {userId} = req.session
+    const { userId } = req.session
     let sql = 'SELECT id,username,email FROM users WHERE id = ?'
     let params = [userId]
     db.get(sql, params, (err, row) => {
         if (err) {
-            console.log("ERROR:",err.message)
+            console.log("ERROR:", err.message)
         } else {
             if (row) {
                 return res.render('user/user', {
@@ -78,7 +78,7 @@ router.route('/login')
     })
     // Submit login form
     .post(redirectionUserPage, (req, res) => {
-        const {email, password} = req.body
+        const { email, password } = req.body
         if (email && password) {
             // Find if the email and password the same as what kept in database.
             let sql = 'SELECT * FROM users WHERE email=? and password=?'
@@ -92,10 +92,10 @@ router.route('/login')
                     if (row) {
                         req.session.userId = row["id"]
                         let date_ = Date.now()
-                        
+
                         current_user[req.session.userId] = [email, date_, row["username"]]
-                        if(!(row["username"] in time_record)){
-                            let start = new Date(date_*1000)
+                        if (!(row["username"] in time_record)) {
+                            let start = new Date(date_ * 1000)
                             time_record[row["username"]] = [start, null]
                         }
 
@@ -136,7 +136,7 @@ router.route('/register')
         res.render('user/register')
     })
     .post(redirectionUserPage, (req, res) => {
-        const {username, email, password} = req.body
+        const { username, email, password } = req.body
 
         if (username && email && password) { // TODO: validation
             console.log('wwwwww0')
@@ -178,15 +178,15 @@ router.get('/list', (req, res, next) => {
     var sql = "select * from users"
     var parmameters = []
     db.all(sql, parmameters, (err, rows) => {
-            if (err) {
-                res.status(400).json({"error": err.message})
-                return
-            }
-            res.json({
-                "message": "success",
-                "data": rows
-            })
+        if (err) {
+            res.status(400).json({ "error": err.message })
+            return
         }
+        res.json({
+            "message": "success",
+            "data": rows
+        })
+    }
     )
 })
 
@@ -196,49 +196,53 @@ router.get('/current_list', (req, res, next) => {
 })
 
 // Check is someone lazy
-router.get('/check_status',(req, res, next) => {
-    if(!req.session.userId){
+router.get('/check_status', (req, res, next) => {
+    if (!req.session.userId) {
         res.redirect(fullPath('/login'));
     }
-    else{
+    else {
         current_user[req.session.userId][1] = Date.now()
         res.redirect('/');
     }
 })
 
 
-function savework(username, record){
+function savework(username, record) {
     var sql = "INSERT INTO work_time(username,starttime,stoptime) VALUES(?,?,?)"
-    var parmameters = [username,record[0],record[1]]
-    db.run(sql, params, (err) => {
-        if (err) {
-            console.log(err.message)
-            res.json(FAIL_MSG)
-        } else {
-            res.json(SUC_MSG)
-        }
+    var parmameters = [username, record[0], record[1]]
+    try {
+        db.run(sql, params, (err) => {
+            if (err) {
+                console.log(err.message)
+                res.json(FAIL_MSG)
+            } else {
+                res.json(SUC_MSG)
+            }
+        })
     }
-)
+    catch {
+        console.log("Null")
+    }
 }
 
 
 // Kill Lazy Guy 
-var rule = new schedule.RecurrenceRule(); 
-rule.minute = [0,15,30,45]
+var rule = new schedule.RecurrenceRule();
+rule.minute = [0, 15, 30, 45]
 
-var j = schedule.scheduleJob(rule, function(){ 
+var j = schedule.scheduleJob(rule, function () {
     let time_ = Date.now()
     console.log('Time to catch lazy GUY!');
     console.log(current_user)
     console.log(time_)
-    for(let key in current_user){
-        let online = ((time_-current_user[key][1])<15*60*100) //15分鐘check
+    for (let key in current_user) {
+        let online = ((time_ - current_user[key][1]) < 15 * 60 * 100) //15分鐘check
         console.log(online)
-        if(!online){
+        if (!online) {
             let user_ = current_user[key][2]
-            let stop = new Date(current_user[key][1]*1000)
+            let stop = new Date(current_user[key][1] * 1000)
             time_record[user_][1] = stop
-            savework(user_,time_record[user_])
+            savework(user_, time_record[user_])
             delete current_user[key]
         }
     }

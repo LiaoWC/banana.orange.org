@@ -3,11 +3,33 @@ var router = express.Router();
 var fs = require('fs');
 var formidable = require('formidable');
 var mv = require('mv');
+var axios = require('axios')
+
 
 
 
 router.get('/test_file', function (req, res, next) {
     res.render('file_test', { title: 'file_test' })
+    console.log(fs.readdirSync('./savedFiles/'))
+    /*
+    fs.readdirSync('./savedFiles/').forEach(file => {
+        console.log(file);
+    });
+    */
+});
+
+router.get('/file_list', function (req, res, next) {
+
+    var roompath = './savedFiles/Project_meeting/';
+    var filelist = fs.readdirSync(roompath)
+
+    axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
+        .then((response) => {
+            //console.log(response)
+        })
+        .catch((error) => {
+            //console.log(error)
+        })
 });
 
 router.post('/', function (req, res, next) {
@@ -42,11 +64,13 @@ router.post('/screenshot', function (req, res, next) {
 
 
     var base64Data = imgData.replace(/^data:image\/png+;base64,/, "").replace(/ /g, '+');
-    fs.writeFile("./savedFiles/" + filename, base64Data, 'base64', function (err) {
+    fs.writeFile("./savedFiles/" + room_name + "/" + filename + ".png", base64Data, 'base64', function (err) {
         console.log(err);
     });
 
 });
+
+
 
 
 
