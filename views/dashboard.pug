@@ -44,6 +44,7 @@ html
             }
         // === Include Javascript ===
         include layout/js
+        script(type='text/javascript' src='/js/dashboard_clock.js')
 
     body
         .container-fluid
@@ -55,9 +56,10 @@ html
                 .col.start_work.fa-5x
                      .container.text-center
                         h1
-                            | You have worked for
-                            <strong style="font-size: 180%;">32</strong>
-                            |  mins.
+                            | You have worked for 
+                            <strong id="num1" style="font-size: 180%;">5</strong>
+                            |  seconds.
+     
 
             .row
                 .col.icon_col
