@@ -81,7 +81,7 @@ io.on('connection', (socket) => {
           old_rooms: old_rooms
         });
         // post to line server
-        axios.post('https://e464f1497bc9.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name=Public' })
+        axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name= ${data}' })
           .then((response) => {
             console.log(response)
           })
