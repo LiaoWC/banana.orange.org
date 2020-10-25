@@ -32,7 +32,12 @@ INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
 INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
 1,0,'Create an APP.','11/29','Ella, Carmen');
 
+///// Todo
 
+INSERT INTO todos(userId,state,content,deadline) VALUES(1,0,'Build the environment in docker.','10231800');
+INSERT INTO todos(userId,state,content,deadline) VALUES(1,0,'Write a paper.','12052100');
+INSERT INTO todos(userId,state,content,deadline) VALUES(1,0,'Deal with the pull request.','10260900');
+INSERT INTO todos(userId,state,content,deadline) VALUES(1,0,'Prepare for the meeting.','10301000');
 
 
 

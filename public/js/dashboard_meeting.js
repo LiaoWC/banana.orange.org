@@ -1,11 +1,13 @@
+var socket = io()
 
 function updateRooms(rooms, old_rooms) {
     var keys = Object.keys(rooms)
     var old_keys = Object.keys(old_rooms)
 
-    var list_element = document.getElementsByClassName('list-group')[0]
+    var list_element = document.getElementById('op_meeting')
     list_element.innerHTML = ""
-
+    console.log(list_element)
+    console.log(rooms, old_rooms)
     for (let i = 0; i < keys.length; i++) {
         room = rooms[keys[i]]
         console.log(keys[i], old_keys.find(e => e == keys[i]))
@@ -23,45 +25,14 @@ function updateRooms(rooms, old_rooms) {
     }
 }
 
+
+
 $(function () {
-    if (args['room_name'] != undefined)
-        socket.emit('enter room', { room_name: args['room_name'] })
 
-
-    socket.on('enter room failed', () => {
-        window.location.href = "/meeting/control";
-    });
-    socket.on('enter room closed', () => {
-        window.location.href = "/meeting/closed?room_name=" + args['room_name'];
-    });
     socket.emit('get room', 1)
 
     socket.on('get room ok', (data) => {
+
         updateRooms(data.rooms, data.old_rooms)
     });
-
-    socket.on('add room ok', (data) => {
-        updateRooms(data.rooms, data.old_rooms)
-    });
-
-    socket.on('end room ok', (data) => {
-        window.location.href = "/meeting/control";
-    });
-
-    function add_room() {
-        var room_name = prompt("Please enter room name:", "");
-        if (room_name == "" || room_name == null)
-            return
-        socket.emit('add room', room_name);
-    }
-    window.add_room = add_room
 });
-
-
-$('#leave-btn').click(function (event) {
-    socket.emit('end room', { room_name: args['room_name'] })
-    window.location.href = "/meeting/control";
-
-});
-
-
