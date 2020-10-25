@@ -3,6 +3,8 @@ var router = express.Router();
 var fs = require('fs');
 var formidable = require('formidable');
 var mv = require('mv');
+var axios = require('axios')
+
 
 
 
@@ -16,9 +18,18 @@ router.get('/test_file', function (req, res, next) {
     */
 });
 
-router.get('/img', function (req, res, next) {
-    var file = fs.createWriteStream("file.jpg");
-    response.pipe(file);
+router.get('/file_list', function (req, res, next) {
+
+    var roompath = './savedFiles/';
+    var filelist = fs.readdirSync(roompath)
+
+    axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
+        .then((response) => {
+            //console.log(response)
+        })
+        .catch((error) => {
+            //console.log(error)
+        })
 });
 
 router.post('/', function (req, res, next) {
