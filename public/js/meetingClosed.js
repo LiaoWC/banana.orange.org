@@ -31,11 +31,17 @@ function updateFiles(files) {
 
         var img = document.createElement('img')
         img.classList.add("img", "card-img-top")
-        img.src = 'https://mdbootstrap.com/img/Photos/Others/images/16.jpg'
+        img.src = '/img/file/file.png'
+
+
+        if (file.slice(-3) == 'png')
+            img.src = `/img/${args['room_name']}/${file}`;
+
         var a = document.createElement('a')
         var asub = document.createElement('div')
         asub.classList.add("mask", "rgba-white-slight")
         a.appendChild(asub)
+        a.href = `/img/${args['room_name']}/${file}`
 
 
         var filebox_4 = document.createElement('div')
@@ -49,6 +55,9 @@ function updateFiles(files) {
         btn.classList.add("btn", "btn-light-blue", "btn-md")
         btn.type = 'button'
         btn.innerText = "Download"
+        btn.onclick = () => {
+            window.open(`/img/${args['room_name']}/${file}`)
+        };
 
         filebox_3.appendChild(img)
         filebox_3.appendChild(a)

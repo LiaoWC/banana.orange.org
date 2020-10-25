@@ -42,10 +42,11 @@ io.on('connection', (socket) => {
         socket.emit('get files not closed', rooms);
         return
       }
-      console.log(fs.readdirSync('./savedFiles/'))
+      var roompath = './savedFiles/' + data.room_name;
+      console.log(fs.readdirSync(roompath))
 
       socket.emit('get files ok', {
-        files: fs.readdirSync('./savedFiles/')
+        files: fs.readdirSync(roompath)
       })
     });
   }
