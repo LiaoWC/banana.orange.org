@@ -20,8 +20,19 @@ router.get('/test_file', function (req, res, next) {
 });
 
 router.get('/file_list', function (req, res, next) {
-    console.log(req.body.room)
-    var roompath = './savedFiles/' + req.body.room + "/";
+    console.log(req.url)
+
+    var args = {}
+    var url = req.url
+
+    if (url.indexOf('?') != -1) {
+        var arr = url.split('?')[1].split('&');
+
+        for (i = 0; i < arr.length; i++)
+            args[arr[i].split('=')[0]] = arr[i].split('=')[1]
+    }
+
+    var roompath = './savedFiles/' + args['room'] + "/";
     var filelist = fs.readdirSync(roompath)
 
     axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
