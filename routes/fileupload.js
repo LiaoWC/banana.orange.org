@@ -31,9 +31,11 @@ router.get('/file_list', function (req, res, next) {
         for (i = 0; i < arr.length; i++)
             args[arr[i].split('=')[0]] = arr[i].split('=')[1]
     }
-
+    console.log(args['room'])
     var roompath = './savedFiles/' + args['room'] + "/";
     var filelist = fs.readdirSync(roompath)
+
+    console.log(filelist)
 
     axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
         .then((response) => {
