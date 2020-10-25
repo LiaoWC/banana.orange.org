@@ -1,12 +1,11 @@
 var socket = io()
-var axios = require('axios')
 
 function updateRooms(rooms, old_rooms) {
     var keys = Object.keys(rooms)
     var old_keys = Object.keys(old_rooms)
 
-    var list_element = document.getElementsByClassName('list-group')[0]
-    var old_list_element = document.getElementsByClassName('old-list-group')[0]
+    var list_element = document.getElementById('open')
+    var old_list_element = document.getElementById('close')
     list_element.innerHTML = ""
     old_list_element.innerHTML = ""
 

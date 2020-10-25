@@ -5,6 +5,8 @@ var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8080;
+var axios = require('axios')
+var fs = require('fs')
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -26,7 +28,29 @@ rooms['Public'] = {
   person_num: 0
 }
 
+old_rooms['Project_meeting'] = {
+  room_name: 'Project_meeting',
+  person_num: 0
+}
+
 io.on('connection', (socket) => {
+  // closed room
+  {
+    socket.on('get files', (data) => {
+      var old_keys = Object.keys(old_rooms)
+      if (old_keys.find(e => e == data.room_name) == undefined) {
+        socket.emit('get files not closed', rooms);
+        return
+      }
+      console.log(fs.readdirSync('./savedFiles/'))
+
+      socket.emit('get files ok', {
+        files: fs.readdirSync('./savedFiles/')
+      })
+    });
+  }
+
+
   // room
   {
     socket.on('enter room', (data) => {
@@ -56,6 +80,14 @@ io.on('connection', (socket) => {
           rooms: rooms,
           old_rooms: old_rooms
         });
+        // post to line server
+        axios.post('https://e464f1497bc9.ngrok.io/response', { 'type': 'meeting', 'content': 'https://banana-orange.herokuapp.com/meeting?room_name=Public' })
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
     });
 

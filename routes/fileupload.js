@@ -8,6 +8,12 @@ var mv = require('mv');
 
 router.get('/test_file', function (req, res, next) {
     res.render('file_test', { title: 'file_test' })
+    console.log(fs.readdirSync('./savedFiles/'))
+    /*
+    fs.readdirSync('./savedFiles/').forEach(file => {
+        console.log(file);
+    });
+    */
 });
 
 router.post('/', function (req, res, next) {
