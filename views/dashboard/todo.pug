@@ -8,10 +8,8 @@ script(src='/js/dashboard_todo_clock.js')
 link(rel='stylesheet' href='/stylesheets/dashboard_todo_clock.css')
 
 
-#container
-  h2
-    |Todo list
-    i.fas.fa-code
+.container
+  i.fas.fa-code.fa-4x(style = "margin: 10px 10px;")
   .cool-list
     table.table
       thead#cool-thead.thead-light
@@ -22,22 +20,16 @@ link(rel='stylesheet' href='/stylesheets/dashboard_todo_clock.css')
       tbody
         tr
           td
-            span
-              i.fa.fa-trash
             | Mark
           td Otto
           td @mdo
         tr
           td
-            span
-              i.fa.fa-trash
             | Jacob
           td Thornton
           td @fatbulletin
         tr
           td
-            span
-              i.fa.fa-trash
             | Larry
           td the Bird
           td @twitter
