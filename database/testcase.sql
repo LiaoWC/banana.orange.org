@@ -27,6 +27,10 @@ INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
 INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
 1,1,'Help tech department to resolve some problems.','11/29','Mose, Kevin');
 
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,0,'Finish the new project.','11/21','Mose, Jim');
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,0,'Create an APP.','11/29','Ella, Carmen');
 
 
 
