@@ -9,6 +9,7 @@ var axios = require('axios')
 
 
 router.get('/test_file', function (req, res, next) {
+
     res.render('file_test', { title: 'file_test' })
     console.log(fs.readdirSync('./savedFiles/'))
     /*
@@ -19,9 +20,22 @@ router.get('/test_file', function (req, res, next) {
 });
 
 router.get('/file_list', function (req, res, next) {
+    console.log(req.url)
 
-    var roompath = './savedFiles/Project_meeting/';
+    var args = {}
+    var url = req.url
+
+    if (url.indexOf('?') != -1) {
+        var arr = url.split('?')[1].split('&');
+
+        for (i = 0; i < arr.length; i++)
+            args[arr[i].split('=')[0]] = arr[i].split('=')[1]
+    }
+    console.log(args['room'])
+    var roompath = './savedFiles/' + args['room'] + "/";
     var filelist = fs.readdirSync(roompath)
+
+    console.log(filelist)
 
     axios.post('https://0a9d3cc2f07d.ngrok.io/response', { 'type': 'file_list', 'content': filelist })
         .then((response) => {
