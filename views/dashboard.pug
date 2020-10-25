@@ -11,7 +11,7 @@ html
                 color: white;
             }
 
-            .col {
+            .col,.col-md,.col-sm,.col-xl,.col-lg {
                 border-style: solid;
                 border-width: thin;
                 border-color: #75A3BF;
@@ -49,28 +49,28 @@ html
     body
         .container-fluid
             .row
-                .col
+                .col-sm
                     .container.text-center
                         h1 Welcome to Micron!
                         | Intelligence Accelerate
-                .col.start_work.fa-5x
-                     .container.text-center
+                .col-sm.start_work.fa-5x
+                    .container.text-center
                         h1
                             | You have worked for 
                             <strong id="num1" style="font-size: 180%;">5</strong>
                             |  seconds.
-     
+
 
             .row
-                .col.icon_col
+                .col-lg.icon_col
                     include dashboard/icons
 
                         //img.mx-2(src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image")
             .row
-                .col.slide_col
+                .col-xl.slide_col
                     include dashboard/bulletin
 
-                .col
+                .col-md
                     //.container.text-center
                     //    h3 Special title treatment
                     //    p.card-text With supporting text below as a natural lead-in to additional content.
@@ -96,45 +96,45 @@ html
 
 
             .row
-                .col
+                .col-xl
                     .container.text-center
                         include dashboard/forum
-                .col
+                .col-xl
                     .row
                         .container
                             include dashboard/todo
             .row
-                .col
+                .col-md
                     .container
                         include dashboard/task
-                .col
+                .col-md
                     .container
                         include dashboard/task_wait_approved
             .row
-                .col
+                .col-md
                     .container.text-center
                         include dashboard/chat
-                .col
+                .col-md
                     .container.text-center
                         include dashboard/meeting
-                .col
+                .col-md
                     .container.text-center
                         include dashboard/online_people
             .row
                 h3#taskAssignmentSys.container.text-center Task Assignment System
             .row#assign_task_system_row
-                .col
+                .col-xl
                     .container.text-center
                         include dashboard/task_assignment/assign
-                .col
+                .col-xl
                     .container.text-center
                         include dashboard/task_assignment/have_assigned_but_not_completed
-                .col
+                .col-xl
                     .container.text-center
                         include dashboard/task_assignment/completed_but_not_checked
 
             .row
-                .col
+                .col-md
                     // Grid row
                     .row
                         // Grid column
@@ -169,15 +169,15 @@ html
                                 i.fab.fa-linkedin-in
                             span.counter 22
                             // Slack
-                            button.btn.btn-slack.btn-lg(type='button')
-                                i.fab.fa-slack-hash
-                            span.counter 22
-                            // Emails
+                            button.btn.btn-slack.btn-lg(type='button' onclick='clickRedirect("/team")')
+                                i.fas.fa-users.left
+                                | Team
+                                // Emails
                             button.btn.btn-email.btn-lg(type='button')
                                 i.fas.fa-envelope
                             span.counter 22
             .row
-                .col
+                .col-md
                     // Footer
                     footer.page-footer.font-small.blue.primary-color-dark
                         // Copyright
@@ -203,6 +203,10 @@ html
                 width: 80px;
                 height: 65px;
                 font-size: 35px;
+            }
+        script(type='text/javascript').
+            function clickRedirect(address) {
+                window.location.href = address
             }
 
 

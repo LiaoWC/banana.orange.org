@@ -1,38 +1,46 @@
-extends page
+doctype html
+head
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+    link(rel='shortcut icon' href='/images/favicon.png')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
+body
 
 
-block js
+block center
+    .row-fluid
+        .span4(style='background-color:red') 123
+
+        .span4(style='background-color:gray')
+            |  123
+        .span4(style='background-color:gray')
+            |  123
+    .row-fluid
+        .span6(style='background-color:green')
+            |   789
+        .span6(style='background-color:blue')
+            | 102
+    .row
+        .span9
+            | level
+        .row
+            .span6 level 2
+            .span3 level 2
     script(type='text/javascript' src='/js/test.js')
 
-
-block content
-    .row.justify-content-center
-        .col
-            .container.text-break
-                h1= title
-                p Welcome to #{title}
-                p Welcome to #{title}
-    .row
-        .col
-            .container
-                img#testIMG(src='/images/favicon.png' alt='IMG')
-            .container
-                button.btn.btn-primary(type='button' onclick='get_users()') Get User List
-
-
-            //if(session.userId)
-            //    form(method='post' action='/user/logout')
-            //        input(type='submit' value='logout')
-            //else
-                //p= session
-                //p= session.userId
-            //p= session.userId
-
-            = userId
-            = username
-
-    style.
-        #testIMG{
-            max-width: 50%;
-        }
-
+    .container-fluid
+        .row-fluid
+            .span2 999
+            .span10 999
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span2">
+    <!--Sidebar content-->
+    </div>
+    <div class="span10">
+    <!--Body content-->
+    </div>
+    </div>
+    </div>

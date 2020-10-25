@@ -85,6 +85,7 @@ var kanbanRouter = require('./routes/kanban')
 var jitsiRouter = require('./routes/jitsi')
 var taskAssignmentRouter = require('./routes/task_assignment')
 var bulletinRouter = require('./routes/bulletin')
+var teamRouter = require('./routes/team')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -97,6 +98,7 @@ app.use('/api', apiRouter);
 app.use('/todo_clock', todoClockRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/kanban', kanbanRouter)
+app.use('/team',teamRouter)
 
 app.use('/forum', forumRouter)
 app.use('/jitsi', jitsiRouter)

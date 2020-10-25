@@ -1,0 +1,15 @@
+extends page
+
+block content
+    .container.pt-5.my-5.z-depth-1
+        section.p-md-3.mx-md-5.text-center
+            h2.text-center.mx-auto.font-weight-bold.mb-4.pb-2 Our Team
+            .row
+                each member in team
+                    .col-lg-3.col-md-4.col-sm-6.mb-4
+                        .p-4
+                            .avatar.w-100.white.d-flex.justify-content-center.align-items-center
+                                img.img-fluid.rounded-circle.z-depth-1(src=`/images/team/${member[1]}`)
+                            .text-center.mt-3
+                                h6.font-weight-bold.pt-2
+                                    a(href='https://github.com/' + member[0])= member[0]

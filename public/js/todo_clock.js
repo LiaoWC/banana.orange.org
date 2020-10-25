@@ -31,7 +31,7 @@ $(document).ready(function () {
         count = preCount;
         $("#num1").html(preCount);
         clearInterval(counter)
-        return;
+        return; 
 
     });
 
