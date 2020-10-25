@@ -154,4 +154,17 @@ router.get('/wait_for_checked', (req, res, next) => {
     })
 })
 
+router.get('/finish/:task_id', (req, res) => {
+    let sql = 'UPDATE task_assign SET state=2 WHERE taskId=?'
+    let params = [req.params.task_id]
+
+    db.run(sql, params, (err) => {
+        if (err) {
+            console.log("ERROR:", err.message)
+        } else {
+        }
+        res.redirect('/dashboard')
+    })
+})
+
 module.exports = router;

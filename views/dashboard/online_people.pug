@@ -3,97 +3,99 @@ doctype html
 head
   title Pug
   script(type='text/javascript' src='/js/dashboard_online.js')
-  button.btn.btn-danger(type='button' data-toggle='modal' data-target='#modalCart') Offline
-  // Modal: modalCart
-  #modalCart.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-    .modal-dialog(role='document')
-      .modal-content(style = "background-color: transparent;")
-        // Header
-        .modal-header
-          h4#myModalLabel.modal-title Online
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
-            span(aria-hidden='true') &times;
-        // Body
-        .modal-body
-          table.table.table-hover
-            thead
-              tr
-                th Status
-                th Name
-                th Contact
-            tbody
-              tr
-                th(scope='row') Offline
-                td Peter
-                td
-                  a
-                    i.fas.fa-sms
-              tr
-                th(scope='row') Offline
-                td Amy
-                td
-                  a
-                    i.fas.fa-sms
-  // Button trigger modal
-  button.btn.btn-success(type='button' data-toggle='modal' data-target='#modalCart') Online
-  // Modal: modalCart
-  #modalCart.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
-    .modal-dialog(role='document')
-      .modal-content(style = "background-color: transparent;")
-        // Header
-        .modal-header
-          h4#myModalLabel.modal-title Online
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
-            span(aria-hidden='true') &times;
-        // Body
-        .modal-body
-          table.table.table-hover
-            thead
-              tr
-                th Status
-                th Name
-                th Contact
-            tbody.online
-              tr
-                th(scope='row') Online
-                td Peter
-                td
-                  a
-                    i.fas.fa-sms
-              tr
-                th(scope='row') Offline
-                td Peter
-                td
-                  a
-                    i.fas.fa-sms
-              tr
-                th(scope='row') Online
-                td Ken
-                td
-                  a
-                    i.fas.fa-sms
-                        // Footer
-          .modal-footer
-            button.btn.btn-outline-primary(type='button' data-dismiss='modal') Close
-            button.btn.btn-primary Checkout
-  .card(style='width: 18rem; ')
-    ul.list-group.list-group-flush
-        li.list-group-item 
-          i.fas.fa-circle(style="color: green; padding: 10px;")
-          |Peter
-        li.list-group-item 
-          i.fas.fa-circle(style="color: green;padding: 10px;")
-          |Amy
-        li.list-group-item 
-          i.fas.fa-circle(style="color: green;padding: 10px;")
-          |Admin
-        li.list-group-item 
-          i.fas.fa-circle(style="color: green;padding: 10px;")
-          |Waterso
-        li.list-group-item 
-          i.fas.fa-circle(style="color: red;padding: 10px;")
-          |Amy
-        
+  div
+    button.btn.btn-danger(type='button' data-toggle='modal' data-target='#modalCart') Offline
+    // Modal: modalCart
+    #modalCart.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content(style = "background-color: transparent;")
+          // Header
+          .modal-header
+            h4#myModalLabel.modal-title Online
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          // Body
+          .modal-body(style = "align-item: center;")
+            table.table.table-hover
+              thead
+                tr
+                  th Status
+                  th Name
+                  th Contact
+              tbody
+                tr
+                  th(scope='row') Offline
+                  td Peter
+                  td
+                    a
+                      i.fas.fa-sms
+                tr
+                  th(scope='row') Offline
+                  td Amy
+                  td
+                    a
+                      i.fas.fa-sms
+
+    // Button trigger modal
+    button.btn.btn-success(type='button' data-toggle='modal' data-target='#modalCart') Online
+    // Modal: modalCart
+    #modalCart.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content(style = "background-color: transparent;")
+          // Header
+          .modal-header
+            h4#myModalLabel.modal-title Online
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          // Body
+          .modal-body
+            table.table.table-hover
+              thead
+                tr
+                  th Status
+                  th Name
+                  th Contact
+              tbody.online
+                tr
+                  th(scope='row') Online
+                  td Peter
+                  td
+                    a
+                      i.fas.fa-sms
+                tr
+                  th(scope='row') Offline
+                  td Peter
+                  td
+                    a
+                      i.fas.fa-sms
+                tr
+                  th(scope='row') Online
+                  td Ken
+                  td
+                    a
+                      i.fas.fa-sms
+                          // Footer
+            .modal-footer
+              button.btn.btn-outline-primary(type='button' data-dismiss='modal') Close
+              button.btn.btn-primary Checkout
+    .card(style='width: 18rem; ')
+      ul.list-group.list-group-flush
+          li.list-group-item 
+            i.fas.fa-circle(style="color: green; padding: 10px;")
+            |Peter
+          li.list-group-item 
+            i.fas.fa-circle(style="color: green;padding: 10px;")
+            |Amy
+          li.list-group-item 
+            i.fas.fa-circle(style="color: green;padding: 10px;")
+            |Admin
+          li.list-group-item 
+            i.fas.fa-circle(style="color: green;padding: 10px;")
+            |Waterso
+          li.list-group-item 
+            i.fas.fa-circle(style="color: red;padding: 10px;")
+            |Amy
+          
 
 
   // Modal: modalCart
