@@ -21,12 +21,12 @@ app.set('view engine', 'pug');
 
 // === Middlewares ===
 app.use(logger('dev'));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: false }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 
 // sessiont
 app.use(session({
@@ -45,7 +45,7 @@ app.use(session({
 // Check if have logged in.
 app.use((req, res, next) => {
     // console.log("A res")
-    const { userId } = req.session
+    const {userId} = req.session
     req.session._garbage = Date();
     req.session.touch();
     // console.log("req",req.method,req.path)
@@ -84,6 +84,7 @@ var forumRouter = require('./routes/forum')
 var kanbanRouter = require('./routes/kanban')
 var jitsiRouter = require('./routes/jitsi')
 var taskAssignmentRouter = require('./routes/task_assignment')
+var bulletinRouter = require('./routes/bulletin')
 
 // === Use routers ===
 app.use('/', indexRouter);
@@ -100,6 +101,7 @@ app.use('/kanban', kanbanRouter)
 app.use('/forum', forumRouter)
 app.use('/jitsi', jitsiRouter)
 app.use('/task_assignment', taskAssignmentRouter)
+app.use('/bulletin', bulletinRouter)
 
 app.get('/img/:path/:file', (req, res) => {
     //console.log(req.params)
@@ -108,12 +110,10 @@ app.get('/img/:path/:file', (req, res) => {
 });
 
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
 });
-
 
 
 // error handler
