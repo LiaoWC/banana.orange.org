@@ -31,11 +31,11 @@ const redirectionLogin = (req, res, next) => {
 router.post('/todos/create'/*, redirectionLogin*/, function (req, res, next) {
     // const {userId} = req.session
     let userId = 1
-    let state = parseInt( req.body['state'])
+    let state = parseInt(req.body['state'])
     let content = req.body['content']
     let deadline_date = req.body['deadline_date']
     let time_to_finish = req.body['time_to_finish']
-    
+
     if (isNaN(state)) {
         // return res.json({"message":"The state is not a valid integer."})
     }
@@ -60,7 +60,7 @@ router.get('/todos/get_all'/*, redirectionLogin */, (req, res, next) => {
     userId = 1
     let sql = 'SELECT todoId,username,state,content,deadline FROM todos,users WHERE userId=?'
     let params = [userId]
-    
+
     db.all(sql, params, (err, rows) => {
             if (err) {
                 console.log(err.message)
@@ -90,6 +90,25 @@ router.get('/todos/delete'/*, redirectionLogin */, (req, res, next) => {
             }
         }
     )
+})
+
+router.get('/todo_num', (req, res) => {
+    let sql = 'SELECT count(todoId) as count FROM todos'
+    let params = []
+    db.get(sql, params, (err, row) => {
+        if (err) {
+            console.log(err.message)
+        } else {
+            if (row) {
+                console.log(123)
+                res.json(row)
+            }
+        }
+
+
+        console.log(789)
+        res.json()
+    })
 })
 
 
