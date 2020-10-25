@@ -21,7 +21,7 @@ function getHaveCompletedNotChecked() {
             for (let obj of data) {
                 str += `
                     <tr id="${obj.taskId}">
-                        <td><a class="badge badge-light>" href="/task_assignment/finish"><i class="fas fa-check"></i></a>${obj.content}</td>                        
+                        <td><a class="badge badge-light" href="/task_assignment/finish/${taskId}"><i class="fas fa-check"></i></a>${obj.content}</td>                        
                         <td>${obj.collaborators}</td>
                         <td>${obj.deadline}</td>
                     </tr>

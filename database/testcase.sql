@@ -16,7 +16,23 @@ INSERT INTO posts(boardId,title,authorId,date,content)
   VALUES (3,'Who could help me solve this problem?',1,'20201024','......');
 
 ///////////////////////////////
+// state 1
 
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,1,'Build the environment.','11/13','Jason, Kevin');
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,1,'Improve the search algorithm.','11/15','Leo, Amy');
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,1,'Prepare for the next activity.','11/25','Joey, Kathy');
+INSERT INTO task_assign(assignerId,state,content,deadline,collaborators) VALUES(
+1,1,'Help tech department to resolve some problems.','11/29','Mose, Kevin');
+
+
+
+
+
+
+///////////////////////////////
 
 CREATE TABLE boards(
     boardId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
