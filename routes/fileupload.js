@@ -48,7 +48,7 @@ router.post('/screenshot', function (req, res, next) {
 
 
     var base64Data = imgData.replace(/^data:image\/png+;base64,/, "").replace(/ /g, '+');
-    fs.writeFile("./savedFiles/" + filename, base64Data, 'base64', function (err) {
+    fs.writeFile("./savedFiles/" + room_name + "/" + filename + ".png", base64Data, 'base64', function (err) {
         console.log(err);
     });
 

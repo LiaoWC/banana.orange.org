@@ -18,12 +18,50 @@ console.log('Roomname: ' + args['room_name'])
 var socket = io()
 
 function updateFiles(files) {
-    var file_container = document.getElementById('files_container')
+    var file_container = document.getElementById('card_region')
+    //file_container.innerHTML = ""
 
     files.forEach(file => {
         var filebox = document.createElement('div')
-        filebox.innerHTML = file
+        filebox.classList.add("col", "mb-4")
+        var filebox_2 = document.createElement('div')
+        filebox_2.classList.add("card", "h-60")
+        var filebox_3 = document.createElement('div')
+        filebox_3.classList.add("view", "overlay")
+
+        var img = document.createElement('img')
+        img.classList.add("img", "card-img-top")
+        img.src = 'https://mdbootstrap.com/img/Photos/Others/images/16.jpg'
+        var a = document.createElement('a')
+        var asub = document.createElement('div')
+        asub.classList.add("mask", "rgba-white-slight")
+        a.appendChild(asub)
+
+
+        var filebox_4 = document.createElement('div')
+        filebox_4.classList.add("card-body")
+
+        var h4 = document.createElement('h4')
+        h4.classList.add("card-title")
+        h4.innerText = file
+
+        var btn = document.createElement('button')
+        btn.classList.add("btn", "btn-light-blue", "btn-md")
+        btn.type = 'button'
+        btn.innerText = "Download"
+
+        filebox_3.appendChild(img)
+        filebox_3.appendChild(a)
+        filebox_4.appendChild(h4)
+        filebox_4.appendChild(btn)
+        filebox_2.appendChild(filebox_3)
+        filebox_2.appendChild(filebox_4)
+        filebox.appendChild(filebox_2)
+
+
+
         file_container.appendChild(filebox)
+
     });
 
 }
