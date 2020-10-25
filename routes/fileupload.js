@@ -33,6 +33,8 @@ router.get('/file_list', function (req, res, next) {
     }
     console.log(args['room'])
     var roompath = './savedFiles/' + args['room'] + "/";
+    if (args['room'] == 'all')
+        roompath = './savedFiles/'
     var filelist = fs.readdirSync(roompath)
 
     console.log(filelist)
