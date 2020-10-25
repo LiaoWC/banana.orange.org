@@ -25,7 +25,7 @@
                     i.far.fa-user.pr-2.fa-7x(aria-hidden='true')
                     | Staff
             button.btn.btn-unique(type='button')
-                a   
+                a
                     i.fas.fa-wifi.pr-2.fa-7x(aria-hidden='true')
                     | Wifi
             button.btn.btn-success(type='button')
@@ -36,5 +36,13 @@
                 a
                     i.fas.fa-check.pr-2.fa-7x(aria-hidden='true')
                     | Todo
-        // Grid column
-    // Grid row
+                    a.badge_count.badge.badge-primary.badge-pill.primary-color-dark.text-right(href='/forum' target='_blank')
+                    style(type='text/css').
+                        .badge_count {
+                            position: absolute !important;
+                            top: 0;
+                            right: 0;
+                            background-color: red !important;
+                            font-size: medium;
+                        }
+script(type='text/javascript' src='/js/dashboard_icons.js')
