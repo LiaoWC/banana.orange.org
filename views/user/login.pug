@@ -1,7 +1,7 @@
 extends ../page
 block content
     // Default form login
-    form.text-center.border.border-light.p-5(action='/user/login' method='post')
+    form#login_form.text-center.border.border-light.p-5(action='/user/login' method='post')
         p.h4.mb-4 Login
         // Email
         input#loginFormEmail.form-control.mb-4(type='email' name='email' placeholder='E-mail')
@@ -33,3 +33,8 @@ block content
         a.mx-2(href='#' role='button')
             i.fab.fa-github.light-blue-text
     // Default form login
+    style(type='text/css').
+        #login_form{
+            background-color: white;
+            color: black;
+        }

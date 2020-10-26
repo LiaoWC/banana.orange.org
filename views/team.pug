@@ -1,7 +1,7 @@
 extends page
 
 block content
-    .container.pt-5.my-5.z-depth-1
+    #team_container.container.pt-5.my-5.z-depth-1
         section.p-md-3.mx-md-5.text-center
             h2.text-center.mx-auto.font-weight-bold.mb-4.pb-2 Our Team
             .row
@@ -13,3 +13,14 @@ block content
                             .text-center.mt-3
                                 h6.font-weight-bold.pt-2
                                     a(href='https://github.com/' + member[0])= member[0]
+    style(type='text/css').
+        #team_container .avatar{
+            background-color: transparent;
+        }
+        #team_container.container{
+            background-color: dimgray;
+            border-radius: 1.5%;
+        }
+        #team_container h2, #team_container .p-4 h6 a{
+            color: white;
+        }

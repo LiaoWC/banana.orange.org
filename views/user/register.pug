@@ -1,7 +1,7 @@
 extends ../page
 block content
     // Default form register
-    form.text-center.border.border-light.p-5(action='/user/register' method='post')
+    form#register_form.text-center.border.border-light.p-5(action='/user/register' method='post')
         p.h4.mb-4 Register
         // Username
         input#registerFormFirstName.form-control.mb-4(type='text' name='username' placeholder='Username' required)
@@ -36,3 +36,8 @@ block content
             a(href='' target='_blank') terms of service
             | &nbsp;(Not implemented)
     // Default form register
+    style(type='text/css').
+        #register_form{
+            background-color: white;
+            color: black;
+        }

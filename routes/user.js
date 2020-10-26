@@ -120,7 +120,7 @@ router.route('/login')
 
 
 router.all('/logout', redirectionLogin, (req, res) => {
-    req.session.destrowy(err => {
+    req.session.destroy(err => {
         if (err) {
             return res.redirect(fullPath('/'))
         }

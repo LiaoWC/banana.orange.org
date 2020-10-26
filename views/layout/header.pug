@@ -1,58 +1,56 @@
-// Navbar
-nav.navbar.navbar-expand-lg.navbar-dark.primary-color.fixed-top
-    // Navbar brand
-    a.navbar-brand(href='/')
-        img(src='/images/favicon.png' height='30' alt='BO logo')
-    // Collapse button
-    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#basicExampleNav' aria-controls='basicExampleNav' aria-expanded='false' aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-    // Collapsible content
-    #basicExampleNav.collapse.navbar-collapse
-        // Links
-        ul.navbar-nav.mr-auto
-            li.nav-item
-                a.nav-link(href='/')
-                    | Home
-                    span.sr-only (current)
-            li.nav-item
-                a.nav-link(href='/fileupload/test_file') file
-            li.nav-item
-                a.nav-link(href='/meeting/control') Meeting
-            li.nav-item
-                a.nav-link(href='/todo_clock') Todos
-            li.nav-item
-                a.nav-link(href='/forum') Forum
-            li.nav-item
-                a.nav-link(href='/dashboard') Dashboard
-            // Dropdown
-            //li.nav-item.dropdown
-            //    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Dropdown
-            //    .dropdown-menu.dropdown-primary(aria-labelledby='navbarDropdownMenuLink')
-            //        a.dropdown-item(href='#') Action
-            //        a.dropdown-item(href='#') Another action
-            //        a.dropdown-item(href='#') Something else here
-        // Links
-        ul.navbar-nav.ml-auto.nav-flex-icons
-            form.form-inline
-                .md-form.my-0
-                    input.form-control.mr-sm-2(type='text' placeholder='Search' aria-label='Search')
-            li.nav-item
-                a.nav-link.waves-effect.waves-light
-                    i.fab.fa-twitter
-            li.nav-item
-                a.nav-link.waves-effect.waves-light
-                    i.fab.fa-google-plus-g
-            li.nav-item.dropdown
-                a#navbarDropdownMenuLink-account.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                    i.fas.fa-user= username
-                .dropdown-menu.dropdown-menu-right.dropdown-default(aria-labelledby='navbarDropdownMenuLink-account')
-                    if userId
-                        a.dropdown-item(href='/user/logout') Logout
-                    else
-                        a.dropdown-item(href='/user/login') Login
-                        a.dropdown-item(href='/user/register') Register
-    // Collapsible content
-// /.Navbar
+//// Navbar
+//nav.navbar.navbar-expand-lg.navbar-dark.primary-color.fixed-top
+//    // Navbar brand
+//    a.navbar-brand(href='/')
+//        img(src='/images/favicon.png' height='30' alt='BO logo')
+//    // Collapse button
+//    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#basicExampleNav' aria-controls='basicExampleNav' aria-expanded='false' aria-label='Toggle navigation')
+//        span.navbar-toggler-icon
+//    // Collapsible content
+//    #basicExampleNav.collapse.navbar-collapse
+//        // Links
+//        ul.navbar-nav.mr-auto
+//            li.nav-item
+//                a.nav-link(href='/')
+//                    | Home
+//                    span.sr-only (current)
+//            li.nav-item
+//                a.nav-link(href='/fileupload/test_file') file
+//            li.nav-item
+//                a.nav-link(href='/meeting/control') Meeting
+//            li.nav-item
+//                a.nav-link(href='/todo_clock') Todos
+//            li.nav-item
+//                a.nav-link(href='/forum') Forum
+//            li.nav-item
+//                a.nav-link(href='/dashboard') Dashboard
+//            // Dropdown
+//            //li.nav-item.dropdown
+//            //    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Dropdown
+//            //    .dropdown-menu.dropdown-primary(aria-labelledby='navbarDropdownMenuLink')
+//            //        a.dropdown-item(href='#') Action
+//            //        a.dropdown-item(href='#') Another action
+//            //        a.dropdown-item(href='#') Something else here
+//        // Links
+//        ul.navbar-nav.ml-auto.nav-flex-icons
+//            form.form-inline
+//                .md-form.my-0
+//                    input.form-control.mr-sm-2(type='text' placeholder='Search' aria-label='Search')
+//            li.nav-item
+//                a.nav-link.waves-effect.waves-light
+//                    i.fab.fa-twitter
+//            li.nav-item
+//                a.nav-link.waves-effect.waves-light
+//                    i.fab.fa-google-plus-g
+//            li.nav-item.dropdown
+//                a#navbarDropdownMenuLink-account.nav-link.dropdown-toggle(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+//                    i.fas.fa-user= username
+//                .dropdown-menu.dropdown-menu-right.dropdown-default(aria-labelledby='navbarDropdownMenuLink-account')
+//                    if userId
+//                        a.dropdown-item(href='/user/logout') Logout
+//                    else
+//                        a.dropdown-item(href='/user/login') Login
+//                        a.dropdown-item(href='/user/register') Register
 
 
 ////////////////////////////////////////
@@ -74,21 +72,46 @@ nav.navbar.navbar-expand-lg.navbar-dark.primary-color.fixed-top
 //        li
 //            a.btn-floating.blue
 //                i.fas.fa-shopping-cart
+.containera.floating-bottom-right
+    //    a.btn-lg.btn-primary.text-center.justify-content-center(href='/dashboard')
+    //        i.fas.fa-tachometer-alt
 
-a.btn-lg.btn-primary.aaa.text-center.justify-content-center(href='/dashboard')
-    i.fas.fa-tachometer-alt
+    .btn-group.dropup
+        //button.btn.btn-primary(type='button') Dropup
+        button.btn.btn-primary.dropdown-toggle.px-5.py-4.floating-dropup(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+            i.fa.fa-ellipsis-h.fa-2x
+        .dropdown-menu.primary-color.text-left
+            each item in [['fas fa-tachometer-alt','Dashboard','/dashboard'],['far fa-newspaper','Forum','/forum'],['fas fa-video','Meeting','/meeting/control'],['far fa-check-square','Todos','/todo_clock'],['far fa-file-alt','File','/fileupload/test_file'],['fas fa-user','User','/user'],['fas fa-angle-double-up','Go to Top','#']]
+                a.dropdown-item.text-light(href=item[2]).fa-2x
+                    i.pr-2(class=item[0])
+                    | #{item[1]}
 style(type='text/css').
-    .aaa{
+    .floating-bottom-right {
         position: fixed;
-        top: 90%;
-        left:92%;
-        /*border-radius:100%;*/
-        /*background-color: #00223E;*/
-        /*border-style: solid;*/
-        /*border-width: thin;*/
-        box-shadow: 3px 3px 4px #999;
-
-        width: 80px;
-        height: 65px;
+        top: 88%;
+        left: 88%;
+        width: 100px;
+        height: 80px;
         font-size: 35px;
+        z-index: 99;
+    }
+
+    .floating-dropup {
+        border-radius: 10%;
+    }
+
+    .dropdown-menu.show {
+        /*background-color: #024873 !important;*/
+    }
+
+    .floating-bottom-right .btn-primary.dropdown-toggle {
+        /*background-color: #024873 !important;*/
+    }
+
+    .floating-dropup .btn.btn-primary.dropdown-toggle {
+
+    }
+
+    .floating-bottom-right button.dropdown-toggle.floating-dropup:after {
+        content: none;
     }

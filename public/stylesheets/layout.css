@@ -4,6 +4,8 @@
 
 body {
     padding-top: 58px; /* Use this to solve the fixed navbar covering content problem. */
+    background-color: #024873;
+    color:white;
 }
 
 /*@media  {*/
