@@ -80,9 +80,9 @@
         //button.btn.btn-primary(type='button') Dropup
         button.btn.btn-primary.dropdown-toggle.px-5.py-4.floating-dropup(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
             i.fa.fa-ellipsis-h.fa-2x
-        .dropdown-menu.primary-color.text-left
+        .dropdown-menu.btn-primary.text-left
             each item in [['fas fa-tachometer-alt','Dashboard','/dashboard'],['far fa-newspaper','Forum','/forum'],['fas fa-video','Meeting','/meeting/control'],['far fa-check-square','Todos','/todo_clock'],['far fa-file-alt','File','/fileupload/test_file'],['fas fa-user','User','/user'],['fas fa-angle-double-up','Go to Top','#']]
-                a.dropdown-item.text-light(href=item[2]).fa-2x
+                a.dropdown-item.text-white(href=item[2]).fa-2x
                     i.pr-2(class=item[0])
                     | #{item[1]}
 style(type='text/css').
